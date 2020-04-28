@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <form (submit)="signUp()">
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="user.email" name="email" class="form-control" placeholder="Email" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" [(ngModel)]="user.password" name="password" class="form-control" placeholder="Contraseña" required>
+                    </div>
+
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option value="" selected disabled>Seleccione un plan</option>
+                            <option value="1">Plan comun 5$/mes</option>
+                            <option value="2">Plan familiar 10$/mes</option>
+                          </select>
+                    </div>
+                    <div class="form-group owner">
+                        <label for="username">Nombre completo (en la tarjeta)</label>
+                        <input type="text" name="username" placeholder="Nombre completo" required class="form-control">
+                    </div>
+                    <div class="form-group CVV">
+                        <label for="cardNumber">Numero de tarjeta</label>
+                        <div class="input-group">
+                            <input type="text" name="cardNumber" placeholder="Numero de tarjeta" class="form-control" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text" style="background-color: rgb(19, 19, 19)">
+                                    <i class="fa cc-visa mx-1"></i>
+                                    <i class="fa fa-cc-amex mx-1"></i>
+                                    <i class="fa fa-cc-mastercard mx-1"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <label><span class="hidden-xs">Expiracion</span></label>
+                                <div class="input-group">
+                                    <select class="form-control" style="width:45%">
+                                        <option selected disabled>MM</option>
+                                        <option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10,11,12]">{{number}}</option>
+                                      </select>
+                                    <select class="form-control" style="width:45%">
+                                        <option selected disabled>YY</option>
+                                        <option *ngFor="let number of [20,21,22,23,24,25,26,27,28,29,30]">{{number}}</option>
+                                      </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group mb-4">
+                                <label data-toggle="tooltip" title="Codigo de tres digitos detras de tu tarjeta">CVV
+                                                    <i class="fa fa-question-circle"></i>
+                                                </label>
+                                <input type="text|number" maxlength="4" required class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-block btn-outline-success">
+                        Registrarse
+                    </button>
+                </form>
+            </div>
+        </div>
+        <p class="text-center text-muted">Ya estas registrado? <a [routerLink]="['/signin']" class="text-success">Inicia sesión</a></p>
+
+    </div>
+</div>
