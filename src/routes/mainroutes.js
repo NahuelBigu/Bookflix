@@ -1,13 +1,19 @@
 const { Router } = require('express');
 const router = Router();
+const user = require('../controllers/user.controller');
 
 const User = require('../models/User');
+const Book = require('../models/Book');
 
 const jwt = require('jsonwebtoken');
 
 router.get('/', (req, res) => {
     res.send('hello')
 });
+
+router.get('/:id', user.getUser);
+router.put('/:id', user.editUser);
+router.put('/:id', user.deleteUser);
 
 router.post('/signup', async(req, res) => {
     const { email, password } = req.body;
@@ -21,7 +27,7 @@ router.post('/signin', async(req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    if (!user) return res.status(401).send('The email doen\' exists');
+    if (!user) return res.status(401).send('The email dosen\' exists');
     if (user.password !== password) return res.status(401).send('Wrong Password');
 
     const token = jwt.sign({ _id: user._id }, 'secretkey');

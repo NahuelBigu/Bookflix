@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const path = require('path');
+module.exports = app;
 
 require('./database');
 
@@ -9,10 +11,17 @@ app.set('port', process.env.PORT || 3000)
 
 // middlewares
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin: 'http://localhost:4200'}));
+app.use(express.urlencoded({extended:false}));
 
 // routes
 app.use('/api', require('./routes/mainroutes'));
-
 app.listen(app.get('port'));
 console.log('Server on port', app.get('port'));
+
+// Global Variables
+
+// Initialization
+
+// Static files
+app.use(express.static(path.join(__dirname,'public')));
