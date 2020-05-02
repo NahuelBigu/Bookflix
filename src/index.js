@@ -9,7 +9,7 @@ app.set('port', process.env.PORT || 3000)
 
 // middlewares
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin: 'http://localhost:4200'}));
 
 // routes
 app.use('/api', require('./routes/mainroutes'));
