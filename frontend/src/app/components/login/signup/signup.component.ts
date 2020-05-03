@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { UserService } from 'src/app/services/user.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Session } from 'src/app/models/session';
+import { User } from '../../../models/user';
 
 
 @Component({
@@ -13,19 +14,7 @@ import { Session } from 'src/app/models/session';
 })
 export class SignupComponent implements OnInit {
 
-  user = {
-    email: '',
-    password: '',
-    plan: 0,
-    creditCard: {
-      creditCardName: '',
-      creditCardNumber: '',
-      expirationMonth: 0,
-      expirationYear: 0,
-      CVV: ''
-    },
-    historial: new Array
-  }
+  user : User
 
   userForm: FormGroup;
 
