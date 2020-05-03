@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', user.getUser);
 router.put('/:id', user.editUser);
-router.put('/:id', user.deleteUser);
+router.delete('/:id', user.deleteUser);
 
 router.post('/signup', async(req, res) => {
     const { email, password } = req.body;
