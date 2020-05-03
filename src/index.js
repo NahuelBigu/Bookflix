@@ -16,6 +16,8 @@ app.use(express.urlencoded({extended:false}));
 
 // routes
 app.use('/api', require('./routes/mainroutes'));
+app.use('/api/books', require('./routes/book.routes'));
+
 app.listen(app.get('port'));
 console.log('Server on port', app.get('port'));
 
