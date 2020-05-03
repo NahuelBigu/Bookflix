@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/login/auth.service';
 import { Router } from "@angular/router";
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -10,14 +11,16 @@ import { Router } from "@angular/router";
 export class SignupComponent implements OnInit {
 
   user= {
-    email: { type: String, required: true},
-    password: { type: String, required: true},
-    plan: { type: String, required: true},
-    name: { type: String, required: true},
-    creditCardNumber: { type: Number, required: true},
-    expiration: {type: Date, required: true},
-    CVV: {type: Number, required: true},
-    historial: Array
+    email: '',
+    password: '',
+    plan: 0,
+    name: '',
+    creditCard: {
+      creditCardNumber: '',
+      expiration: new Date,
+      CVV: ''
+    },
+    historial: new Array
   }
   constructor(private servicio:AuthService,
               private router:Router) { }
