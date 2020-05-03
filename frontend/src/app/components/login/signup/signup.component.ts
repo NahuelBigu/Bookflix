@@ -39,8 +39,8 @@ export class SignupComponent implements OnInit {
       plan: [1,Validators.required],
       creditCardName: ['',Validators.required],
       creditCardNumber: ['',Validators.required],
-      creditCardMM: ['',Validators.required],
-      creditCardYY: ['',Validators.required],
+      creditCardMM: [0,Validators.required],
+      creditCardYY: [0,Validators.required],
       creditCardCVV: ['',Validators.required]
     });
   }

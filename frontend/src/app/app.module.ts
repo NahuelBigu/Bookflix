@@ -12,6 +12,7 @@ import { InicioComponent } from './components/home/inicio/inicio.component';
 import { NavComponent } from './components/nav/nav.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/login/token-interceptor.service';
+import { UserInfoComponent } from './components/user/user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TokenInterceptorService } from './services/login/token-interceptor.serv
     SignupComponent,
     InicioGeneralComponent,
     InicioComponent,
-    NavComponent
+    NavComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,
