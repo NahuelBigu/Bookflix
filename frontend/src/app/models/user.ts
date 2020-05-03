@@ -7,10 +7,11 @@ export class User {
     password: String;
     plan: string;
     creditCard: {
-            cardNumber:  number;
-            expirationMonth: number;
-            expirationYear: number; 
-            CVV: number;
+            creditCardNumber:  number;
+            creditCardName: string;
+            creditCardMM: number;
+            creditCardYY: number; 
+            creditCardCVV: number;
         };
     profiles: Array<Profile>
 }
