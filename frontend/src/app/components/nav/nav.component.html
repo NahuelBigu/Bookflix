@@ -19,14 +19,14 @@
 
         <div class="my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
-                <ng-container *ngIf="!authService.loggedIn() ;else loggedIn">
+                <ng-container *ngIf="!authService.isAuthenticated() ;else loggedIn">
                     <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/signin']" routerLinkActive="active">Iniciar Sesión </a>
                     </li>
                 </ng-container>
                 <ng-template #loggedIn>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">{{ userService.user.name }} </a>
+                        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">{{ authService.getCurrentUser().name }} </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" style="cursor: pointer;" (click)="authService.logout()">Cerrar Sesión </a>

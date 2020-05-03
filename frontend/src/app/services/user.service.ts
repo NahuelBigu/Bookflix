@@ -8,5 +8,5 @@ export class UserService {
 
   constructor() { }
   user: User;
-  token: string;
+  token: string=null;
 }

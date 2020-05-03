@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/login/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
+import { Session } from 'src/app/models/session';
 
 @Component({
   selector: 'app-signin',
@@ -27,13 +28,15 @@ export class SigninComponent implements OnInit {
     this._servicio.signIn(this.user)
       .subscribe(
         res => {
-          this._user.user= res.user;
-          this._user.token = res.token;
-          localStorage.setItem('token',res.token);
-          console.log(res);
-          this.router.navigate(['/home']);
+          this.correctLogin(res);
         },
         err=> console.log(err)
       )
   }
+
+  private correctLogin(data: Session){
+    this._servicio.setCurrentSession(data);
+    this.router.navigate(['/home']);
+  }
+
 }
