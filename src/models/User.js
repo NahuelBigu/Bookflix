@@ -11,7 +11,7 @@ const UserSchema = new Schema({
         expiration: {type: Date, required: true},
         CVV: {type: Number, required: true}
     }, required: true },
-    prophiles: Array
+    prophiles: {type: Array, required: true}
 }, {
     timestamps: true
 });
