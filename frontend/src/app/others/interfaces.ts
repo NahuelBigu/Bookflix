@@ -1,17 +1,5 @@
+import { User } from '../models/user';
 
-export interface User {
-    id: string,
-    name: string,
-    email: String,
-    password: String,
-    plan: string,
-    creditCard: {
-            cardNumber:  number,
-            expiration: Date, 
-            CVV: number,
-        },
-    profiles: Array<Profiles>
-}
 
 export interface LoginResponse{
     user: User,

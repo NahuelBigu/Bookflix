@@ -6,6 +6,7 @@ import { SignupComponent } from './components/login/signup/signup.component';
 import { InicioGeneralComponent } from './components/home/inicio-general/inicio-general.component';
 import { InicioComponent } from './components/home/inicio/inicio.component';
 import { AuthGuard } from './auth.guard';
+import { UserInfoComponent } from './components/user/user-info/user-info.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,11 @@ const routes: Routes = [
   {
     path: 'home',
     component: InicioComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'myUserInfo',
+    component: UserInfoComponent,
     canActivate: [AuthGuard]
   },
   {

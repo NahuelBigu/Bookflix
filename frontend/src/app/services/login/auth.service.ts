@@ -65,25 +65,6 @@ export class AuthService {
     return this.http.post<Session>(this.URL_API+ '/signin', user);
   }
 
-  postUser(user: User) {
-    return this.http.post(this.URL_API, user);
-  }
-
-  getUser(_id: string) {
-    return this.http.get(this.URL_API + `/${_id}`);
-  }
-
-  getUsers() {
-    return this.http.get(this.URL_API);
-  }
-
-  putUser(user: User) {
-    return this.http.put(this.URL_API + `/${user._id}`, user);
-  }
-
-  deleteUser(_id: string) {
-    return this.http.delete(this.URL_API + `/${_id}`);
-  }
 
 }
 
