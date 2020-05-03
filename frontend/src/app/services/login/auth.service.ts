@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../../models/user'
 import { LoginResponse } from '../../others/interfaces';
 import { Observable } from 'rxjs/internal/Observable';
+import { UserService } from '../user.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +13,7 @@ export class AuthService {
   selectedUser: User;
 
   private URL_API= 'http://localhost:3000/api'
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private _userService:UserService,private http: HttpClient, private router: Router) { }
 
   signUp(user): Observable<LoginResponse>{
     return this.http.post<LoginResponse>(this.URL_API+ '/signup', user);
@@ -22,11 +23,12 @@ export class AuthService {
   }
   
   loggedIn(){
-    return !!localStorage.getItem('token');
+    return this._userService.token != localStorage.getItem('token');
   }
 
   logout() {
     localStorage.removeItem('token');
+    this._userService.user=null;
     this.router.navigate(['']);
   }
 
