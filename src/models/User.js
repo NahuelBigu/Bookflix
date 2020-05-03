@@ -6,11 +6,9 @@ const UserSchema = new Schema({
     password: { type: String, required: true},
     plan: { type: String, required: true},
     name: { type: String, required: true},
-    creditCard: { type: { 
-        cardNumber: {type: Number, required: true},
-        expiration: {type: Date, required: true},
-        CVV: {type: Number, required: true}
-    }, required },
+    creditCardNumber: { type: Number, required: true},
+    expiration: {type: Date, required: true},
+    CVV: {type: Number, required: true},
     historial: Array
 }, {
     timestamps: true

@@ -27,7 +27,7 @@ router.post('/signin', async(req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    if (!user) return res.status(401).send('The email dosent exists');
+    if (!user) return res.status(401).send('The email dosen\' exists');
     if (user.password !== password) return res.status(401).send('Wrong Password');
 
     const token = jwt.sign({ _id: user._id }, 'secretkey');
