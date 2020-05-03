@@ -10,8 +10,7 @@ const UserSchema = new Schema({
         cardNumber: {type: Number, required: true},
         expiration: {type: Date, required: true},
         CVV: {type: Number, required: true}
-    }, required },
-    historial: Array
+    }, required: true },
 }, {
     timestamps: true
 });
