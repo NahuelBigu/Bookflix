@@ -16,8 +16,19 @@ router.put('/:id', user.editUser);
 router.delete('/:id', user.deleteUser);
 
 router.post('/signup', async(req, res) => {
-    const { email, password } = req.body;
-    const newUser = new User({ email, password });
+    const { email, password, plan, creditCardName, creditCardNumber, creditCardCVV, creditCardMM, creditCardYY } = req.body;
+    const newUser = new User({
+        email,
+        password,
+        plan,
+        creditCard: {
+            "creditCardName": creditCardName,
+            "creditCardNumber": creditCardNumber,
+            "creditCardCVV": creditCardCVV,
+            "creditCardMM": creditCardMM,
+            "creditCardYY": creditCardYY
+        }
+    });
     await newUser.save();
     const token = await jwt.sign({ _id: newUser._id }, 'secretkey');
     res.status(200).json({
