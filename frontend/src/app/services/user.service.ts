@@ -7,5 +7,5 @@ import { User } from '../others/interfaces';
 export class UserService {
 
   constructor() { }
-  user: User
+  user: User;
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/login/auth.service';
 import { Router } from '@angular/router';
-import { User } from '../../../others/interfaces';
 import { UserService } from '../../../services/user.service';
 
 @Component({
@@ -12,8 +11,11 @@ import { UserService } from '../../../services/user.service';
 export class SigninComponent implements OnInit {
 
   user:{
-    email:string,
-    password:string
+    email : String,
+    password : String,
+  } = {
+      email: "",
+      password: ""
   }
   constructor( private _user: UserService,
     private _servicio:AuthService,private router:Router) { }

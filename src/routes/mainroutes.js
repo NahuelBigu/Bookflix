@@ -20,7 +20,10 @@ router.post('/signup', async(req, res) => {
     const newUser = new User({ email, password });
     await newUser.save();
     const token = await jwt.sign({ _id: newUser._id }, 'secretkey');
-    res.status(200).json({ token });
+    res.status(200).json({
+        token,
+        'user': newUser
+    });
 });
 
 router.post('/signin', async(req, res) => {
@@ -32,7 +35,10 @@ router.post('/signin', async(req, res) => {
 
     const token = jwt.sign({ _id: user._id }, 'secretkey');
 
-    return res.status(200).json({ token });
+    return res.status(200).json({
+        token,
+        'user': user
+    });
 });
 
 router.get('/tasks', (req, res) => {});

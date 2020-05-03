@@ -11,8 +11,8 @@ export class AuthService {
   private URL= 'http://localhost:3000/api'
   constructor(private http: HttpClient, private router: Router) { }
 
-  signUp(user){
-    return this.http.post<User>(this.URL+ '/signup', user);
+  signUp(user): Observable<LoginResponse>{
+    return this.http.post<LoginResponse>(this.URL+ '/signup', user);
   }
   signIn(user): Observable<LoginResponse>{
     return this.http.post<LoginResponse>(this.URL+ '/signin', user);

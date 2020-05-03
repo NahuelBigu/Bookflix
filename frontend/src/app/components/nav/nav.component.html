@@ -26,7 +26,7 @@
                 </ng-container>
                 <ng-template #loggedIn>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">{{ AuthService.getName }} </a>
+                        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">{{ userService.user.name }} </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" style="cursor: pointer;" (click)="authService.logout()">Cerrar Sesión </a>
