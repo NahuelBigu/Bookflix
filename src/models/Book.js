@@ -9,4 +9,4 @@ const bookSchemma = new Schema ({
     bookPDF: {type: String, required: true},
 })
 
-module.exports = model('book', bookSchemma);
+module.exports = model('Book', bookSchemma);
