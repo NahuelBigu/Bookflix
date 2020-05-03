@@ -6,8 +6,8 @@ export class User {
     password: String;
     plan: string;
     creditCard: {
-            creditCardName: string;
             creditCardNumber:  number;
+            creditCardName: string;
             creditCardMM: number;
             creditCardYY: number; 
             creditCardCVV: number;
