@@ -17,11 +17,11 @@ export class SignupComponent implements OnInit {
     email: '',
     password: '',
     plan: 0,
-    name: '',
     creditCard: {
       creditCardName: '',
       creditCardNumber: '',
-      expiration: new Date,
+      expirationMonth: 0,
+      expirationYear: 0,
       CVV: ''
     },
     historial: new Array
@@ -36,11 +36,11 @@ export class SignupComponent implements OnInit {
     this.userForm = this._builder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required],
-      plan: [1,Validators.required],
+      plan: [0,Validators.required],
       creditCardName: ['',Validators.required],
       creditCardNumber: ['',Validators.required],
-      creditCardMM: ['',Validators.required],
-      creditCardYY: ['',Validators.required],
+      creditCardMM: [0,Validators.required],
+      creditCardYY: [0,Validators.required],
       creditCardCVV: ['',Validators.required]
     });
   }
@@ -48,15 +48,21 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  validUser(){
+    return (this.userForm.value.plan==0 || this.userForm.value.creditCardMM==0 || this.userForm.value.creditCardYY==0 || !this.userForm.valid);
+  }
+
   signUp() {
-    console.log(this.userForm.value);
-    this._servicio.signUp(this.userForm.value)
-    .subscribe(
-      res => {
-        this.correctLogin(res);
-      },
-      err=> console.log(err)
-    )
+    if (!this.validUser()){
+      console.log(this.userForm.value);
+      this._servicio.signUp(this.userForm.value)
+      .subscribe(
+        res => {
+          this.correctLogin(res);
+        },
+        err=> console.log(err)
+      )
+    }
   }
   
   private correctLogin(data: Session){

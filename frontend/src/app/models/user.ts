@@ -8,7 +8,8 @@ export class User {
     plan: string;
     creditCard: {
             cardNumber:  number;
-            expiration: Date; 
+            expirationMonth: number;
+            expirationYear: number; 
             CVV: number;
         };
     profiles: Array<Profile>
