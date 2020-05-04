@@ -7,6 +7,7 @@ import { InicioGeneralComponent } from './components/home/inicio-general/inicio-
 import { InicioComponent } from './components/home/inicio/inicio.component';
 import { AuthGuard } from './auth.guard';
 import { UserInfoComponent } from './components/user/user-info/user-info.component';
+import { TodasLasNoticiasComponent } from './components/noticias/todas-las-noticias/todas-las-noticias.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,11 @@ const routes: Routes = [
   {
     path: 'home',
     component: InicioComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'noticias',
+    component: TodasLasNoticiasComponent,
     canActivate: [AuthGuard]
   },
   {

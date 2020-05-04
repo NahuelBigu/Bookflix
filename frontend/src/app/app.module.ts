@@ -13,6 +13,8 @@ import { NavComponent } from './components/nav/nav.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/login/token-interceptor.service';
 import { UserInfoComponent } from './components/user/user-info/user-info.component';
+import { TodasLasNoticiasComponent } from './components/noticias/todas-las-noticias/todas-las-noticias.component';
+import { NoticiaComponent } from './components/noticias/noticia/noticia.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { UserInfoComponent } from './components/user/user-info/user-info.compone
     InicioGeneralComponent,
     InicioComponent,
     NavComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    TodasLasNoticiasComponent,
+    NoticiaComponent
   ],
   imports: [
     BrowserModule,
