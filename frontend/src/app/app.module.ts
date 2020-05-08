@@ -10,11 +10,12 @@ import { SignupComponent } from './components/login/signup/signup.component';
 import { InicioGeneralComponent } from './components/home/inicio-general/inicio-general.component';
 import { InicioComponent } from './components/home/inicio/inicio.component';
 import { NavComponent } from './components/nav/nav.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth/auth.guard';
 import { TokenInterceptorService } from './services/login/token-interceptor.service';
 import { UserInfoComponent } from './components/user/user-info/user-info.component';
 import { TodasLasNoticiasComponent } from './components/noticias/todas-las-noticias/todas-las-noticias.component';
 import { NoticiaComponent } from './components/noticias/noticia/noticia.component';
+import { NoticiasAdministradorComponent } from './components/noticias/noticias-administrador/noticias-administrador.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NoticiaComponent } from './components/noticias/noticia/noticia.componen
     NavComponent,
     UserInfoComponent,
     TodasLasNoticiasComponent,
-    NoticiaComponent
+    NoticiaComponent,
+    NoticiasAdministradorComponent
   ],
   imports: [
     BrowserModule,
