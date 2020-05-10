@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/login/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
-import { Session } from 'src/app/models/session';
+
 
 @Component({
   selector: 'app-signin',
@@ -34,7 +34,7 @@ export class SigninComponent implements OnInit {
       )
   }
 
-  private correctLogin(data: Session){
+  private correctLogin(data){
     this._servicio.setCurrentSession(data);
     this.router.navigate(['/home']);
   }

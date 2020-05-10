@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const UserSchema = new Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
-    plan: { type: String, required: true },
+    plan: { type: Number, required: true },
     creditCard: {
         type: {
             creditCardNumber: { type: Number, required: true },
@@ -15,7 +15,7 @@ const UserSchema = new Schema({
         },
         required: true
     },
-    prophiles: { type: Array, required: true }
+    profiles: { type: Array, required: true }
 }, {
     timestamps: true
 });

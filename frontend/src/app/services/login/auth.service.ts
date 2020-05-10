@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
-import { User } from '../../models/user'
-import { LoginResponse } from '../../others/interfaces';
+import { User } from '../../models/user';
 import { Observable } from 'rxjs/internal/Observable';
 import { UserService } from '../user.service';
-import { Session } from '../../models/session';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,42 +13,60 @@ export class AuthService {
   selectedUser: User;
 
   private localStorageService;
-  private currentSession : Session = null;
+  private currentToken : String = null;
 
-  private URL_API= 'http://localhost:3000/api'
-  constructor(private _userService:UserService,private http: HttpClient, private router: Router) {
+  private URL_API= 'http://localhost:3000/api/users'
+  constructor(private http: HttpClient, private router: Router) {
 
     this.localStorageService = localStorage;
-    this.currentSession = this.loadSessionData();
+    this.currentToken = this.loadSessionData();
   
    }
 
 
-  setCurrentSession(session: Session): void {
-    this.currentSession = session;
-    this.localStorageService.setItem('currentUser', JSON.stringify(session));
+  setCurrentSession(session): void {
+    this.currentToken = session.token;
+    this.localStorageService.setItem('currentUser', JSON.stringify(session.token));
   }
-  loadSessionData(): Session{
+  loadSessionData(): String{
     var sessionStr = this.localStorageService.getItem('currentUser');
-    return (sessionStr) ? <Session> JSON.parse(sessionStr) : null;
+    return (sessionStr) ?  JSON.parse(sessionStr) : null;
   }
-  getCurrentSession(): Session {
-    return this.currentSession;
+  getCurrentSession() {
+    return this.currentToken;
   }
   removeCurrentSession(): void {
     this.localStorageService.removeItem('currentUser');
-    this.currentSession = null;
+    this.currentToken = null;
   }
   getCurrentUser(): User {
-    var session: Session = this.getCurrentSession();
-    return (session && session.user) ? session.user : null;
+    var user: User=new User;
+    var ruta=this.URL_API+ '/getUserByToken/'+ this.getCurrentToken();
+    this.http.get<User>(ruta).subscribe((data) => {
+      console.log(data);
+      user._id =  data._id; // fijarse si hay que poner dato a dato
+      user.creditCard = data.creditCard;
+  
+      user.email = data.email;
+      user.plan = data.plan;
+      user.password = data.password;
+      user.profiles= data.profiles;
+      console.log(user);
+   });
+    
+    return (user);
   }
+
   isAuthenticated(): boolean {
-    return (this.getCurrentToken() != null) ? true : false;
+    return (this.getCurrentToken() != null)&&(this.verifyToken()) ? true : false;
   }
-  getCurrentToken(): string {
-    var session = this.getCurrentSession();
-    return (session && session.token) ? session.token : null;
+  verifyToken() {
+    return this.http.get(this.URL_API + `/verifyToken/${this.getCurrentToken()}`);
+  }
+  
+  getCurrentToken(): String {
+    return this.getCurrentSession();
+    
   }
   logout(): void{
     this.removeCurrentSession();
@@ -58,11 +75,11 @@ export class AuthService {
 
 
 
-  signUp(user): Observable<Session>{
-    return this.http.post<Session>(this.URL_API+ '/signup', user);
+  signUp(user) {
+    return this.http.post(this.URL_API+ '/signup', user);
   }
   signIn(user){
-    return this.http.post<Session>(this.URL_API+ '/signin', user);
+    return this.http.post(this.URL_API+ '/signin', user);
   }
 
 

@@ -4,10 +4,10 @@ export class User {
     _id: string;
     email: String;
     password: String;
-    plan: string;
+    plan: number;
     creditCard: {
             creditCardNumber:  number;
-            creditCardName: string;
+            creditCardName: String;
             creditCardMM: number;
             creditCardYY: number; 
             creditCardCVV: number;

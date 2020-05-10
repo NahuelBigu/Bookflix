@@ -10,7 +10,14 @@ userCtrl.getUser = async(req, res) => {
     const user = await User.findById(req.params.id);
     res.json(user);
 }
-
+userCtrl.getUserByToken = async(req, res) => {
+    const payload = await jwt.verify(req.params.token, 'secretkey');
+    if (!payload) {
+        return res.status(401).send('Unauhtorized Request');
+    }
+    const user = await User.findById(payload._id);
+    res.json(user);
+}
 userCtrl.createUser = async(req, res) => {
     const { email, password, plan, creditCardName, creditCardNumber, creditCardCVV, creditCardMM, creditCardYY } = req.body;
     const user = await User.findOne({ email });
@@ -31,8 +38,7 @@ userCtrl.createUser = async(req, res) => {
     await newUser.save();
     const token = await jwt.sign({ _id: newUser._id }, 'secretkey');
     res.status(200).json({
-        token,
-        'user': newUser
+        token
     });
 }
 
@@ -59,8 +65,7 @@ userCtrl.iniciarSesion = async(req, res) => {
     const token = jwt.sign({ _id: user._id }, 'secretkey');
 
     return res.status(200).json({
-        token,
-        'user': user
+        token
     });
 }
 

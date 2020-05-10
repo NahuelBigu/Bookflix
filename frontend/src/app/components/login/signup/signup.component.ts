@@ -3,7 +3,6 @@ import { AuthService } from '../../../services/login/auth.service';
 import { Router } from "@angular/router";
 import { UserService } from 'src/app/services/user.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Session } from 'src/app/models/session';
 import { User } from 'src/app/models/user';
 
 
@@ -43,7 +42,6 @@ export class SignupComponent implements OnInit {
 
   signUp() {
     if (!this.validUser()){
-      console.log(this.userForm.value);
       this._servicio.signUp(this.userForm.value)
       .subscribe(
         res => {
@@ -54,7 +52,7 @@ export class SignupComponent implements OnInit {
     }
   }
   
-  private correctLogin(data: Session){
+  private correctLogin(data){
     this._servicio.setCurrentSession(data);
     this.router.navigate(['/home']);
   }
