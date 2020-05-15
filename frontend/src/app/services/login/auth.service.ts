@@ -9,6 +9,7 @@ import { UserService } from '../user.service';
   providedIn: 'root'
 })
 export class AuthService {
+  
 
   selectedUser: User;
 
@@ -43,7 +44,6 @@ export class AuthService {
     var user: User=new User;
     var ruta=this.URL_API+ '/getUserByToken/'+ this.getCurrentToken();
     this.http.get<User>(ruta).subscribe((data) => {
-      console.log(data);
       user._id =  data._id; // fijarse si hay que poner dato a dato
       user.creditCard = data.creditCard;
   
@@ -57,6 +57,10 @@ export class AuthService {
     return (user);
   }
 
+  isAdmin(): boolean {
+   
+    return false;
+  }
   isAuthenticated(): boolean {
     return (this.getCurrentToken() != null)&&(this.verifyToken()) ? true : false;
   }
