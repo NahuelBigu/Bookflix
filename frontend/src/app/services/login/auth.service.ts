@@ -59,7 +59,7 @@ export class AuthService {
 
   isAdmin(): boolean {
    
-    return false;
+    return true;
   }
   isAuthenticated(): boolean {
     return (this.getCurrentToken() != null)&&(this.verifyToken()) ? true : false;

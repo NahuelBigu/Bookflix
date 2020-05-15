@@ -6,7 +6,7 @@
         <div class="col-md-12">
 
             <h1 class="my-4">Noticias</h1>
-
+            <a class="btn btn-danger" [routerLink]="['/noticiasadministrador']" *ngIf="authServices.isAdmin()">Administrar Noticias</a>
             <!-- Blog Post -->
             <div class="card mb-4" *ngFor="let noticia of noticias">
                 <img class="card-img-top" src="{{noticia.image}}" alt="Card image cap">
@@ -20,6 +20,16 @@
                 </div>
             </div>
 
+
+            <!-- Pagination -->
+            <ul class="pagination justify-content-center mb-4">
+                <li class="page-item">
+                    <a class="page-link" href="#">&larr; Older</a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Newer &rarr;</a>
+                </li>
+            </ul>
         </div>
 
     </div>
