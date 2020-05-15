@@ -6,7 +6,7 @@
         <div class="col-md-12">
 
             <h1 class="my-4">Noticias</h1>
-            <a class="btn btn-danger" [routerLink]="['/noticiasadministrador']" *ngIf="authServices.isAdmin()">Administrar Noticias</a>
+            <a class="btn btn-danger" [routerLink]="['/noticiasadministrador']" *ngIf="admin">Administrar Noticias</a>
             <!-- Blog Post -->
             <div class="card mb-4" *ngFor="let noticia of noticias">
                 <img class="card-img-top" src="{{noticia.image}}" alt="Card image cap">

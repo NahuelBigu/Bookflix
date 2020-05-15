@@ -17,7 +17,7 @@
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/noticias']" routerLinkActive="active">Nosotros</a>
             </li>
-            <li class="nav-item" *ngIf="authService.isAdmin()">
+            <li class="nav-item" *ngIf="authService.isAuthenticated() && authService.isAdmin()">
                 <a class="nav-link" [routerLink]="['/noticias']" routerLinkActive="active">Administrador</a>
             </li>
         </ul>
@@ -34,7 +34,7 @@
                         <a class="nav-link" [routerLink]="['/myUserInfo']" routerLinkActive="active"> Mis Datos </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="cursor: pointer;" (click)="authService.logout()">Cerrar Sesión </a>
+                        <a class="nav-link" style="cursor: pointer;" (click)="logout()">Cerrar Sesión </a>
                     </li>
                 </ng-template>
                 <!-- <li class="nav-item">

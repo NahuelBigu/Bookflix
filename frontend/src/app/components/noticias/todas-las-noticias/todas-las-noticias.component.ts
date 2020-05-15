@@ -11,7 +11,8 @@ import { AuthService } from '../../../services/login/auth.service';
 export class TodasLasNoticiasComponent implements OnInit {
   noticiasAux: Array<Noticia>;
   noticias: Array<Noticia>;
-  constructor(private _servicioNoticias: NoticiasService,public authServices:AuthService) {}
+  admin:boolean;
+  constructor(private _servicioNoticias: NoticiasService,public authServices:AuthService) {this.admin=authServices.isAdmin();}
 
   ngOnInit(): void {
      this.getNoticias();

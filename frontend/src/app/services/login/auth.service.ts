@@ -15,8 +15,8 @@ export class AuthService {
 
   private localStorageService;
   private currentToken : String = null;
-
   private URL_API= 'http://localhost:3000/api/users'
+  admin: boolean;
   constructor(private http: HttpClient, private router: Router) {
 
     this.localStorageService = localStorage;
@@ -28,6 +28,7 @@ export class AuthService {
   setCurrentSession(session): void {
     this.currentToken = session.token;
     this.localStorageService.setItem('currentUser', JSON.stringify(session.token));
+    this.getCurrentUser();
   }
   loadSessionData(): String{
     var sessionStr = this.localStorageService.getItem('currentUser');
@@ -49,17 +50,17 @@ export class AuthService {
   
       user.email = data.email;
       user.plan = data.plan;
+      this.admin= user.plan==0;
       user.password = data.password;
       user.profiles= data.profiles;
-      console.log(user);
+     
    });
     
     return (user);
   }
-
+  
   isAdmin(): boolean {
-   
-    return true;
+    return this.admin;
   }
   isAuthenticated(): boolean {
     return (this.getCurrentToken() != null)&&(this.verifyToken()) ? true : false;
