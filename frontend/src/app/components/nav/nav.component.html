@@ -7,9 +7,18 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarResponsive">
+
         <ul class="navbar-nav mr-auto">
+            <ng-container *ngIf="authService.isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/noticias']" routerLinkActive="active">Noticias</a>
+                </li>
+            </ng-container>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/noticias']" routerLinkActive="active">Noticias</a>
+                <a class="nav-link" [routerLink]="['/noticias']" routerLinkActive="active">Nosotros</a>
+            </li>
+            <li class="nav-item" *ngIf="authService.isAdmin()">
+                <a class="nav-link" [routerLink]="['/noticias']" routerLinkActive="active">Administrador</a>
             </li>
         </ul>
 

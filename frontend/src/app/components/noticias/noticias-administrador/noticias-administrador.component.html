@@ -1,26 +1,24 @@
 <div class="container">
 
     <div class="row">
-
-
         <h2 class="my-4">Todas las noticias</h2>
 
         <!-- Blog Post -->
-        <div class="card mb-4">
+        <div class="card mb-4" *ngFor="let noticia of noticias">
             <div class="card-body">
-                <h4 class="card-title">Post Title</h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                <h2 class="card-title">{{noticia.title}}</h2>
+                <p class="card-text">{{noticia.text}}</p>
+                <a href="#" class="btn btn-primary ">Seguir leyendo &rarr;</a>
             </div>
             <div class="card-footer text-muted">
-                Posted on January 1, 2017 by
-                <a href="#">Start Bootstrap</a>
+                Posted on {{noticia.createdAt}} by {{noticia.author}}
             </div>
         </div>
 
 
 
         <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4">
+        <ul class="pagination justify-content-center mb-4" *ngIf="noticiasLength != 0 ">
             <li class="page-item">
                 <a class="page-link" href="#">&larr; Older</a>
             </li>
