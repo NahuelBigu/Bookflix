@@ -1,5 +1,59 @@
-<p>{{user.email}}</p>
-<p>{{user.password}}</p>
-<p>{{user.creditCard.creditCardName}}</p>
-<p>{{user.creditCard.creditCardCVV}}</p>
-<p>{{user.creditCard.creditCardMM}}/{{user.creditCard.creditCardYY}}</p>
+<br>
+<div class="container-md m-5">
+    <h1 class="text-danger">Mis datos</h1>
+</div>
+<br>
+<div class="container ml-5">
+    <div class="row">
+        <div class="col-sm">
+            <p class="text-white">Correo electronico:</p>
+        </div>
+        <div class="col-sm">
+            <p class="text-white">{{user.email}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <p class="text-white">
+                Nombre completo:
+            </p>
+        </div>
+        <div class="col-sm">
+            <p class="text-white">{{user.creditCard.creditCardName}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <p class="text-white">
+                Numero de tarjeta:
+            </p>
+        </div>
+        <div class="col-sm">
+            <p class="text-white">{{user.creditCard.creditCardNumber}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <p class="text-white">
+                CVV:
+            </p>
+        </div>
+        <div class="col-sm">
+            <p class="text-white">{{user.creditCard.creditCardCVV}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <p class="text-white">
+                Fecha de vencimiento de la tarjeta:
+            </p>
+        </div>
+        <div class="col-sm">
+            <p class="text-white">{{user.creditCard.creditCardMM}}/{{user.creditCard.creditCardYY}}</p>
+        </div>
+        <div class="col-sm">
+            <i class="fas fa-edit"></i>
+        </div>
+    </div>
+    <button class="btn btn-lg btn-outline-success length-5">Cambiar contraseña</button>
+</div>

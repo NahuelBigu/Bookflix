@@ -16,7 +16,6 @@ const UserSchema = new Schema({
         required: true
     },
     profiles: { type: Array, required: true },
-    timestamps: true,
     active: { type: Boolean, required: true }
 });
 
