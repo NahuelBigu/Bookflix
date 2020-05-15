@@ -12,5 +12,6 @@ export class User {
             creditCardYY: number; 
             creditCardCVV: number;
         };
-    profiles: Array<Profile>
+    profiles: Array<Profile>;
+    active: boolean;
 }
