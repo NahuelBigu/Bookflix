@@ -16,7 +16,10 @@ const UserSchema = new Schema({
         required: true
     },
     profiles: { type: Array, required: true },
-    active: { type: Boolean, required: true }
+    active: { type: Boolean, required: true },
+    historial: Array
+}, {
+    timestamps: true
 });
 
 UserSchema.methods.encryptPassword = async password => {
