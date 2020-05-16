@@ -11,6 +11,7 @@ import { UserInfoComponent } from './components/user/user-info/user-info.compone
 import { TodasLasNoticiasComponent } from './components/noticias/todas-las-noticias/todas-las-noticias.component';
 import { NoticiaComponent } from './components/noticias/noticia/noticia.component';
 import { NoticiasAdministradorComponent } from './components/noticias/noticias-administrador/noticias-administrador.component';
+import { CargarLibroComponent } from './components/books/cargar-libro/cargar-libro.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent
+  },
+  {
+    path: 'books/add',
+    component: CargarLibroComponent
   },
   {
     path: '**',
