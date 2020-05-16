@@ -22,4 +22,7 @@ export class NoticiasAdministradorComponent implements OnInit {
       this.noticiasLength= this.noticias.length;
   });
   }
+  eliminarNoticia(_id: String){
+    this._servicioNoticias.deleteNoticia(_id);
+  }
 }

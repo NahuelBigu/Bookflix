@@ -5,10 +5,11 @@
             <h2 class="my-4">Todas las noticias</h2>
         </div>
         <div class="col-3 my-4"> <a [routerLink]="['/crear-noticia']" class="btn btn-block btn-danger"> Crear noticia</a> </div>
-
-        <!-- Blog Post -->
-        <div class="col-10">
-            <div class="card mb-4" *ngFor="let noticia of noticias">
+    </div>
+    <!-- Blog Post -->
+    <div class="row" *ngFor="let noticia of noticias">
+        <div class="col-11">
+            <div class="card mb-4">
                 <div class="card-body">
                     <h3 class="card-title">{{noticia.title}}</h3>
                     <p class="card-text">{{noticia.text}}</p>
@@ -19,24 +20,23 @@
                 </div>
             </div>
         </div>
-        <div class="col-2">
-
-            <a [routerLink]="['/crear-noticia']" class="f btn btn-outliner btn-danger"> <i class="fas fa-trash"></i>Crear noticia</a>
+        <div class="col-1">
+            <button (click)="eliminarNoticia(noticia._id)" class="f btn btn-outline-danger btn-block "> <i class="fas fa-trash"></i></button>
+            <button (click)="eliminarNoticia(noticia._id)" class="f btn btn-outline-warning btn-block "> <i class="fas fa-edit"></i></button>
         </div>
-
-
-        <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4" *ngIf="noticiasLength != 0 ">
-            <li class="page-item">
-                <a class="page-link" href="#">&larr; Older</a>
-            </li>
-            <li class="page-item disabled">
-                <a class="page-link" href="#">Newer &rarr;</a>
-            </li>
-        </ul>
-
-
     </div>
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center mb-4" *ngIf="noticiasLength != 0 ">
+        <li class="page-item">
+            <a class="page-link" href="#">&larr; Older</a>
+        </li>
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Newer &rarr;</a>
+        </li>
+    </ul>
+
+
+
     <!-- /.row -->
 
 </div>
