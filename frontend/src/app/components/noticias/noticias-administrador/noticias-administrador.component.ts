@@ -25,4 +25,8 @@ export class NoticiasAdministradorComponent implements OnInit {
   eliminarNoticia(_id: String){
     this._servicioNoticias.deleteNoticia(_id);
   }
+
+  activarNoticia(_id: String){
+    this._servicioNoticias.activateNoticia(_id);
+  }
 }
