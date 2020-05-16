@@ -28,10 +28,10 @@ export class NoticiasService {
   }
 
   deleteNoticia(_id: String) {
-    return this.http.delete(this.URL_API + `/${_id}`).subscribe(data => console.log(data));
+    return this.http.delete(this.URL_API + `/${_id}`).subscribe();
   }
 
   activateNoticia(_id: String) {
-    return this.http.get(this.URL_API + `/activarnoticia/${_id}`).subscribe(data => console.log(data));
+    return this.http.get(this.URL_API + `/activarnoticia/${_id}`).subscribe();
   }
 }

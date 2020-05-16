@@ -3,11 +3,15 @@ const Noticia = require('../models/Noticia');
 const noticiaCtrl = {};
 
 noticiaCtrl.getNoticias = async(req, res) => {
-    const noticias = await Noticia.find();
+    const noticias = await Noticia.find().sort({ createdAt: -1 });
     res.json(noticias);
 }
 
 noticiaCtrl.createNoticia = async(req, res) => {
+    if (!req.body.title) { res.status(401).send('Titulo requerido'); return false }
+    if (!req.body.text) { res.status(401).send('Texto requerido'); return false }
+    if (!req.body.image) { res.status(401).send('Imagen requerido'); return false }
+
     const newNoticia = new Noticia({
         title: req.body.title,
         author: req.body.author,
@@ -15,8 +19,9 @@ noticiaCtrl.createNoticia = async(req, res) => {
         image: req.body.image,
         active: true
     })
-    if (newNoticia.title)
-        await newNoticia.save();
+
+
+    await newNoticia.save();
     res.json(newNoticia._id);
 }
 

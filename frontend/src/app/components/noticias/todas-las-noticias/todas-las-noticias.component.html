@@ -18,7 +18,7 @@
                     <a [routerLink]="['/noticia/', noticia._id]" class="btn btn-primary ">Seguir leyendo &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">
-                    Posted on {{noticia.createdAt}} by {{noticia.author}}
+                    Posted on {{noticia.createdAt | date: 'MMM dd, yyyy' }} by {{noticia.author}}
                 </div>
             </div>
 
