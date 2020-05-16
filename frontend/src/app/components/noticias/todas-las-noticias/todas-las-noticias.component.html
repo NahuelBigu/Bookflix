@@ -1,15 +1,17 @@
 <div class="container">
 
     <div class="row">
-
+        <div class="col-9">
+            <h1 class="my-4">Noticias</h1>
+        </div>
+        <div class="col-3 mt-5">
+            <a class="btn btn-danger btn-block" [routerLink]="['/noticiasadministrador']" *ngIf="authServices.isAdmin()">Administrar Noticias</a>
+        </div>
         <!-- Blog Entries Column -->
         <div class="col-md-12">
-
-            <h1 class="my-4">Noticias</h1>
-            <a class="btn btn-danger" [routerLink]="['/noticiasadministrador']" *ngIf="authServices.isAdmin()">Administrar Noticias</a>
             <!-- Blog Post -->
             <div class="card mb-4" *ngFor="let noticia of noticias">
-                <img class="card-img-top" src="{{noticia.image}}" alt="Card image cap">
+                <img class="card-img-top imagen-noticia" src="{{noticia.image}}" alt="Card image cap">
                 <div class="card-body">
                     <h2 class="card-title">{{noticia.title}}</h2>
                     <p class="card-text">{{noticia.text}}</p>
@@ -21,7 +23,7 @@
             </div>
 
 
-            <!-- Pagination -->
+            <!-- Pagination 
             <ul class="pagination justify-content-center mb-4">
                 <li class="page-item">
                     <a class="page-link" href="#">&larr; Older</a>
@@ -30,6 +32,7 @@
                     <a class="page-link" href="#">Newer &rarr;</a>
                 </li>
             </ul>
+            -->
         </div>
 
     </div>

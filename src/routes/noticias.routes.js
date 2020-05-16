@@ -8,6 +8,7 @@ const auth = require('../middleware/auth');
 router.get('/', auth, noticias.getNoticias);
 router.post('/', auth, noticias.createNoticia);
 router.get('/:id', auth, noticias.getNoticia);
+router.get('/activarnoticia/:id', auth, noticias.activateNoticia);
 router.put('/:id', auth, noticias.editNoticia);
 router.delete('/:id', auth, noticias.deleteNoticia);
 

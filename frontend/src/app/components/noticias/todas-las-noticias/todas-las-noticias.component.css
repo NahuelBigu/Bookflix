@@ -1,0 +1,6 @@
+.imagen-noticia {
+    opacity: 0.8;
+    max-height: 250px;
+    height: auto;
+    object-fit: cover;
+}

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/login/auth.service';
 import { Router } from "@angular/router";
 import { UserService } from 'src/app/services/user.service';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, ValidationErrors } from '@angular/forms';
 import { User } from 'src/app/models/user';
 
 
@@ -56,5 +56,21 @@ export class SignupComponent implements OnInit {
     this._servicio.setCurrentSession(data);
     this.router.navigate(['/home']);
   }
+  getFormValidationErrors():String {
+    var aux :String="";
+    Object.keys(this.userForm.controls).forEach(key => {
+  
+    const controlErrors: ValidationErrors = this.userForm.get(key).errors;
+    if (controlErrors != null) {
+          Object.keys(controlErrors).forEach(keyError => {
+            aux=aux + keyError + "\n"
+            console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+          });
+        }
+      });
+    
+      return aux;
+    }
 
+    
 }
