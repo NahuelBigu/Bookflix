@@ -10,13 +10,13 @@ import { UserService } from '../user.service';
 })
 export class AuthService {
   
+  
 
   selectedUser: User;
 
   private localStorageService;
   private currentToken : String = null;
   private URL_API= 'http://localhost:3000/api/users'
-  admin: boolean;
   constructor(private http: HttpClient, private router: Router) {
 
     this.localStorageService = localStorage;
@@ -24,11 +24,11 @@ export class AuthService {
   
    }
 
-
+  
   setCurrentSession(session): void {
     this.currentToken = session.token;
     this.localStorageService.setItem('currentUser', JSON.stringify(session.token));
-    this.getCurrentUser();
+    this.localStorageService.setItem('user', JSON.stringify(session.user));
   }
   loadSessionData(): String{
     var sessionStr = this.localStorageService.getItem('currentUser');
@@ -39,6 +39,7 @@ export class AuthService {
   }
   removeCurrentSession(): void {
     this.localStorageService.removeItem('currentUser');
+    this.localStorageService.removeItem('user');
     this.currentToken = null;
   }
   getCurrentUser(): User {
@@ -46,11 +47,13 @@ export class AuthService {
     var ruta=this.URL_API+ '/getUserByToken/'+ this.getCurrentToken();
     this.http.get<User>(ruta).subscribe((data) => {
       user._id =  data._id; // fijarse si hay que poner dato a dato
-      user.creditCard = data.creditCard;
-  
+      user.creditCardNumber = data.creditCardNumber;
+      user.creditCardName = data.creditCardName;
+      user.creditCardMM = data.creditCardMM;
+      user.creditCardYY = data.creditCardYY;
+      user.creditCardCVV= data.creditCardCVV;
       user.email = data.email;
       user.plan = data.plan;
-      this.admin= user.plan==0;
       user.password = data.password;
       user.profiles= data.profiles;
      
@@ -58,9 +61,17 @@ export class AuthService {
     
     return (user);
   }
+  getCurrentUser2() {
+    return this.localStorageService.getItem('user');
+  }
   
   isAdmin(): boolean {
-    return this.admin;
+    return true;
+    if (this.isAuthenticated()){
+      //console.log(this.localStorageService.getItem('user').plan);
+      return this.localStorageService.getItem('user').plan === 0;
+    }
+    return false
   }
   isAuthenticated(): boolean {
     return (this.getCurrentToken() != null)&&(this.verifyToken()) ? true : false;

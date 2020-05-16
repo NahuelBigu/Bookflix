@@ -5,16 +5,11 @@ const UserSchema = new Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     plan: { type: Number, required: true },
-    creditCard: {
-        type: {
-            creditCardNumber: { type: Number, required: true },
-            creditCardName: { type: String, required: true },
-            creditCardMM: { type: Number, required: true },
-            creditCardYY: { type: Number, required: true },
-            creditCardCVV: { type: Number, required: true }
-        },
-        required: true
-    },
+    creditCardNumber: { type: Number, required: true },
+    creditCardName: { type: String, required: true },
+    creditCardMM: { type: Number, required: true },
+    creditCardYY: { type: Number, required: true },
+    creditCardCVV: { type: Number, required: true },
     profiles: { type: Array, required: true },
     active: { type: Boolean, required: true },
     historial: Array

@@ -1,23 +1,28 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-8">
+        <div class="col-9">
             <h2 class="my-4">Todas las noticias</h2>
         </div>
-        <div class="col-4 my-4"> <a class="btn btn-outliner btn-danger"> Crear noticia</a> </div>
+        <div class="col-3 my-4"> <a [routerLink]="['/crear-noticia']" class="btn btn-block btn-danger"> Crear noticia</a> </div>
 
         <!-- Blog Post -->
-        <div class="card mb-4" *ngFor="let noticia of noticias">
-            <div class="card-body">
-                <h2 class="card-title">{{noticia.title}}</h2>
-                <p class="card-text">{{noticia.text}}</p>
-                <a href="#" class="btn btn-primary ">Seguir leyendo &rarr;</a>
-            </div>
-            <div class="card-footer text-muted">
-                Posted on {{noticia.createdAt}} by {{noticia.author}}
+        <div class="col-10">
+            <div class="card mb-4" *ngFor="let noticia of noticias">
+                <div class="card-body">
+                    <h3 class="card-title">{{noticia.title}}</h3>
+                    <p class="card-text">{{noticia.text}}</p>
+                    <a [routerLink]="['/noticia/', noticia._id]" class="btn btn-primary ">Seguir leyendo &rarr;</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Publicado en {{noticia.createdAt | date: 'MMM dd, yyyy' }} por {{noticia.author}}
+                </div>
             </div>
         </div>
+        <div class="col-2">
 
+            <a [routerLink]="['/crear-noticia']" class="f btn btn-outliner btn-danger"> <i class="fas fa-trash"></i>Crear noticia</a>
+        </div>
 
 
         <!-- Pagination -->

@@ -16,6 +16,7 @@ import { UserInfoComponent } from './components/user/user-info/user-info.compone
 import { TodasLasNoticiasComponent } from './components/noticias/todas-las-noticias/todas-las-noticias.component';
 import { NoticiaComponent } from './components/noticias/noticia/noticia.component';
 import { NoticiasAdministradorComponent } from './components/noticias/noticias-administrador/noticias-administrador.component';
+import { CrearNoticiaComponent } from './components/noticias/crear-noticia/crear-noticia.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NoticiasAdministradorComponent } from './components/noticias/noticias-a
     UserInfoComponent,
     TodasLasNoticiasComponent,
     NoticiaComponent,
-    NoticiasAdministradorComponent
+    NoticiasAdministradorComponent,
+    CrearNoticiaComponent
   ],
   imports: [
     BrowserModule,

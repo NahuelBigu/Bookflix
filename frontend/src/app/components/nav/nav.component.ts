@@ -10,6 +10,7 @@ export class NavComponent implements OnInit {
   autenticado:boolean;
   admin:boolean;
   constructor(public authService:AuthService ) { 
+
   }
 
   ngOnInit(): void {

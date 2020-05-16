@@ -6,14 +6,14 @@
         <div class="col-md-12">
 
             <h1 class="my-4">Noticias</h1>
-            <a class="btn btn-danger" [routerLink]="['/noticiasadministrador']" *ngIf="admin">Administrar Noticias</a>
+            <a class="btn btn-danger" [routerLink]="['/noticiasadministrador']" *ngIf="authServices.isAdmin()">Administrar Noticias</a>
             <!-- Blog Post -->
             <div class="card mb-4" *ngFor="let noticia of noticias">
                 <img class="card-img-top" src="{{noticia.image}}" alt="Card image cap">
                 <div class="card-body">
                     <h2 class="card-title">{{noticia.title}}</h2>
                     <p class="card-text">{{noticia.text}}</p>
-                    <a href="#" class="btn btn-primary ">Seguir leyendo &rarr;</a>
+                    <a [routerLink]="['/noticia/', noticia._id]" class="btn btn-primary ">Seguir leyendo &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">
                     Posted on {{noticia.createdAt}} by {{noticia.author}}

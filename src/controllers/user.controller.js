@@ -26,20 +26,19 @@ userCtrl.createUser = async(req, res) => {
         email,
         password,
         plan,
-        creditCard: {
-            creditCardName,
-            creditCardNumber,
-            creditCardCVV,
-            creditCardMM,
-            creditCardYY
-        },
+        creditCardName,
+        creditCardNumber,
+        creditCardCVV,
+        creditCardMM,
+        creditCardYY,
         active: true
     });
     newUser.password = await newUser.encryptPassword(password);
     await newUser.save();
     const token = await jwt.sign({ _id: newUser._id }, 'secretkey');
     res.status(200).json({
-        token
+        token,
+        user
     });
 }
 
@@ -60,14 +59,15 @@ userCtrl.iniciarSesion = async(req, res) => {
 
     const user = await User.findOne({ email });
     if (!user) return res.status(401).send('El email es incorrecto');
-    if (!user.active) return res.status(401).send('La cuenta esta deshabilitada');
     const match = await user.matchPassword(password);
     if (!match) return res.status(401).send('Contraseña incorrecta');
+    if (!user.active) return res.status(401).send('La cuenta esta deshabilitada');
 
     const token = jwt.sign({ _id: user._id }, 'secretkey');
 
     return res.status(200).json({
-        token
+        token,
+        user
     });
 }
 

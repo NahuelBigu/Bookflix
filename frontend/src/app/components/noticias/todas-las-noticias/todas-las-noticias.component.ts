@@ -9,8 +9,8 @@ import { AuthService } from '../../../services/login/auth.service';
   styleUrls: ['./todas-las-noticias.component.css']
 })
 export class TodasLasNoticiasComponent implements OnInit {
-  noticiasAux: Array<Noticia>;
-  noticias: Array<Noticia>;
+  noticiasAux: Array<Noticia>=new Array;
+  noticias: Array<Noticia>=new Array;
   admin:boolean;
   constructor(private _servicioNoticias: NoticiasService,public authServices:AuthService) {this.admin=authServices.isAdmin();}
 
@@ -21,8 +21,9 @@ export class TodasLasNoticiasComponent implements OnInit {
     this._servicioNoticias.getNoticias().subscribe(res => {
       this.noticiasAux= res as Array<Noticia>;
       this.noticiasAux.forEach(element => {
-          if(element.active){
-            this.noticias.push(element);
+          var aux=this.noticiasAux.pop();
+          if(aux.active){
+            this.noticias.push(aux);
           }
       });
   });

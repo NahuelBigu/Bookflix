@@ -15,7 +15,7 @@ export class NoticiasService {
   }
   
   getNoticia(_id: string) {
-    return this.http.get(this.URL_API + `/${_id}`);
+    return this.http.get<Noticia>(this.URL_API + `/${_id}`);
   }
 
   getNoticias() {

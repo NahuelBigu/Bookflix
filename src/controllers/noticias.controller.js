@@ -8,7 +8,7 @@ noticiaCtrl.getNoticias = async(req, res) => {
 }
 
 noticiaCtrl.createNoticia = async(req, res) => {
-    const newNoticia = new Book({
+    const newNoticia = new Noticia({
         title: req.body.title,
         author: req.body.author,
         text: req.body.text,
@@ -16,13 +16,11 @@ noticiaCtrl.createNoticia = async(req, res) => {
         active: true
     })
     await newNoticia.save();
-    res.json({
-        'status': true
-    })
+    res.json(newNoticia._id);
 }
 
 noticiaCtrl.getNoticia = async(req, res) => {
-    const noticia = await Noticia.findById(req.body.id);
+    const noticia = await Noticia.findById(req.params.id);
     res.json(noticia);
 }
 
