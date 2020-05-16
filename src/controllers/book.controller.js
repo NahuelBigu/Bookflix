@@ -24,7 +24,7 @@ bookCtrl.createBook = async(req, res) => {
 }
 
 bookCtrl.getBook = async(req, res) => {
-    const book = await Book.findById(req.body.id);
+    const book = await Book.findById(req.params.id);
     res.json(book);
 }
 
