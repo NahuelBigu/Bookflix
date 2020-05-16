@@ -6,6 +6,7 @@ import { Noticia } from '../../models/noticia';
   providedIn: 'root'
 })
 export class NoticiasService {
+  
 
   private URL_API= 'http://localhost:3000/api/noticias'
   constructor(private http: HttpClient) { }
@@ -28,5 +29,9 @@ export class NoticiasService {
 
   deleteNoticia(_id: String) {
     return this.http.delete(this.URL_API + `/${_id}`);
+  }
+
+  activateNoticia(_id: String) {
+    return this.http.get(this.URL_API + `/activarnoticia/${_id}`);
   }
 }

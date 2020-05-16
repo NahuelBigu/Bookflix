@@ -23,7 +23,10 @@ noticiaCtrl.getNoticia = async(req, res) => {
     const noticia = await Noticia.findById(req.params.id);
     res.json(noticia);
 }
-
+noticiaCtrl.activateNoticia = async(req, res) => {
+    await Noticia.findByIdAndUpdate(req.params.id, { activate: true });
+    res.json({ 'status': true });
+}
 noticiaCtrl.editNoticia = async(req, res) => {
     const { id } = req.params;
     const noticia = {
