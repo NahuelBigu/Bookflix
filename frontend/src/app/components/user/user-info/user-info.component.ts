@@ -10,27 +10,16 @@ import { Router } from "@angular/router";
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit {
-  userForm: FormGroup;
   user: User;
+  userNew: User;
   error: String='';
+  oldPasswordTry: String;
+  newPassword: String;
+  newPasswordRepeated: String; 
 
-  constructor(private _builder: FormBuilder, 
-    private _authService:AuthService,
-    private router: Router) { 
-    this.user = _authService.getCurrentUser();
-    this.userForm = this._builder.group({
-      email: [this.user.email, Validators.compose([Validators.required, Validators.email])],
-      password: [this.user.password, Validators.required],
-      plan: [this.user.plan,Validators.required],
-      creditCardName: [this.user.creditCardName,Validators.required],
-      creditCardNumber: [this.user.creditCardNumber,Validators.required],
-      creditCardMM: [this.user.creditCardMM,Validators.required],
-      creditCardYY: [this.user.creditCardYY,Validators.required],
-      creditCardCVV: [this.user.creditCardCVV,Validators.required],
-      oldPasswordTry: [''],
-      newPassword: [''],
-      newPasswordRepeated: ['']
-    });
+  constructor(private _authService:AuthService,
+    private router: Router) {
+    this.user=_authService.getCurrentUser();     
   }
   
   ngOnInit(): void {
@@ -41,12 +30,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   editUser() {
-    this.user.email=this.userForm.value.email;
+    this._authService.putUser(this.user);
   }
   
-  private correctLogin(data){
-    this._authService.setCurrentSession(data);
-    this.router.navigate(['/home']);
-  }
-
 }

@@ -42,6 +42,14 @@ export class AuthService {
     this.localStorageService.removeItem('user');
     this.currentToken = null;
   }
+
+
+
+  getCurrentUser3() {
+    return this.http.get<User>(this.URL_API+ '/getUserByToken/'+ this.getCurrentToken());
+  }
+
+
   getCurrentUser(): User {
     var user: User=new User;
     var ruta=this.URL_API+ '/getUserByToken/'+ this.getCurrentToken();
@@ -90,6 +98,10 @@ export class AuthService {
     this.router.navigate(['']);
   }
 
+  putUser(anUser: User) {
+    console.log(anUser);
+    return this.http.put(this.URL_API + `/${this.getCurrentUser()._id}`, anUser);
+  }
 
 
   signUp(user) {
@@ -98,6 +110,8 @@ export class AuthService {
   signIn(user){
     return this.http.post(this.URL_API+ '/signin', user);
   }
+
+
 
 
 }
