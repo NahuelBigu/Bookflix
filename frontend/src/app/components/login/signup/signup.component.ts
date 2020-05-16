@@ -12,7 +12,7 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
+  error: String='';
   user : User
 
   userForm: FormGroup;
@@ -47,7 +47,7 @@ export class SignupComponent implements OnInit {
         res => {
           this.correctLogin(res);
         },
-        err=> console.log(err)
+        err=> this.error= err.error
       )
     }
   }

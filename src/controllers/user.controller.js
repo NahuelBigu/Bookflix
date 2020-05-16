@@ -1,6 +1,8 @@
 const userCtrl = {};
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+var valid = require('card-validator');
+
 userCtrl.getUsers = async function() {
     const users = await User.find();
     res.json(users);
@@ -21,7 +23,14 @@ userCtrl.getUserByToken = async(req, res) => {
 userCtrl.createUser = async(req, res) => {
     const { email, password, plan, creditCardName, creditCardNumber, creditCardCVV, creditCardMM, creditCardYY } = req.body;
     const user = await User.findOne({ email });
-    if (user) return res.status(401).send('The email already exists');
+    if (user) return res.status(401).send('El email ya existe');
+
+    var numberValidation = valid.number(creditCardNumber);
+    var expirationDate = String(creditCardMM) + "/" + String(creditCardYY);
+    var expirationValidation = valid.expirationDate(expirationDate);
+    var cvvValidation = valid.cvv(creditCardCVV)
+    if (!expirationValidation.isValid || !numberValidation.isValid || !cvvValidation.isValid) return res.status(401).send('Tarjeta invalida');
+
     const newUser = new User({
         email,
         password,
