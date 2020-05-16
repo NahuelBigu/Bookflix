@@ -10,7 +10,7 @@ import { UserService } from '../../../services/user.service';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-
+  error: String='';
   user:{
     email : String,
     password : String,
@@ -18,8 +18,7 @@ export class SigninComponent implements OnInit {
       email: "",
       password: ""
   }
-  constructor( private _user: UserService,
-    private _servicio:AuthService,private router:Router) { }
+  constructor(private _servicio:AuthService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -30,7 +29,7 @@ export class SigninComponent implements OnInit {
         res => {
           this.correctLogin(res);
         },
-        err=> console.log(err)
+        err=> this.error= err.error
       )
   }
 

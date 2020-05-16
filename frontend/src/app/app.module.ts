@@ -17,6 +17,7 @@ import { TodasLasNoticiasComponent } from './components/noticias/todas-las-notic
 import { NoticiaComponent } from './components/noticias/noticia/noticia.component';
 import { NoticiasAdministradorComponent } from './components/noticias/noticias-administrador/noticias-administrador.component';
 import { CargarLibroComponent } from './components/books/cargar-libro/cargar-libro.component';
+import { CrearNoticiaComponent } from './components/noticias/crear-noticia/crear-noticia.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CargarLibroComponent } from './components/books/cargar-libro/cargar-lib
     TodasLasNoticiasComponent,
     NoticiaComponent,
     NoticiasAdministradorComponent,
-    CargarLibroComponent
+    CargarLibroComponent,
+    CrearNoticiaComponent
   ],
   imports: [
     BrowserModule,

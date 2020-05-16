@@ -1,36 +1,42 @@
 <div class="container">
 
     <div class="row">
-
-
-        <h2 class="my-4">Todas las noticias</h2>
-
-        <!-- Blog Post -->
-        <div class="card mb-4">
-            <div class="card-body">
-                <h4 class="card-title">Post Title</h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            </div>
-            <div class="card-footer text-muted">
-                Posted on January 1, 2017 by
-                <a href="#">Start Bootstrap</a>
+        <div class="col-9">
+            <h2 class="my-4">Todas las noticias</h2>
+        </div>
+        <div class="col-3 my-4"> <a [routerLink]="['/crear-noticia']" class="btn btn-block btn-danger"> Crear noticia</a> </div>
+    </div>
+    <!-- Blog Post -->
+    <div class="row" *ngFor="let noticia of noticias">
+        <div class="col-11">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">{{noticia.title}}</h3>
+                    <p class="card-text">{{noticia.text}}</p>
+                    <a [routerLink]="['/noticia/', noticia._id]" class="btn btn-primary ">Seguir leyendo &rarr;</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Publicado en {{noticia.createdAt | date: 'MMM dd, yyyy' }} por {{noticia.author}}
+                </div>
             </div>
         </div>
-
-
-
-        <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4">
-            <li class="page-item">
-                <a class="page-link" href="#">&larr; Older</a>
-            </li>
-            <li class="page-item disabled">
-                <a class="page-link" href="#">Newer &rarr;</a>
-            </li>
-        </ul>
-
-
+        <div class="col-1">
+            <button (click)="eliminarNoticia(noticia._id)" class="f btn btn-outline-danger btn-block "> <i class="fas fa-trash"></i></button>
+            <button (click)="eliminarNoticia(noticia._id)" class="f btn btn-outline-warning btn-block "> <i class="fas fa-edit"></i></button>
+        </div>
     </div>
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center mb-4" *ngIf="noticiasLength != 0 ">
+        <li class="page-item">
+            <a class="page-link" href="#">&larr; Older</a>
+        </li>
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Newer &rarr;</a>
+        </li>
+    </ul>
+
+
+
     <!-- /.row -->
 
 </div>

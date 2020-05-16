@@ -15,7 +15,7 @@ export class NoticiasService {
   }
   
   getNoticia(_id: string) {
-    return this.http.get(this.URL_API + `/${_id}`);
+    return this.http.get<Noticia>(this.URL_API + `/${_id}`);
   }
 
   getNoticias() {
@@ -26,7 +26,7 @@ export class NoticiasService {
     return this.http.put(this.URL_API + `/${noticia._id}`, noticia);
   }
 
-  deleteNoticia(_id: string) {
+  deleteNoticia(_id: String) {
     return this.http.delete(this.URL_API + `/${_id}`);
   }
 }

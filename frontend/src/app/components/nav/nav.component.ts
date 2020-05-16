@@ -7,10 +7,17 @@ import { AuthService } from '../../services/login/auth.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  autenticado:boolean;
+  admin:boolean;
+  constructor(public authService:AuthService ) { 
 
-  constructor(public authService:AuthService ) { }
+  }
 
   ngOnInit(): void {
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
 }

@@ -17,4 +17,14 @@ export class UserInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  editar=false;
+
+  getEditar(){
+    return this.editar;
+  }
+
+  changePassword(){
+    this.editar=!this.editar;
+  }
+
 }

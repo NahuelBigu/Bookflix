@@ -12,6 +12,7 @@ import { TodasLasNoticiasComponent } from './components/noticias/todas-las-notic
 import { NoticiaComponent } from './components/noticias/noticia/noticia.component';
 import { NoticiasAdministradorComponent } from './components/noticias/noticias-administrador/noticias-administrador.component';
 import { CargarLibroComponent } from './components/books/cargar-libro/cargar-libro.component';
+import { CrearNoticiaComponent } from './components/noticias/crear-noticia/crear-noticia.component';
 
 const routes: Routes = [
   {
@@ -29,9 +30,14 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'noticias/:id',
+    path: 'noticia/:id',
     component: NoticiaComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'crear-noticia',
+    component: CrearNoticiaComponent,
+    canActivate: [AuthGuard,AdminGuard]
   },
   {
     path: 'noticiasadministrador',

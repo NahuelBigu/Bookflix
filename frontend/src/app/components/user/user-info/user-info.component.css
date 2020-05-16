@@ -1,0 +1,19 @@
+.imp{
+    margin-top:20px;
+    background-color: rgb(22, 22, 22);
+    color: white;
+}
+input{
+    background-color: white;
+    color: black;
+}
+.not-active{
+    background-color: rgb(87, 87, 87);
+}
+.but{
+    width: 200px;
+}
+hr{
+    color: white;
+    background-color: white;
+}

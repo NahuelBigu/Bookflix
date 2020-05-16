@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NoticiasService } from 'src/app/services/noticias/noticias.service';
+import { Noticia } from 'src/app/models/noticia';
+import { NumberFormatStyle } from '@angular/common';
 
 @Component({
   selector: 'app-noticias-administrador',
@@ -6,10 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./noticias-administrador.component.css']
 })
 export class NoticiasAdministradorComponent implements OnInit {
-
-  constructor() { }
+  noticiasLength:number;
+  noticias: Array<Noticia>;
+  constructor(private _servicioNoticias: NoticiasService) {}
 
   ngOnInit(): void {
+    this.getNoticias();
   }
-
+  getNoticias() {
+    this._servicioNoticias.getNoticias().subscribe(res => {
+      this.noticias= res as Array<Noticia>;
+      this.noticiasLength= this.noticias.length;
+  });
+  }
+  eliminarNoticia(_id: String){
+    this._servicioNoticias.deleteNoticia(_id);
+  }
 }

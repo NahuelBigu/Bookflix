@@ -8,7 +8,7 @@ require('./database');
 
 // settings
 app.set('port', process.env.PORT || 3000)
-
+app.use(express.static(__dirname + '/public'));
 // middlewares
 app.use(express.json());
 app.use(cors({ origin: 'http://localhost:4200' }));
