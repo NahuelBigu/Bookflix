@@ -14,6 +14,7 @@ import { NoticiasAdministradorComponent } from './components/noticias/noticias-a
 import { CargarLibroComponent } from './components/books/cargar-libro/cargar-libro.component';
 import { CrearNoticiaComponent } from './components/noticias/crear-noticia/crear-noticia.component';
 import { EditarNoticiaComponent } from './components/noticias/editar-noticia/editar-noticia.component';
+import { EditBookComponent } from './components/books/edit-book/edit-book.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path: 'books/add',
     component: CargarLibroComponent
+  },
+  {
+    path: 'books/edit/:id',
+    component: EditBookComponent
   },
   {
     path: '**',

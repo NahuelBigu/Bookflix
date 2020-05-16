@@ -1,172 +1,217 @@
-<div>
-    
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <div class="container ">
-        <div class="row flex-lg-nowrap">
-            <div class="col">
-                <div class="row">
-                    <div class="col mb-3">
-                        <div class="card imp">
-                            <div class="card-body">
-                                <div class="e-profile">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-auto mb-3">
-                                            <div class="mx-auto" style="width: 140px;">
-                                                <div class="d-flex justify-content-center align-items-center rounded"
-                                                    style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                    <span
-                                                        style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                            <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user.creditCardName}}</h4>
-                                                <p class="mb-0">@{{user.creditCardName}}</p>
-                                                <br>
-                                                <div class="mt-2">
-                                                    <button class="btn btn-primary" type="button">
-                                                        <i class="fa fa-fw fa-camera"></i>
-                                                        <span>Cambiar imagen</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="text-center text-sm-right">
-                                                <span class="badge badge-secondary" *ngIf="user.plan==0">administrador</span>
-                                                <div class="text-muted"><small>{{user.createdAt | date: 'MMM dd, yyyy'}}</small></div>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container ">
+    <div class="row flex-lg-nowrap">
+        <div class="col">
+            <div class="row">
+                <div class="col mb-3">
+                    <div class="card imp">
+                        <div class="card-body">
+                            <div class="e-profile">
+                                <div class="row">
+                                    <div class="col-12 col-sm-auto mb-3">
+                                        <div class="mx-auto" style="width: 140px;">
+                                            <div class="d-flex justify-content-center align-items-center rounded"
+                                                style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;"><img
+                                                        height="140px" width="140px"
+                                                        src="https://cdn.wallpapersafari.com/75/28/MVf6eu.png"
+                                                        alt="avatar"></span>
                                             </div>
                                         </div>
                                     </div>
-                                    <ul class="nav nav-tabs">
-                                        <li class=""><a [routerLink]="['/myUserInfo']" routerLinkActive="active" class="active nav-link">Mis datos</a></li>
-                                        <li class=""><a [routerLink]="['/myUserInfo']" class="not-active nav-link">Perfiles</a></li>
-                                    </ul>
-                                    <div class="tab-content pt-3">
-                                        <div class="tab-pane active">
-                                            <form class="form" novalidate="">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Nombre completo</label>
-                                                                    <input class="form-control" type="text" name="name"
-                                                                        value="{{user.creditCardName}}">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Email</label>
-                                                                    <input class="form-control" type="text"
-                                                                        value="{{user.email}}">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <hr>
-                                                        <div class="mb-2"><b>Informacion de la tarjeta</b></div>
-                                                        <div class="row">
-                                                            
-                                                            <div class="col mb-3">
-                                                                
-                                                                <div class="form-group">
-                                                                    <label>Numero de tarjeta</label>
-                                                                    <input class="form-control" 
-                                                                        value="{{user.creditCardNumber}}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col mb-3">
-                                                                <div class="form-group">
-                                                                    <label>CVV:</label>
-                                                                    <input class="form-control" 
-                                                                        value="{{user.creditCardCVV}}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col mb-3">
-                                                                <div class="form-group">
-                                                                    <label>Vencimiento:</label>
-                                                                    <input class="form-control" 
-                                                                        value="{{user.creditCardMM}}/{{user.creditCardYY}}">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div class="row">
-                                                    <div class="col-12 col-sm-6 mb-3">
-                                                        <div class="mb-2"><b>Cambiar contraseña</b></div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Contraseña actual</label>
-                                                                    <input class="form-control" type="password"
-                                                                        placeholder="••••••">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Nueva contraseña</label>
-                                                                    <input class="form-control" type="password"
-                                                                        placeholder="••••••">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Confirmar <span
-                                                                            class="d-none d-xl-inline">contraseña</span></label>
-                                                                    <input class="form-control" type="password"
-                                                                        placeholder="••••••"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-5 offset-sm-1 mb-3">
-                                                        <label><b>Membresia del plan</b></label>
-                                                        <br>
-                                                        <br>
-                                                        <div class="row"><div class="col ml-4">
-                                                            <label class="text-white" *ngIf="user.plan==1"><svg class="bi bi-check mr-4" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z" clip-rule="evenodd"/>
-                                                              </svg>Membresia Estandar</label>
-                                                            <label class="text-white" *ngIf="user.plan==2"><svg class="bi bi-check-all mr-4" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                <path fill-rule="evenodd" d="M12.354 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L5 10.293l6.646-6.647a.5.5 0 01.708 0z" clip-rule="evenodd"/>
-                                                                <path d="M6.25 8.043l-.896-.897a.5.5 0 10-.708.708l.897.896.707-.707zm1 2.414l.896.897a.5.5 0 00.708 0l7-7a.5.5 0 00-.708-.708L8.5 10.293l-.543-.543-.707.707z"/>
-                                                              </svg>Membresia Premium</label>
-                                                        </div></div>
-                                                        <div class="row">
-                                                            <div class="col m-4">
-                                                                <button class="btn btn-lg btn-outline-primary " *ngIf="user.plan==1">Ascender a Premium</button>
-                                                                <button class="btn btn-lg btn-outline-primary " *ngIf="user.plan==2">Descender a Estandar</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col mx-4">
-                                                            <button class="btn btn-lg btn-outline-danger but">Dar de baja</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col d-flex justify-content-end">
-                                                        <button class="btn btn-primary" type="submit">Confirmar cambios</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-    
+                                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                        <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user.creditCardName}}</h4>
+                                            <p class="mb-0">@{{user.creditCardName}}</p>
+                                            <br>
+                                            <div class="mt-2">
+                                                <button class="btn btn-primary" type="button">
+                                                    <i class="fa fa-fw fa-camera"></i>
+                                                    <span>Cambiar imagen</span>
+                                                </button>
+                                            </div>
                                         </div>
+                                        <div class="text-center text-sm-right">
+                                            <span class="badge badge-secondary"
+                                                *ngIf="user.plan==0">administrador</span>
+                                            <div class="text-muted">
+                                                <small>{{user.createdAt | date: 'MMM dd, yyyy'}}</small></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="nav nav-tabs">
+                                    <li class=""><a [routerLink]="['/myUserInfo']" routerLinkActive="active"
+                                            class="active nav-link">Mis datos</a></li>
+                                    <li class=""><a [routerLink]="['/myUserInfo']"
+                                            class="not-active nav-link">Perfiles</a></li>
+                                </ul>
+                                <div class="tab-content pt-3">
+                                    <div class="tab-pane active">
+                                        <form [formGroup]="userForm" (ngSubmit)="editUser()" class="form">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Nombre completo</label>
+                                                                <input type="text" formControlName="creditCardName"
+                                                                    name="creditCardName" placeholder="Nombre completo"
+                                                                    class="form-control"
+                                                                    value="{{user.creditCardName}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Email</label>
+                                                                <input type="text" formControlName="email" name="email"
+                                                                    class="form-control" placeholder="Email" autofocus
+                                                                    value="{{user.email}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="mb-2"><b>Informacion de la tarjeta</b></div>
+                                                    <div class="row">
+
+                                                        <div class="col mb-3">
+
+                                                            <div class="form-group">
+                                                                <label>Numero de tarjeta</label>
+                                                                <input type="text" name="creditCardNumber"
+                                                                    placeholder="Numero de tarjeta"
+                                                                    formControlName="creditCardNumber"
+                                                                    class="form-control"
+                                                                    value="{{user.creditCardNumber}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col mb-3">
+                                                            <div class="form-group">
+                                                                <label>CVV:</label>
+                                                                <input formControlName="creditCardCVV"
+                                                                    type="text|number" maxlength="4"
+                                                                    class="form-control" value="{{user.creditCardCVV}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col mb-3">
+                                                            <div class="form-group">
+                                                                <label>Vencimiento:</label>
+                                                                <div class="input-group">
+                                                                    <select value="{{user.creditCardMM}}"
+                                                                        formControlName="creditCardMM"
+                                                                        class="form-control" style="width:45%">
+                                                                        <option
+                                                                            *ngFor="let number of [1,2,3,4,5,6,7,8,9,10,11,12]">
+                                                                            {{number}}</option>
+                                                                    </select>
+                                                                    <select formControlName="creditCardYY"
+                                                                        class="form-control" style="width:45%"
+                                                                        value="{{user.creditCardYY}}">
+                                                                        <option
+                                                                            *ngFor="let number of [20,21,22,23,24,25,26,27,28,29,30]">
+                                                                            {{number}}</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-12 col-sm-6 mb-3">
+                                                    <div class="mb-2"><b>Cambiar contraseña</b></div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Contraseña actual</label>
+                                                                <input type="password" formControlName="oldPasswordTry"
+                                                                    name="oldPasswordTry" minlength="6" maxlength="16"
+                                                                    class="form-control" placeholder="••••••">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Nueva contraseña</label>
+                                                                <input class="form-control" type="password"
+                                                                    formControlName="newPassword" name="newPassword"
+                                                                    minlength="6" maxlength="16" placeholder="••••••">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Confirmar <span
+                                                                        class="d-none d-xl-inline">contraseña</span></label>
+                                                                <input class="form-control" type="password"
+                                                                    formControlName="newPasswordRepeated"
+                                                                    name="newPasswordRepeated" minlength="6"
+                                                                    maxlength="16" placeholder="••••••"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-5 offset-sm-1 mb-3">
+                                                    <label><b>Membresia del plan</b></label>
+                                                    <br>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col ml-4">
+                                                            <label class="text-white" *ngIf="user.plan==1"><svg
+                                                                    class="bi bi-check mr-4" width="2em" height="2em"
+                                                                    viewBox="0 0 16 16" fill="currentColor"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z"
+                                                                        clip-rule="evenodd" />
+                                                                </svg>Membresia Estandar</label>
+                                                            <label class="text-white" *ngIf="user.plan==2"><svg
+                                                                    class="bi bi-check-all mr-4" width="2em"
+                                                                    height="2em" viewBox="0 0 16 16" fill="currentColor"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M12.354 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L5 10.293l6.646-6.647a.5.5 0 01.708 0z"
+                                                                        clip-rule="evenodd" />
+                                                                    <path
+                                                                        d="M6.25 8.043l-.896-.897a.5.5 0 10-.708.708l.897.896.707-.707zm1 2.414l.896.897a.5.5 0 00.708 0l7-7a.5.5 0 00-.708-.708L8.5 10.293l-.543-.543-.707.707z" />
+                                                                </svg>Membresia Premium</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col m-4">
+                                                            <button class="btn btn-lg btn-outline-primary "
+                                                                *ngIf="user.plan==1">Ascender a Premium</button>
+                                                            <button class="btn btn-lg btn-outline-primary "
+                                                                *ngIf="user.plan==2">Descender a Estandar</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col mx-4">
+                                                            <button class="btn btn-lg btn-outline-danger but">Dar de
+                                                                baja</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col d-flex justify-content-end">
+                                                    <button class="btn btn-primary" type="submit">Confirmar
+                                                        cambios</button>
+                                                </div>
+                                            </div>
+                                        </form>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-    
             </div>
+
         </div>
     </div>
 </div>

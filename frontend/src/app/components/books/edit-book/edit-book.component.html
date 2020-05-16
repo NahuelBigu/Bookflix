@@ -1,0 +1,42 @@
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card.body">
+                    <form (ngSubmit)="editBook()">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="{{book.image}}" alt="portada del libro" class="imagen card-img-top">
+                            </div> 
+                            <div class="col-8">
+                                <div class="container mt-2">
+                                    <div class="form-group">
+                                        <input type="text" [(ngModel)]="book.name" name="name" class="form-control" placeholder="Titulo" autofocus>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" [(ngModel)]="book.author" name="author" class="form-control" placeholder="Autor" autofocus>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" [(ngModel)]="book.genre" name="genre" class="form-control" placeholder="Genero" autofocus>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" [(ngModel)]="book.editorial" name="editorial" class="form-control" placeholder="Editorial" autofocus>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" [(ngModel)]="book.image" name="URLimage" class="form-control" placeholder="URL de la imagen" autofocus>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" [(ngModel)]="book.bookPDF" name="urlpdf" class="form-control" placeholder="URL del PDF" autofocus>
+                                    </div>
+                                    <button type="submit" class="btn btn-block btn-outline-danger">
+                                        Editar Libro
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
