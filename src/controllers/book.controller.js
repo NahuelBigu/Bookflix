@@ -14,7 +14,8 @@ bookCtrl.createBook = async(req, res) => {
         genre: req.body.genre,
         editorial: req.body.editorial,
         image: req.body.image,
-        bookPDF: req.body.bookPDF
+        bookPDF: req.body.bookPDF,
+        active: true
     })
     await newBook.save();
     res.json({
