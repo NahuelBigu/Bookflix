@@ -12,14 +12,13 @@ import { Observable } from 'rxjs';
 })
 export class NoticiaComponent implements OnInit {
   noticia: any;
-  constructor(private route: ActivatedRoute , private service:NoticiasService) { 
+  constructor(private router: ActivatedRoute , private service:NoticiasService) { 
     
   }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.paramMap.get('id');
+    let id = this.router.snapshot.paramMap.get('id');
     this.service.getNoticia(id).subscribe(res => {
-      console.log(res);
       this.noticia = res as Noticia;
   
     });

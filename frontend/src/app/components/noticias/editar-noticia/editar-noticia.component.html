@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="col-sm-12 mt-3">
+            <h4 class="text-center">Editar Noticia</h4>
+        </div>
+        <div class="alert alert-danger" *ngIf="error != '' ">
+            {{error}}
+        </div>
+        <form (ngSubmit)="editar()">
+            <div class="container m-3 mb-2">
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Titulo</label>
+                    <div class="col-sm-9">
+                        <input type="text" [(ngModel)]="noticia.title" name="title" class="form-control" id="title" value="" placeholder="Titulo">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Imagen</label>
+                    <div class="col-sm-9">
+                        <input type="text" [(ngModel)]="noticia.image" name="image" class="form-control" id="image" value="" placeholder="Imagen (url)">
+                        <img class="card-img mt-3" src="{{noticia.image}}" alt="">
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Texto</label>
+                    <div class="col-sm-9">
+                        <textarea id="text" [(ngModel)]="noticia.text" name="text" class="form-control" rows="3" placeholder="Cuerpo de la historia"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row mt-4">
+                    <div class="col-sm-9"></div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-danger btn-block" type="submit">Editar</button></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

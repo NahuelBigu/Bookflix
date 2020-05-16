@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container card mt-5">
 
     <div class="row">
 
@@ -6,27 +6,21 @@
         <div class="col-lg-12">
 
             <!-- Title -->
-            <h1 class="mt-4">{{noticia.title}}</h1>
+            <h1 class="mt-4 card-title">{{noticia.title}}</h1>
 
             <!-- Author -->
-            <p class="lead">
-                por {{noticia.author}}
+            <p class="lead small">
+                por {{noticia.author}} <br> Publicado el {{noticia.createdAt | date: 'MMM dd, yyyy'}}
             </p>
-
-            <hr>
-
             <!-- Date/Time -->
-            <p>Publicado el {{noticia.createdAt | date: 'MMM dd, yyyy'}} </p>
-
             <hr>
-
             <!-- Preview Image -->
-            <img class="img-fluid rounded" src="{{noticia.image}}" alt="">
+            <img class="card-img imagen-notica" src="{{noticia.image}}" alt="">
 
             <hr>
 
             <!-- Post Content -->
-            <p>{{noticia.text}}</p>
+            <p class="card-text">{{noticia.text}}</p>
             <hr>
 
 

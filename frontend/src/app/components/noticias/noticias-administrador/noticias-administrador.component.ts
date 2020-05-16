@@ -24,9 +24,18 @@ export class NoticiasAdministradorComponent implements OnInit {
   }
   eliminarNoticia(_id: String){
     this._servicioNoticias.deleteNoticia(_id);
+    this.actualizar(_id,false);
   }
 
   activarNoticia(_id: String){
     this._servicioNoticias.activateNoticia(_id);
+    this.actualizar(_id,true);
+  }
+
+  actualizar(_id,valor:boolean){
+    var found = this.noticias.find(function(element){
+      return element._id == _id;
+    })
+    found.active=valor;
   }
 }

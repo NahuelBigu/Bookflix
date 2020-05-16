@@ -8,10 +8,10 @@
             <a class="btn btn-danger btn-block" [routerLink]="['/noticiasadministrador']" *ngIf="authServices.isAdmin()">Administrar Noticias</a>
         </div>
         <!-- Blog Entries Column -->
-        <div class="col-md-12">
+        <div class="col-md-12" *ngFor="let noticia of noticias">
             <!-- Blog Post -->
-            <div class="card mb-4" *ngFor="let noticia of noticias">
-                <img class="card-img-top imagen-noticia" src="{{noticia.image}}" alt="Card image cap">
+            <div class="card mb-4" *ngIf="noticia.active == true">
+                <img class="card-img-top imagen-noticia" src="{{noticia.image}}">
                 <div class="card-body">
                     <h2 class="card-title">{{noticia.title}}</h2>
                     <p class="card-text">{{noticia.text}}</p>

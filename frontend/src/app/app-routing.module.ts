@@ -13,6 +13,7 @@ import { NoticiaComponent } from './components/noticias/noticia/noticia.componen
 import { NoticiasAdministradorComponent } from './components/noticias/noticias-administrador/noticias-administrador.component';
 import { CargarLibroComponent } from './components/books/cargar-libro/cargar-libro.component';
 import { CrearNoticiaComponent } from './components/noticias/crear-noticia/crear-noticia.component';
+import { EditarNoticiaComponent } from './components/noticias/editar-noticia/editar-noticia.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,11 @@ const routes: Routes = [
     path: 'noticia/:id',
     component: NoticiaComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'noticia/editar/:id',
+    component: EditarNoticiaComponent,
+    canActivate: [AuthGuard,AdminGuard]
   },
   {
     path: 'crear-noticia',

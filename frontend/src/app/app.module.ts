@@ -18,6 +18,7 @@ import { NoticiaComponent } from './components/noticias/noticia/noticia.componen
 import { NoticiasAdministradorComponent } from './components/noticias/noticias-administrador/noticias-administrador.component';
 import { CargarLibroComponent } from './components/books/cargar-libro/cargar-libro.component';
 import { CrearNoticiaComponent } from './components/noticias/crear-noticia/crear-noticia.component';
+import { EditarNoticiaComponent } from './components/noticias/editar-noticia/editar-noticia.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CrearNoticiaComponent } from './components/noticias/crear-noticia/crear
     NoticiaComponent,
     NoticiasAdministradorComponent,
     CargarLibroComponent,
-    CrearNoticiaComponent
+    CrearNoticiaComponent,
+    EditarNoticiaComponent
   ],
   imports: [
     BrowserModule,

@@ -22,12 +22,12 @@
         </div>
         <div class="col-1">
             <ng-template [ngIf]="noticia.active" [ngIfElse]="loading">
-                <button (onClick)="eliminarNoticia(noticia._id)" class="f btn btn-outline-danger btn-block "> <i class="fas fa-trash"></i></button>
+                <button (click)="eliminarNoticia(noticia._id)" class="f btn btn-outline-danger btn-block "> <i class="fas fa-trash"></i></button>
             </ng-template>
             <ng-template #loading>
-                <button (onClick)="activarNoticia(noticia._id)" class="f btn btn-outline-success btn-block "> <i class="fas fa-check"></i></button>
+                <button (click)="activarNoticia(noticia._id)" class="f btn btn-outline-success btn-block "> <i class="fas fa-check"></i></button>
             </ng-template>
-            <button (onClick)="eliminarNoticia(noticia._id)" class="f btn btn-outline-warning btn-block "> <i class="fas fa-edit"></i></button>
+            <a [routerLink]="['/noticia/editar/', noticia._id]" class="f btn btn-outline-warning btn-block "> <i class="fas fa-edit"></i></a>
         </div>
     </div>
     <!-- Pagination 
