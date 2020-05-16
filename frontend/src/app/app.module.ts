@@ -16,6 +16,7 @@ import { UserInfoComponent } from './components/user/user-info/user-info.compone
 import { TodasLasNoticiasComponent } from './components/noticias/todas-las-noticias/todas-las-noticias.component';
 import { NoticiaComponent } from './components/noticias/noticia/noticia.component';
 import { NoticiasAdministradorComponent } from './components/noticias/noticias-administrador/noticias-administrador.component';
+import { CargarLibroComponent } from './components/books/cargar-libro/cargar-libro.component';
 import { CrearNoticiaComponent } from './components/noticias/crear-noticia/crear-noticia.component';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { CrearNoticiaComponent } from './components/noticias/crear-noticia/crear
     TodasLasNoticiasComponent,
     NoticiaComponent,
     NoticiasAdministradorComponent,
+    CargarLibroComponent,
     CrearNoticiaComponent
   ],
   imports: [
