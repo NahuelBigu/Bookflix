@@ -56,6 +56,7 @@ export class AuthService {
       user.plan = data.plan;
       user.password = data.password;
       user.profiles= data.profiles;
+      user.createdAt=data.createdAt;
      
    });
     
