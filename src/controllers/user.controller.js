@@ -66,7 +66,7 @@ userCtrl.editUser = async(req, res) => {
     //const match = await user.matchPassword(password);
     user.save();
     res.json({ 'status': true });
-}   
+}
 
 userCtrl.deleteUser = async(req, res) => {
     await User.findByIdAndUpdate(req.params.id, { active: false });
