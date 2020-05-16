@@ -100,7 +100,7 @@ export class AuthService {
 
   putUser(anUser: User) {
     console.log(anUser);
-    return this.http.put(this.URL_API + "/"+anUser._id , anUser).subscribe();
+    return this.http.put(this.URL_API + `/${anUser._id}`, anUser).subscribe();
   }
 
 

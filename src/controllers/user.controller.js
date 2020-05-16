@@ -52,8 +52,8 @@ userCtrl.createUser = async(req, res) => {
 }
 
 userCtrl.editUser = async(req, res) => {
-    const user = await User.findById(req.params.id);
-
+    const { id } = req.params;
+    user = await User.findById(id);
     user.email = req.body.email;
     user.password = req.body.password;
     user.plan = req.body.plan;

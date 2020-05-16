@@ -15,10 +15,10 @@
                 </li>
             </ng-container>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/noticias']" routerLinkActive="active">Nosotros</a>
+                <a class="nav-link" [routerLink]="['/']" >Nosotros</a>
             </li>
             <li class="nav-item" *ngIf="authService.isAuthenticated() && authService.isAdmin()">
-                <a class="nav-link" [routerLink]="['/noticias']" routerLinkActive="active">Administrador</a>
+                <a class="nav-link" [routerLink]="['/']" >Administrador</a>
             </li>
         </ul>
 
