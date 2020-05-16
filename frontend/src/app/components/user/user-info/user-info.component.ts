@@ -31,6 +31,7 @@ export class UserInfoComponent implements OnInit {
 
   editUser() {
     this._authService.putUser(this.user);
+    
   }
   
 }
