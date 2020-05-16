@@ -52,16 +52,16 @@ userCtrl.createUser = async(req, res) => {
 }
 
 userCtrl.editUser = async(req, res) => {
-    user = await User.findById(req.params.id);
-    console.log("SAPEEE");
-    user.email = res.body.email;
-    user.password = res.body.password;
-    user.plan = res.body.plan;
-    user.creditCardName = res.body.creditCardName;
-    user.creditCardNumber = res.body.creditCardNumber;
-    user.creditCardCVV = res.body.creditCardCVV;
-    user.creditCardMM = res.body.creditCardMM;
-    user.creditCardYY = res.body.creditCardYY;
+    const { id } = req.params;
+    user = await User.findById(id);
+    user.email = req.body.email;
+    user.password = req.body.password;
+    user.plan = req.body.plan;
+    user.creditCardName = req.body.creditCardName;
+    user.creditCardNumber = req.body.creditCardNumber;
+    user.creditCardCVV = req.body.creditCardCVV;
+    user.creditCardMM = req.body.creditCardMM;
+    user.creditCardYY = req.body.creditCardYY;
     user.active = true;
     //const match = await user.matchPassword(password);
     user.save();
