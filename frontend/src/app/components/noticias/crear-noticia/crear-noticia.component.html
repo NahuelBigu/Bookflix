@@ -1,15 +1,16 @@
 <div class="container mt-5">
+
+    <div class="col-sm-12 mt-3 mb-3">
+        <h4 class="text-center">Nueva Noticia</h4>
+    </div>
+    <div class="alert alert-danger" *ngIf="error != '' ">
+        {{error}}
+    </div>
     <div class="card">
-        <div class="col-sm-12 mt-3">
-            <h4 class="text-center">Nueva Noticia</h4>
-        </div>
-        <div class="alert alert-danger" *ngIf="error != '' ">
-            {{error}}
-        </div>
         <form (ngSubmit)="onSubmit()">
-            <div class="container m-3 mb-2">
+            <div class="container m-3 mb-2 pt-3">
                 <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Titulo</label>
+                    <label class="col-sm-2 col-form-label">Titulo</label>
                     <div class="col-sm-9">
                         <input type="text" [(ngModel)]="noticia.title" name="title" class="form-control" id="title" value="" placeholder="Titulo">
                     </div>
