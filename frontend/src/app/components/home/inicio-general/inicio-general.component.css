@@ -1,0 +1,85 @@
+label {
+    -webkit-perspective: 1000px;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    display: block;
+    width: 190px;
+    height: 250px;
+    cursor: pointer;
+}
+
+input {
+    display: none;
+}
+
+.card2 {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: all 600ms;
+    transition: all 600ms;
+    z-index: 20;
+}
+
+.libroPortada {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card2 div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #FFF;
+    text-align: center;
+    line-height: 200px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 2px;
+}
+
+.card2 .back {
+    background: #222;
+    color: #FFF;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+label:hover .card2 {
+    -webkit-transform: rotateY(-20deg);
+    transform: rotateY(-20deg);
+    box-shadow: 0 20px 20px rgba(50, 50, 50, .2);
+}
+
+:checked+.card2 {
+    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+}
+
+label:hover :checked+.card2 {
+    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+}
+
+.intro{
+    background-image: url("../../../../assets/img/home.jfif");
+    background-size: 100vw 100vh;
+    width: auto;
+    height: 100vh;
+}
+.texty{
+    text-align: center;
+    height: 90%; 
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 5vw;
+    padding-top: 40vh;
+    
+}
