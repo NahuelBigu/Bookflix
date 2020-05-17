@@ -5,7 +5,7 @@ const autor = require('../controllers/autor.controller');
 // auth se pone entre la ruta y el controlador , lo que hace es verificar si una peticion tiene el token y es valida la peticion deberia ir en todo lo que usa un usuario logeado
 const auth = require('../middleware/auth');
 
-router.get('/', auth, autor.getAutor);
+router.get('/', auth, autor.getAutors);
 router.post('/', auth, autor.createAutor);
 router.get('/:id', auth, autor.getAutor);
 router.get('/activarautor/:id', auth, autor.activateAutor);

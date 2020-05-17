@@ -1,4 +1,4 @@
-const Autor = require('../models/Noticia');
+const Autor = require('../models/Autor');
 
 const autorCtrl = {};
 
@@ -8,14 +8,10 @@ autorCtrl.getAutors = async(req, res) => {
 }
 
 autorCtrl.createAutor = async(req, res) => {
-    if (!req.body.name) { res.status(401).send('Nombre requerido'); return false }
-
     const newAutor = new Autor({
         name: req.body.name,
         active: true
-    })
-
-
+    });
     await newAutor.save();
     res.json(newAutor._id);
 }
@@ -39,7 +35,7 @@ autorCtrl.editAutor = async(req, res) => {
     console.log(autorAux);
     autorAux.name = autor.name;
     if (autorAux.name == '') res.status(401).send('Nombre requerido');
-    noticiaAux.save();
+    autorAux.save();
     res.json(id);
 }
 
