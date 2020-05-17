@@ -3,8 +3,8 @@ label {
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     display: block;
-    width: 190px;
-    height: 250px;
+    width: 210px;
+    height: 337px;
     cursor: pointer;
 }
 
@@ -28,15 +28,16 @@ input {
     width: auto;
     max-width: 100%;
     max-height: 100%;
+    object-fit: cover;
 }
 
 .card2 div {
     position: absolute;
     height: 100%;
     width: 100%;
-    background: #FFF;
+    background: #000;
     text-align: center;
-    line-height: 200px;
+    line-height: 20px;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 2px;
