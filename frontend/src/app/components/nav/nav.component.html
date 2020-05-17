@@ -1,12 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a [routerLink]="['/home']">
-        <img src="/assets/img/bookflix.png" height="50px" width="150px" class="mr-3">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
+    <a class="navbar-brand logo-image" [routerLink]="['/home']"><img src="/assets/img/bookflix.png" alt="alternative" height="50px" width="150px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarResponsive">
+    <div class="collapse navbar-collapse" id="navbarNav">
 
         <ul class="navbar-nav mr-auto">
             <ng-container *ngIf="authService.isAuthenticated()">
@@ -15,10 +13,10 @@
                 </li>
             </ng-container>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/']" >Nosotros</a>
+                <a class="nav-link" [routerLink]="['/']">Nosotros</a>
             </li>
             <li class="nav-item" *ngIf="authService.isAuthenticated() && authService.isAdmin()">
-                <a class="nav-link" [routerLink]="['/']" >Administrador</a>
+                <a class="nav-link" [routerLink]="['/']">Administrador</a>
             </li>
         </ul>
 
