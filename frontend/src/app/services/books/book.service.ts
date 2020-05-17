@@ -31,7 +31,5 @@ export class BookService {
     book.active=false;
     return this.http.put(this.URL_API + `/${book._id}`, book);
   }
-  addAutor(autor: String){
-    return this.http.post(this.URL_API,autor);
-  }
+
 }
