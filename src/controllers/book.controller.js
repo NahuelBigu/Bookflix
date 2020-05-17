@@ -10,6 +10,7 @@ bookCtrl.getBooks = async(req, res) => {
 bookCtrl.createBook = async(req, res) => {
     const newBook = new Book({
         name: req.body.name,
+        synopsis: req.body.synopsis,
         author: req.body.author,
         genre: req.body.genre,
         editorial: req.body.editorial,
@@ -32,6 +33,7 @@ bookCtrl.editBook = async(req, res) => {
     const { id } = req.params;
     const book = {
         name: req.body.name,
+        synopsis: req.body.synopsis,
         author: req.body.author,
         genre: req.body.genre,
         editorial: req.body.editorial,
