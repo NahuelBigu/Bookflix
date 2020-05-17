@@ -13,9 +13,7 @@ autorCtrl.createAutor = async(req, res) => {
     const newAutor = new Autor({
         name: req.body.name,
         active: true
-    })
-
-
+    });
     await newAutor.save();
     res.json(newAutor._id);
 }
@@ -39,7 +37,7 @@ autorCtrl.editAutor = async(req, res) => {
     console.log(autorAux);
     autorAux.name = autor.name;
     if (autorAux.name == '') res.status(401).send('Nombre requerido');
-    noticiaAux.save();
+    autorAux.save();
     res.json(id);
 }
 
