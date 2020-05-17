@@ -14,7 +14,7 @@
                 <img class="card-img-top imagen-noticia" src="{{noticia.image}}">
                 <div class="card-body">
                     <h2 class="card-title">{{noticia.title}}</h2>
-                    <p class="card-text">{{noticia.text}}</p>
+                    <p class="card-text">{{noticia.text.substring(0, 200 - 3) + "..."}}</p>
                     <a [routerLink]="['/noticia/', noticia._id]" class="btn btn-primary ">Seguir leyendo &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">

@@ -16,13 +16,13 @@
                         <div class="form-group">
                             <input type="password" [(ngModel)]="user.password" name="password" class="form-control" placeholder="Contraseña" required>
                         </div>
-                        <button type="submit" class="btn btn-block btn-outline-success">
+                        <button type="submit" class="btn btn-block btn-outline-danger">
                         Iniciar Sesión 
                     </button>
                     </form>
                 </div>
             </div>
-            <p class="text-center text-muted">No estas registrado? <a [routerLink]="['/signup']" class="text-success">Crea una cuenta</a></p>
+            <p class="text-center text-muted">No estas registrado? <a [routerLink]="['/signup']" class="text-danger">Crea una cuenta</a></p>
 
         </div>
     </div>
