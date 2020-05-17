@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
+<nav class="navbar navbar-expand-md navbar-dark navbar-custom " [ngClass]="{'navbar-fixed-top' : eselhome(),'fixed-top' : !eselhome()} ">
     <a class="navbar-brand logo-image" [routerLink]="['/home']"><img src="/assets/img/bookflix.png" alt="alternative" height="50px" width="150px"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -16,7 +16,7 @@
                 <a class="nav-link" [routerLink]="['/']">Nosotros</a>
             </li>
             <li class="nav-item" *ngIf="authService.isAuthenticated() && authService.isAdmin()">
-                <a class="nav-link" [routerLink]="['/']">Administrador</a>
+                <a class="nav-link" [routerLink]="['/administrador']">Administrador</a>
             </li>
         </ul>
 

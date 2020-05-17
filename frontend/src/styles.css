@@ -6,5 +6,10 @@ body {
     /* Do not repeat the image */
     background-size: cover;
     background-position: top;
+    min-height: 100vh;
     /* Resize the background image to cover the entire container */
+}
+
+.height-full {
+    height: 100vh;
 }

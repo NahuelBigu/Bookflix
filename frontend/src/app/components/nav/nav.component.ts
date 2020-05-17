@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/login/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -9,7 +10,7 @@ import { AuthService } from '../../services/login/auth.service';
 export class NavComponent implements OnInit {
   autenticado:boolean;
   admin:boolean;
-  constructor(public authService:AuthService ) { 
+  constructor(public authService:AuthService,public router: Router ) { 
 
   }
 
@@ -18,6 +19,10 @@ export class NavComponent implements OnInit {
 
   logout(){
     this.authService.logout();
+  }
+  eselhome(){
+    console.log(this.router.url)
+    return this.router.url != "/"
   }
 
 }

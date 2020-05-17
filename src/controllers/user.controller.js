@@ -51,8 +51,23 @@ userCtrl.createUser = async(req, res) => {
     });
 }
 
+function validarEmail(valor) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/.test(valor)) {
+        return true
+    } else {
+        return false
+    }
+}
 userCtrl.editUser = async(req, res) => {
     const { id } = req.params;
+    if (req.body.user.email = !"" && validarEmail(req.body.user.email)) return res.status(401).send('Email incorrecto');
+    if (req.body.user.creditCardName = !"") return res.status(401).send('Nombre completo de tarejata incorrecto');
+    var numberValidation = valid.number(creditCardNumber);
+    var expirationDate = String(creditCardMM) + "/" + String(creditCardYY);
+    var expirationValidation = valid.expirationDate(expirationDate);
+    var cvvValidation = valid.cvv(creditCardCVV)
+    if (!expirationValidation.isValid || !numberValidation.isValid || !cvvValidation.isValid) return res.status(401).send('Tarjeta invalida');
+
     user = await User.findById(id);
     user.email = req.body.user.email;
     user.creditCardName = req.body.user.creditCardName;
@@ -91,7 +106,6 @@ userCtrl.iniciarSesion = async(req, res) => {
         user
     });
 }
-
 
 
 
