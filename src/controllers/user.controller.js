@@ -51,23 +51,6 @@ userCtrl.createUser = async(req, res) => {
     });
 }
 
-userCtrl.editUser = async(req, res) => {
-    const { id } = req.params;
-    user = await User.findById(id);
-    user.email = req.body.email;
-    user.password = req.body.password;
-    user.plan = req.body.plan;
-    user.creditCardName = req.body.creditCardName;
-    user.creditCardNumber = req.body.creditCardNumber;
-    user.creditCardCVV = req.body.creditCardCVV;
-    user.creditCardMM = req.body.creditCardMM;
-    user.creditCardYY = req.body.creditCardYY;
-    user.active = true;
-    //const match = await user.matchPassword(password);
-    user.save();
-    res.json({ 'status': true });
-}
-
 userCtrl.deleteUser = async(req, res) => {
     await User.findByIdAndUpdate(req.params.id, { active: false });
 }
@@ -87,6 +70,26 @@ userCtrl.iniciarSesion = async(req, res) => {
         token,
         user
     });
+}
+
+userCtrl.editUser = async(req, res) => {
+    const { id } = req.params;
+    user = await User.findById(id);
+    user.email = req.body.email;
+    user.creditCardName = req.body.creditCardName;
+    user.creditCardNumber = req.body.creditCardNumber;
+    user.creditCardCVV = req.body.creditCardCVV;
+    user.creditCardMM = req.body.creditCardMM;
+    user.creditCardYY = req.body.creditCardYY;
+
+    if (req.body.password != "") {
+        if (req.body.newPassword == req.body.newPasswordConfirm) return res.status(401).send('Contraseña incorrecta');
+        const match = await user.matchPassword(req.body.newPassword);
+        if (!match) return res.status(401).send('Contraseña incorrecta');
+        user.password = req.body.newPassword;
+    }
+    user.save();
+    res.json({ 'status': true });
 }
 
 

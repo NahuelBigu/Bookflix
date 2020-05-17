@@ -38,7 +38,8 @@ import { BookSampleComponent } from './components/books/book-sample/book-sample.
     CrearNoticiaComponent,
     EditarNoticiaComponent,
     EditBookComponent,
-    BookSampleComponent
+    BookSampleComponent,
+
   ],
   imports: [
     BrowserModule,
