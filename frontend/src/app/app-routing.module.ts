@@ -20,7 +20,8 @@ import { BookSampleComponent } from './components/books/book-sample/book-sample.
 const routes: Routes = [
   {
     path: '',
-    component: InicioGeneralComponent
+    component: InicioGeneralComponent,
+
   },
   {
     path: 'home',
