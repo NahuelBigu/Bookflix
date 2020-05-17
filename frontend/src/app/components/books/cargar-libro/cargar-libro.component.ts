@@ -41,12 +41,23 @@ export class CargarLibroComponent implements OnInit {
     this.book.editorial="Editorial";
   }
 
+  validate(){
+    if (this.book.author=="Autor") return 'Autor requerido';
+    if (this.book.genre=="Genero") return 'Genero requerido';
+    if (this.book.editorial=="Editorial") return 'Editorial requerida';
+    return '';
+  }
+
   addBook(){
+    this.error=this.validate();
+    if (this.error==''){
     this.bookService.postBook(this.book)
       .subscribe(res => {
         console.log('Book saved');
         this.router.navigate(['/home']);
       },err => this.error=err.error)
+    }
+
   }
   addAutor(){
     if (this.autor.name!=''){
