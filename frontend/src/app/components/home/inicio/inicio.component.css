@@ -28,6 +28,7 @@ input {
     width: auto;
     max-width: 100%;
     max-height: 100%;
+    min-height: 337px;
     object-fit: cover;
 }
 
@@ -64,4 +65,14 @@ label:hover .card2 {
 label:hover :checked+.card2 {
     transform: rotateY(-180deg);
     -webkit-transform: rotateY(-180deg);
+}
+
+.button-libros-left {
+    bottom: 5px;
+    position: absolute;
+}
+
+.button-libros-right {
+    bottom: 0px;
+    position: relative;
 }
