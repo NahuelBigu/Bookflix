@@ -12,6 +12,9 @@ editorialCtrl.createEditorial = async(req, res) => {
         name: req.body.name,
         active: true
     });
+    const name=req.body.name;
+    const editorialAux = await Editorial.findOne({ name });
+    if (editorialAux) return res.status(401).send('Editorial repetida');
     await newEditorial.save();
     res.json(newEditorial._id);
 }

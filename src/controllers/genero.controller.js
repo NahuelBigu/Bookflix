@@ -8,7 +8,10 @@ generoCtrl.getGeneros = async(req, res) => {
 }
 
 generoCtrl.createGenero = async(req, res) => {
-    if (req.body.name=='') { res.status(401).send('Nombre requerido'); return false }
+    if (req.body.name=='') { res.status(401).send('Nombre requerido'); return false };
+    const name=req.body.name;
+    const generoAux = await Genero.findOne({ name });
+    if (generoAux) return res.status(401).send('Genero repetido');
 
     const newGenero = new Genero({
         name: req.body.name,
