@@ -4,12 +4,12 @@
             <div class="card">
                 <div class="card.body">
                     <form (ngSubmit)="editBook()">
-                        <div class="row">
+                        <div class="row p-1">
                             <div class="col-4">
                                 <img src="{{book.image}}" alt="portada del libro" class="imagen card-img-top">
                             </div> 
                             <div class="col-8">
-                                <div class="container mt-2">
+                                <div class="container mt-4">
                                     <div class="form-group">
                                         <input type="text" [(ngModel)]="book.name" name="name" class="form-control" placeholder="Titulo" autofocus>
                                     </div>
@@ -28,10 +28,17 @@
                                     <div class="form-group">
                                         <input type="text" [(ngModel)]="book.bookPDF" name="urlpdf" class="form-control" placeholder="URL del PDF" autofocus>
                                     </div>
-                                    <button type="submit" class="btn btn-block btn-outline-danger">
-                                        Editar Libro
-                                    </button>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="container m-1">
+                            <div class="pr-2">
+                                <div class="form-group">
+                                    <textarea type="text" [(ngModel)]="book.synopsis" name="synopsis" class="form-control" placeholder="Sinopsis" rows="4" autofocus></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-block btn-outline-danger">
+                                    Editar Libro
+                                </button>
                             </div>
                         </div>
                     </form>
