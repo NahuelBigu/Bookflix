@@ -36,7 +36,7 @@
                                 <div class="form-group">
                                     <textarea type="text" [(ngModel)]="book.synopsis" name="synopsis" class="form-control" placeholder="Sinopsis" rows="4" autofocus></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-block btn-outline-danger">
+                                <button type="submit" [routerLink]="['/books/book/',book._id]" class="btn btn-block btn-outline-danger">
                                     Editar Libro
                                 </button>
                             </div>
