@@ -22,6 +22,9 @@
                         <div class="form-group">
                             <input type="text" [(ngModel)]="book.bookPDF" name="urlpdf" class="form-control" placeholder="URL del PDF" autofocus>
                         </div>
+                        <div class="form-group">
+                            <textarea type="text" [(ngModel)]="book.synopsis" name="synopsis" class="form-control" placeholder="Sinopsis" rows="4" autofocus></textarea>
+                        </div>
                         <button type="submit" class="btn btn-block btn-outline-danger">
                             Cargar libro
                         </button>
