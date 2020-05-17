@@ -51,19 +51,37 @@ userCtrl.createUser = async(req, res) => {
     });
 }
 
+function validarEmail(valor) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/.test(valor)) {
+        return true
+    } else {
+        return false
+    }
+}
 userCtrl.editUser = async(req, res) => {
     const { id } = req.params;
+    if (req.body.user.email = !"" && validarEmail(req.body.user.email)) return res.status(401).send('Email incorrecto');
+    if (req.body.user.creditCardName = !"") return res.status(401).send('Nombre completo de tarejata incorrecto');
+    var numberValidation = valid.number(creditCardNumber);
+    var expirationDate = String(creditCardMM) + "/" + String(creditCardYY);
+    var expirationValidation = valid.expirationDate(expirationDate);
+    var cvvValidation = valid.cvv(creditCardCVV)
+    if (!expirationValidation.isValid || !numberValidation.isValid || !cvvValidation.isValid) return res.status(401).send('Tarjeta invalida');
+
     user = await User.findById(id);
-    user.email = req.body.email;
-    user.password = req.body.password;
-    user.plan = req.body.plan;
-    user.creditCardName = req.body.creditCardName;
-    user.creditCardNumber = req.body.creditCardNumber;
-    user.creditCardCVV = req.body.creditCardCVV;
-    user.creditCardMM = req.body.creditCardMM;
-    user.creditCardYY = req.body.creditCardYY;
-    user.active = true;
-    //const match = await user.matchPassword(password);
+    user.email = req.body.user.email;
+    user.creditCardName = req.body.user.creditCardName;
+    user.creditCardNumber = req.body.user.creditCardNumber;
+    user.creditCardCVV = req.body.user.creditCardCVV;
+    user.creditCardMM = req.body.user.creditCardMM;
+    user.creditCardYY = req.body.user.creditCardYY;
+
+    if (req.body.oldPasswordTry != "") {
+        if (req.body.newPassword == req.body.newPasswordRepeated) return res.status(401).send('Contraseña incorrecta');
+        const match = await user.matchPassword(req.body.newPassword);
+        if (!match) return res.status(401).send('Contraseña incorrecta');
+        user.password = req.body.newPassword;
+    }
     user.save();
     res.json({ 'status': true });
 }
@@ -88,6 +106,10 @@ userCtrl.iniciarSesion = async(req, res) => {
         user
     });
 }
+
+userCtrl.ascenderAPremium
+
+
 
 
 module.exports = userCtrl;

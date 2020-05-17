@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    background: linear-gradient(360deg, rgba(13, 12, 17, 1) 0%, rgba(24, 0, 4, 1) 71%, rgba(40, 0, 0, 1) 100%);
+    background-repeat: repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    background-position: top;
+    min-height: 100vh;
+    /* Resize the background image to cover the entire container */
+}
+
+.height-full {
+    height: 100vh;
+}

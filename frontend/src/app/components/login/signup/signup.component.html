@@ -1,4 +1,4 @@
-<div class="container pt-5">
+<div class="container height-full pt-5">
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card">
@@ -61,13 +61,13 @@
                                 </div>
                             </div>
                         </div>
-                        <button [disabled]="validUser()" type="submit" class="btn btn-block btn-outline-success">
+                        <button [disabled]="validUser()" type="submit" class="btn btn-block btn-outline-danger">
                         Registrarse
                     </button>
                     </form>
                 </div>
             </div>
-            <p class="text-center text-muted">Ya estas registrado? <a [routerLink]="['/signin']" class="text-success">Inicia sesión</a></p>
+            <p class="text-center text-muted">Ya estas registrado? <a [routerLink]="['/signin']" class="text-danger">Inicia sesión</a></p>
 
         </div>
     </div>

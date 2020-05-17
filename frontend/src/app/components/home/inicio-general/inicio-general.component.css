@@ -17,6 +17,12 @@ img {
     font-size: 4rem;
 }
 
+.callout-bookflix {
+    margin-bottom: 0;
+    animation-delay: 1.25s;
+    font-size: 4rem;
+}
+
 @media (min-width: 700px) {
     .callout-title {
         animation-delay: 0s;

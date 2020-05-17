@@ -21,6 +21,7 @@ import { CrearNoticiaComponent } from './components/noticias/crear-noticia/crear
 import { EditarNoticiaComponent } from './components/noticias/editar-noticia/editar-noticia.component';
 import { EditBookComponent } from './components/books/edit-book/edit-book.component';
 import { BookSampleComponent } from './components/books/book-sample/book-sample.component';
+import { OpcionesAdministradorComponent } from './components/admin/opciones-administrador/opciones-administrador.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { BookSampleComponent } from './components/books/book-sample/book-sample.
     CrearNoticiaComponent,
     EditarNoticiaComponent,
     EditBookComponent,
-    BookSampleComponent
+    BookSampleComponent,
+    OpcionesAdministradorComponent,
+
   ],
   imports: [
     BrowserModule,
