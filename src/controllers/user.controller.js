@@ -75,12 +75,12 @@ userCtrl.iniciarSesion = async(req, res) => {
 userCtrl.editUser = async(req, res) => {
     const { id } = req.params;
     user = await User.findById(id);
-    user.email = req.body.email;
-    user.creditCardName = req.body.creditCardName;
-    user.creditCardNumber = req.body.creditCardNumber;
-    user.creditCardCVV = req.body.creditCardCVV;
-    user.creditCardMM = req.body.creditCardMM;
-    user.creditCardYY = req.body.creditCardYY;
+    user.email = req.body.user.email;
+    user.creditCardName = req.body.user.creditCardName;
+    user.creditCardNumber = req.body.user.creditCardNumber;
+    user.creditCardCVV = req.body.user.creditCardCVV;
+    user.creditCardMM = req.body.user.creditCardMM;
+    user.creditCardYY = req.body.user.creditCardYY;
 
     if (req.body.password != "") {
         if (req.body.newPassword == req.body.newPasswordConfirm) return res.status(401).send('Contraseña incorrecta');
