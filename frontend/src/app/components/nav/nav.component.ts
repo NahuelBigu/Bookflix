@@ -21,7 +21,7 @@ export class NavComponent implements OnInit {
     this.authService.logout();
   }
   eselhome(){
-    console.log(this.router.url)
+  
     return this.router.url != "/"
   }
 
