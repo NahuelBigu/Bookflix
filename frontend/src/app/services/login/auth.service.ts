@@ -75,7 +75,7 @@ export class AuthService {
   }
   
   isAdmin(): boolean {
-    return true;
+   
     if (this.isAuthenticated()){
       //console.log(this.localStorageService.getItem('user').plan);
       return this.localStorageService.getItem('user').plan === 0;
