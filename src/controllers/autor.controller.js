@@ -9,6 +9,9 @@ autorCtrl.getAutors = async(req, res) => {
 
 autorCtrl.createAutor = async(req, res) => {
     if (req.body.name=='') { res.status(401).send('Nombre requerido'); return false }
+    const name=req.body.name;
+    const autorAux = await Autor.findOne({ name });
+    if (autorAux) return res.status(401).send('Autor repetido');
 
     const newAutor = new Autor({
         name: req.body.name,
