@@ -7,49 +7,77 @@
                         <div class="form-group">
                             <input type="text" [(ngModel)]="book.name" name="name" class="form-control" placeholder="Nombre" autofocus>
                         </div>
-                        <div class="row mx-0">
-                            <button type="button" class="btn btn-primary" (click)="addAutor()">
-                                Agregar autor
-                            </button>
-                            <input [(ngModel)]="autor.name" type="text" name="name" class="mx-5">
+                        <hr style="border: 0.5px solid black">
+                        <div class="row mx-0 my-3">
+                            <div class="col-7" style="left:-50px">
+                                <input [(ngModel)]="autor.name" type="text" name="name" class="mx-5 form-control" placeholder="Escriba el autor que quiera añadir">
+                            </div>
+                            <div class="col-5">
+                                <button type="button" class="btn btn-block btn-outline-danger" (click)="addAutor()">
+                                    Agregar autor
+                                </button>
+                            </div>
                         </div>
-                        <select [(ngModel)]="book.author" name="author" class="form-control" style="width:45%">
+                        <select  [(ngModel)]="book.author" name="author" class="form-control"  required>
                             <option selected disabled>Autor</option>
-                            <option *ngFor="let each of autors">{{each.name}}</option>
+                            <option *ngFor="let each of autors" value="{{each.name}}">{{each.name}}</option>
                         </select>
+                        <hr style="border: 0.5px solid black">
                         <!--<div class="form-group">
                             <input type="text" [(ngModel)]="book.author" name="author" class="form-control" placeholder="Autor" autofocus>
                         </div>-->
-                        <div class="row mx-0">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                Agregar genero
-                            </button>
-                            <input type="text" name="autor" id="autor" class="mx-5" hidden>
+                        <div class="row mx-0 my-3">
+                            <div class="col-7" style="left:-50px">
+                                <input [(ngModel)]="genero.name" type="text" name="name" class=" mx-5 form-control" placeholder="Escriba el genero que quiera añadir">
+                            </div>
+                            <div class="col-5">
+                                <button type="button" class="btn btn-block btn-outline-danger" (click)="addGenero()">
+                                    Agregar genero
+                                </button>
+                            </div>
                         </div>
-                        <div class="form-group">
+                        <select [(ngModel)]="book.genre" name="genre" class="form-control">
+                            <option selected disabled>Genero</option>
+                            <option *ngFor="let each of generos" value="{{each.name}}">{{each.name}}</option>
+                        </select>
+                        <hr style="border: 0.5px solid black">
+                        <!--<div class="form-group">
                             <input type="text" [(ngModel)]="book.genre" name="genre" class="form-control" placeholder="Genero" autofocus>
+                        </div>-->
+                        <div class="row mx-0 my-3">
+                            <div class="col-7" style="left:-50px">
+                                <input [(ngModel)]="editorial.name" type="text" name="name" class=" mx-5 form-control" placeholder="Escriba la editorial que quiera añadir">
+                            </div>
+                            <div class="col-5">
+                                <button type="button" class="btn btn-block btn-outline-danger" (click)="addEditorial()">
+                                    Agregar editorial
+                                </button>
+                            </div>
                         </div>
-                        <div class="row mx-0">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                Agregar editorial
-                            </button>
-                            <input type="text" name="autor" id="autor" class="mx-5" hidden>
-                        </div>
-                        <div class="form-group">
+                        <select [(ngModel)]="book.editorial" name="editorial" class="form-control">
+                            <option selected disabled>Editorial</option>
+                            <option *ngFor="let each of editoriales" value="{{each.name}}">{{each.name}}</option>
+                        </select>
+                        <hr style="border: 0.5px solid black">
+                        <!--<div class="form-group">
                             <input type="text" [(ngModel)]="book.editorial" name="editorial" class="form-control" placeholder="Editorial" autofocus>
-                        </div>
-                        <div class="form-group">
+                        </div>-->
+                        <div class="form-group mt-3">
                             <input type="text" [(ngModel)]="book.image" name="URLimage" class="form-control" placeholder="URL de la imagen" autofocus>
                         </div>
+                        <hr style="border: 0.5px solid black">
                         <div class="form-group">
                             <input type="text" [(ngModel)]="book.bookPDF" name="urlpdf" class="form-control" placeholder="URL del PDF" autofocus>
                         </div>
+                        <hr style="border: 0.5px solid black">
                         <div class="form-group">
                             <textarea type="text" [(ngModel)]="book.synopsis" name="synopsis" class="form-control" placeholder="Sinopsis" rows="4" autofocus></textarea>
                         </div>
+                        <hr style="border: 0.5px solid black">
                         <button type="submit" class="btn btn-block btn-outline-danger">
                             Cargar libro
                         </button>
+                        
                     </form>
                 </div>
             </div>

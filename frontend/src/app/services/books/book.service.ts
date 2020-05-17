@@ -31,5 +31,4 @@ export class BookService {
     book.active=false;
     return this.http.put(this.URL_API + `/${book._id}`, book);
   }
-
 }
