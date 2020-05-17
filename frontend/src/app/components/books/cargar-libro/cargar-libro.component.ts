@@ -33,6 +33,9 @@ export class CargarLibroComponent implements OnInit {
     this.autorService.getAutors().subscribe(data=> this.autors=data as Array<Autor>);
     this.generoService.getGeneros().subscribe(data=> this.generos=data as Array<Genero>);
     this.editorialService.getEditoriales().subscribe(data=> this.editoriales=data as Array<Editorial>);
+    this.book.author="Autor";
+    this.book.genre="Genero";
+    this.book.editorial="Editorial";
   }
 
   addBook(){
@@ -47,6 +50,7 @@ export class CargarLibroComponent implements OnInit {
       this.autorService.postAutor(this.autor)
       .subscribe();
       this.autorService.getAutors().subscribe(data=> this.autors=data as Array<Autor>);
+      this.book.author=this.autor.name;
     }
   }
   addGenero(){
@@ -55,6 +59,7 @@ export class CargarLibroComponent implements OnInit {
       .subscribe();
       this.generoService.getGeneros().subscribe(data=> this.generos=data as Array<Genero>);
     }
+    this.book.genre=this.genero.name;
   }
   addEditorial(){
     if (this.editorial.name!=''){
@@ -62,6 +67,7 @@ export class CargarLibroComponent implements OnInit {
       .subscribe();
       this.editorialService.getEditoriales().subscribe(data=> this.editoriales=data as Array<Editorial>);
     }
+    this.book.editorial=this.editorial.name;
   }
   
 }
