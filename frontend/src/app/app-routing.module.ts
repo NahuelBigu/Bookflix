@@ -74,7 +74,7 @@ const routes: Routes = [
     component: EditBookComponent
   },
   {
-    path: 'books',
+    path: 'books/book/:id',
     component: BookSampleComponent
   },
   {
