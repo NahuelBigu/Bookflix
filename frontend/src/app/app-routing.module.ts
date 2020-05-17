@@ -15,6 +15,7 @@ import { CargarLibroComponent } from './components/books/cargar-libro/cargar-lib
 import { CrearNoticiaComponent } from './components/noticias/crear-noticia/crear-noticia.component';
 import { EditarNoticiaComponent } from './components/noticias/editar-noticia/editar-noticia.component';
 import { EditBookComponent } from './components/books/edit-book/edit-book.component';
+import { BookSampleComponent } from './components/books/book-sample/book-sample.component';
 
 const routes: Routes = [
   {
@@ -71,6 +72,10 @@ const routes: Routes = [
   {
     path: 'books/edit/:id',
     component: EditBookComponent
+  },
+  {
+    path: 'books',
+    component: BookSampleComponent
   },
   {
     path: '**',
