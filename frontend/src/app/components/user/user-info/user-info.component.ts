@@ -30,6 +30,8 @@ export class UserInfoComponent implements OnInit {
   }
 
   editUser() {
+    if (this.newPassword!=this.newPasswordRepeated) { this.error='Las contraseñas nuevas no coinciden' };
+
     this._authService.putUser(this.user);
     
   }
