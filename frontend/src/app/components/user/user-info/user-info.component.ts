@@ -14,9 +14,9 @@ export class UserInfoComponent implements OnInit {
   user: User;
   userNew: User;
   error: String='';
-  oldPasswordTry: String;
-  newPassword: String;
-  newPasswordRepeated: String; 
+  oldPasswordTry: String = '';
+  newPassword: String = '';
+  newPasswordRepeated: String = ''; 
 
   constructor(private _authService:AuthService,
     private router: Router) {
