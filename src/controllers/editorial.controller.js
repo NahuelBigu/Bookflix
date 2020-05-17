@@ -12,7 +12,7 @@ editorialCtrl.createEditorial = async(req, res) => {
         name: req.body.name,
         active: true
     });
-    if (req.body.name=='Editorial') { res.status(401).send('Editorail requerida'); return false };
+    if (req.body.name=='') { res.status(401).send('Editorail requerida'); return false };
     const name=req.body.name;
     const editorialAux = await Editorial.findOne({ name });
     if (editorialAux) return res.status(401).send('Editorial repetida');
