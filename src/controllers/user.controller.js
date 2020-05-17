@@ -22,8 +22,8 @@ userCtrl.getUserByToken = async(req, res) => {
 }
 userCtrl.createUser = async(req, res) => {
     const { email, password, plan, creditCardName, creditCardNumber, creditCardCVV, creditCardMM, creditCardYY } = req.body;
-    const user = await User.findOne({ email });
-    if (user) return res.status(401).send('El email ya existe');
+    const userAux = await User.findOne({ email });
+    if (userAux) return res.status(401).send('El email ya existe');
 
     var numberValidation = valid.number(creditCardNumber);
     var expirationDate = String(creditCardMM) + "/" + String(creditCardYY);
@@ -31,7 +31,7 @@ userCtrl.createUser = async(req, res) => {
     var cvvValidation = valid.cvv(creditCardCVV)
     if (!expirationValidation.isValid || !numberValidation.isValid || !cvvValidation.isValid) return res.status(401).send('Tarjeta invalida');
 
-    const newUser = new User({
+    const user = new User({
         email,
         password,
         plan,
@@ -42,9 +42,9 @@ userCtrl.createUser = async(req, res) => {
         creditCardYY,
         active: true
     });
-    newUser.password = await newUser.encryptPassword(password);
-    await newUser.save();
-    const token = await jwt.sign({ _id: newUser._id }, 'secretkey');
+    user.password = await user.encryptPassword(password);
+    await user.save();
+    const token = await jwt.sign({ _id: user._id }, 'secretkey');
     res.status(200).json({
         token,
         user
@@ -60,12 +60,12 @@ function validarEmail(valor) {
 }
 userCtrl.editUser = async(req, res) => {
     const { id } = req.params;
-    if (req.body.user.email = !"" && validarEmail(req.body.user.email)) return res.status(401).send('Email incorrecto');
-    if (req.body.user.creditCardName = !"") return res.status(401).send('Nombre completo de tarejata incorrecto');
-    var numberValidation = valid.number(creditCardNumber);
-    var expirationDate = String(creditCardMM) + "/" + String(creditCardYY);
+    if (req.body.user.email === "" || validarEmail(req.body.user.email)) return res.status(401).send('Email incorrecto');
+    if (req.body.user.creditCardName === "") return res.status(401).send('Nombre completo de tarejata incorrecto');
+    var numberValidation = valid.number(req.body.user.creditCardNumber);
+    var expirationDate = String(req.body.user.creditCardMM) + "/" + String(req.body.user.creditCardYY);
     var expirationValidation = valid.expirationDate(expirationDate);
-    var cvvValidation = valid.cvv(creditCardCVV)
+    var cvvValidation = valid.cvv(req.body.user.creditCardCVV)
     if (!expirationValidation.isValid || !numberValidation.isValid || !cvvValidation.isValid) return res.status(401).send('Tarjeta invalida');
 
     user = await User.findById(id);

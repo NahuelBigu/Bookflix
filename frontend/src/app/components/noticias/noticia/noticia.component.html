@@ -1,34 +1,20 @@
-<div class="container card mt-5">
+<div class="container ">
+    <h1 class="mt-4 card-title">{{noticia.title}}</h1>
 
-    <div class="row">
-
-        <!-- Post Content Column -->
-        <div class="col-lg-12">
-
-            <!-- Title -->
-            <h1 class="mt-4 card-title">{{noticia.title}}</h1>
-
-            <!-- Author -->
-            <p class="lead small">
-                por {{noticia.author}} <br> Publicado el {{noticia.createdAt | date: 'MMM dd, yyyy'}}
-            </p>
-            <!-- Date/Time -->
-            <hr>
-            <!-- Preview Image -->
-            <img class="card-img imagen-notica" src="{{noticia.image}}" alt="">
-
-            <hr>
-
-            <!-- Post Content -->
-            <p class="card-text">{{noticia.text}}</p>
-            <hr>
-
-
-        </div>
-
+    <!-- Author -->
+    <div class="mb-4">
+        <p class="lead small">
+            por {{noticia.author}} <br> Publicado el {{noticia.createdAt | date: 'MMM dd, yyyy'}}
+        </p>
+        <img class="card-img imagen-notica" src="{{noticia.image}}" alt="">
 
     </div>
-    <!-- /.row -->
+
+    <p class="card-text">{{noticia.text}}</p>
+    <hr>
+
+
+
 
 </div>
 <!-- /.container -->
