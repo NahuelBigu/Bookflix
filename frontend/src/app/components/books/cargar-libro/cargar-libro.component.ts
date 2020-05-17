@@ -24,6 +24,9 @@ export class CargarLibroComponent implements OnInit {
   autors;
   editoriales;
   generos;
+  autorAdd: boolean = false;
+  generoAdd: boolean = false;
+  editorialAdd: boolean = false;
 
   constructor(private bookService: BookService, private router: Router, private autorService: AutorService,private generoService: GeneroService,private editorialService: EditorialService) {
 
