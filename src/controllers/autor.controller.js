@@ -8,7 +8,7 @@ autorCtrl.getAutors = async(req, res) => {
 }
 
 autorCtrl.createAutor = async(req, res) => {
-    if (req.body.name=='') { res.status(401).send('Nombre requerido'); return false }
+    if (req.body.name=='Autor') { res.status(401).send('Nombre requerido'); return false }
     const name=req.body.name;
     const autorAux = await Autor.findOne({ name });
     if (autorAux) return res.status(401).send('Autor repetido');
@@ -39,7 +39,7 @@ autorCtrl.editAutor = async(req, res) => {
     var autorAux = await Autor.findById(id);
     console.log(autorAux);
     autorAux.name = autor.name;
-    if (autorAux.name == '') res.status(401).send('Nombre requerido');
+    if (autorAux.name == '') return res.status(401).send('Nombre requerido');
     autorAux.save();
     res.json(id);
 }

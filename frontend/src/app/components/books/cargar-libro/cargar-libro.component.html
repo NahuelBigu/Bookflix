@@ -1,6 +1,12 @@
-<div class="container pt-5">
+<div class="container">
     <div class="row">
+        <div class="col-sm-12 mt-3 mb-3">
+            <h4 class="text-center">Nuevo Libro</h4>
+        </div>
         <div class="col-md-8 mx-auto">
+            <div class="alert alert-danger" *ngIf="error != '' ">
+                {{error}}
+            </div>
             <div class="card">
                 <div class="card-body">
                     <form (ngSubmit)="addBook()">
@@ -20,7 +26,7 @@
                         </div>
                         <div class="row">
                             <div class="col-10">
-                                <select  [(ngModel)]="book.author" name="author" class="form-control"  required>
+                                <select [(ngModel)]="book.author" name="author" class="form-control" required>
                                     <option selected disabled>Autor</option>
                                     <option *ngFor="let each of autors" value="{{each.name}}">{{each.name}}</option>
                                 </select>
@@ -33,7 +39,7 @@
                         <!--<div class="form-group">
                             <input type="text" [(ngModel)]="book.author" name="author" class="form-control" placeholder="Autor" autofocus>
                         </div>-->
-                        
+
                         <div class="row mx-0 my-3" *ngIf="generoAdd==true">
                             <div class="col-7" style="left:-50px">
                                 <input [(ngModel)]="genero.name" type="text" name="name" class="mx-5 form-control" placeholder="Escriba el genero que quiera añadir">
@@ -46,7 +52,7 @@
                         </div>
                         <div class="row">
                             <div class="col-10">
-                                <select  [(ngModel)]="book.genre" name="genre" class="form-control"  required>
+                                <select [(ngModel)]="book.genre" name="genre" class="form-control" required>
                                     <option selected disabled>Genero</option>
                                     <option *ngFor="let each of generos" value="{{each.name}}">{{each.name}}</option>
                                 </select>
@@ -73,7 +79,7 @@
                         </div>
                         <div class="row">
                             <div class="col-10">
-                                <select  [(ngModel)]="book.editorial" name="editorial" class="form-control"  required>
+                                <select [(ngModel)]="book.editorial" name="editorial" class="form-control" required>
                                     <option selected disabled>Editorial</option>
                                     <option *ngFor="let each of editoriales" value="{{each.name}}">{{each.name}}</option>
                                 </select>
@@ -83,7 +89,7 @@
                             </div>
                         </div>
 
-                    
+
                         <hr style="border: 0.5px solid black">
                         <!--<div class="form-group">
                             <input type="text" [(ngModel)]="book.editorial" name="editorial" class="form-control" placeholder="Editorial" autofocus>
@@ -103,7 +109,7 @@
                         <button type="submit" class="btn btn-block btn-outline-danger">
                             Cargar libro
                         </button>
-                        
+
                     </form>
                 </div>
             </div>

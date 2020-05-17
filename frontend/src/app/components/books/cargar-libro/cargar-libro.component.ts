@@ -16,7 +16,7 @@ import { EditorialService } from 'src/app/services/editorial/editorial.service';
   styleUrls: ['./cargar-libro.component.css']
 })
 export class CargarLibroComponent implements OnInit {
-
+  error:String="";
   book: Book = new Book;
   autor: Autor = new Autor;
   editorial: Editorial = new Editorial;
@@ -46,7 +46,7 @@ export class CargarLibroComponent implements OnInit {
       .subscribe(res => {
         console.log('Book saved');
         this.router.navigate(['/home']);
-      })
+      },err => this.error=err.error)
   }
   addAutor(){
     if (this.autor.name!=''){
