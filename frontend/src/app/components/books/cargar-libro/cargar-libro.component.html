@@ -32,7 +32,7 @@
                                 </select>
                             </div>
                             <div class="col-2">
-                                <button type="button"  type="button" class="btn btn-outline-danger" style="position: absolute;right: 25px;" (click)="autorAdd=!autorAdd"><i class="fas fa-plus"></i></button>
+                                <button type="button" type="button" class="btn btn-outline-danger" style="position: absolute;right: 25px;" (click)="autorAdd=!autorAdd"><i class="fas " [ngClass]="{'fa-plus': autorAdd==false, 'fa-minus': autorAdd==true}"></i></button>
                             </div>
                         </div>
                         <hr style="border: 0.5px solid black">
@@ -58,7 +58,7 @@
                                 </select>
                             </div>
                             <div class="col-2">
-                                <button type="button" class="btn btn-outline-danger" style="position: absolute;right: 25px;" (click)="generoAdd=!generoAdd"><i class="fas fa-plus"></i></button>
+                                <button type="button" class="btn btn-outline-danger" style="position: absolute;right: 25px;" (click)="generoAdd=!generoAdd"><i class="fas " [ngClass]="{'fa-plus': generoAdd==false, 'fa-minus': generoAdd==true}"></i></button>
                             </div>
                         </div>
 
@@ -85,7 +85,7 @@
                                 </select>
                             </div>
                             <div class="col-2">
-                                <button type="button" class="btn btn-outline-danger" style="position: absolute;right: 25px;" (click)="editorialAdd=!editorialAdd"><i class="fas fa-plus"></i></button>
+                                <button type="button" class="btn btn-outline-danger" style="position: absolute;right: 25px;" (click)="editorialAdd=!editorialAdd"><i class="fas " [ngClass]="{'fa-plus': editorialAdd==false, 'fa-minus': editorialAdd==true}"></i></button>
                             </div>
                         </div>
 

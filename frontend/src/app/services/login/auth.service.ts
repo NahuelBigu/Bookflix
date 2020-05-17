@@ -78,7 +78,6 @@ export class AuthService {
    
     if (this.isAuthenticated()){
       var values = JSON.parse(localStorage.getItem("user"));
-
       return values.plan == 0;
     }
     return false

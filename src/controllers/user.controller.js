@@ -87,7 +87,11 @@ userCtrl.editUser = async(req, res) => {
 }
 
 userCtrl.deleteUser = async(req, res) => {
-    await User.findByIdAndUpdate(req.params.id, { active: false });
+
+    const user = await User.findById(req.params.id);
+    user.active = false;
+    user.save();
+    res.json({ 'status': true });
 }
 
 userCtrl.iniciarSesion = async(req, res) => {

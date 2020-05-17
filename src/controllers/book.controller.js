@@ -63,7 +63,10 @@ bookCtrl.editBook = async(req, res) => {
 }
 
 bookCtrl.deleteBook = async(req, res) => {
-    await Book.findByIdAndUpdate(req.params.id, { active: false });
+
+    const book = await Book.findById(req.params.id);
+    book.active = false;
+    book.save();
     res.json({ 'status': 'book deleted' });
 }
 

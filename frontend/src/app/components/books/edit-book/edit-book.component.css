@@ -1,3 +1,5 @@
 .imagen {
-    object-fit: cover;
+    object-fit: contain;
+    min-height: 100%;
+    max-width: 100%;
 }

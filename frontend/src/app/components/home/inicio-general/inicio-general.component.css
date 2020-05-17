@@ -19,8 +19,9 @@ img {
 
 .callout-bookflix {
     margin-bottom: 0;
-    animation-delay: 1.25s;
-    font-size: 4rem;
+    animation-delay: 1.0s;
+    font-size: 1rem;
+    max-width: 250px;
 }
 
 @media (min-width: 700px) {
