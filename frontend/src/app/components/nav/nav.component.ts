@@ -21,8 +21,12 @@ export class NavComponent implements OnInit {
     this.authService.logout();
   }
   eselhome(){
-  
     return this.router.url != "/"
   }
+
+  isAdmin(){
+    return this.authService.isAdmin();
+  }
+
 
 }
