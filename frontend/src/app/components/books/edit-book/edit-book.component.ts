@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ['./edit-book.component.css']
 })
 export class EditBookComponent implements OnInit {
-
+  error:String="";
   book: Book= new Book;
 
   constructor(private ruta: ActivatedRoute, private router: Router, private bookService: BookService) {
@@ -18,7 +18,7 @@ export class EditBookComponent implements OnInit {
       this.bookService.getBook(params['id'])
         .subscribe(data => {
           this.book= data as Book;
-        });
+        },err => this.error=err.error);
     })
    }
 

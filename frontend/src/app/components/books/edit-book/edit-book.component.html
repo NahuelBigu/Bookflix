@@ -1,13 +1,19 @@
-<div class="container pt-5">
+<div class="container">
     <div class="row">
+        <div class="col-sm-12 mt-3 mb-3">
+            <h4 class="text-center">Editar Libro</h4>
+        </div>
         <div class="col-md-8 mx-auto">
+            <div class="alert alert-danger" *ngIf="error != '' ">
+                {{error}}
+            </div>
             <div class="card">
                 <div class="card.body">
                     <form (ngSubmit)="editBook()">
                         <div class="row p-1">
                             <div class="col-4">
                                 <img src="{{book.image}}" alt="portada del libro" class="imagen card-img-top">
-                            </div> 
+                            </div>
                             <div class="col-8">
                                 <div class="container mt-4">
                                     <div class="form-group">

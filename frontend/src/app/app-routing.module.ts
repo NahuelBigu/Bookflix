@@ -74,15 +74,17 @@ const routes: Routes = [
   },
   {
     path: 'books/add',
-    component: CargarLibroComponent
+    component: CargarLibroComponent,
+    canActivate: [AuthGuard,AdminGuard]
   },
   {
     path: 'books/edit/:id',
-    component: EditBookComponent
+    component: EditBookComponent,
+    canActivate: [AuthGuard,AdminGuard]
   },
   {
     path: 'books/book/:id',
-    component: BookSampleComponent
+    component: BookSampleComponent,
   },
   {
     path: '**',
