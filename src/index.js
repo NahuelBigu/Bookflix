@@ -19,6 +19,7 @@ app.use('/api/users', require('./routes/user.routes'));
 app.use('/api/noticias', require('./routes/noticias.routes'));
 app.use('/api/books', require('./routes/book.routes'));
 app.use('/api/autors', require('./routes/autor.routes'));
+app.use('/api/generos', require('./routes/genero.routes'));
 
 app.listen(app.get('port'));
 console.log('Server on port', app.get('port'));

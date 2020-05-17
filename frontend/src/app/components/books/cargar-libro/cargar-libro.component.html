@@ -21,14 +21,18 @@
                             <input type="text" [(ngModel)]="book.author" name="author" class="form-control" placeholder="Autor" autofocus>
                         </div>-->
                         <div class="row mx-0">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            <button type="button" class="btn btn-primary" (click)="addGenero()">
                                 Agregar genero
                             </button>
-                            <input type="text" name="autor" id="autor" class="mx-5" hidden>
+                            <input [(ngModel)]="genero.name" type="text" name="name" class="mx-5">
                         </div>
-                        <div class="form-group">
+                        <select [(ngModel)]="book.genre" name="genre" class="form-control" style="width:45%">
+                            <option selected disabled>Genero</option>
+                            <option *ngFor="let each of generos">{{each.name}}</option>
+                        </select>
+                        <!--<div class="form-group">
                             <input type="text" [(ngModel)]="book.genre" name="genre" class="form-control" placeholder="Genero" autofocus>
-                        </div>
+                        </div>-->
                         <div class="row mx-0">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                 Agregar editorial
