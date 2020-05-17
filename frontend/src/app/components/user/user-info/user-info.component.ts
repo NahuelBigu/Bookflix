@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit {
+
   user: User;
   userNew: User;
   error: String='';
@@ -30,10 +31,15 @@ export class UserInfoComponent implements OnInit {
   }
 
   editUser() {
-    if (this.newPassword!=this.newPasswordRepeated) { this.error='Las contraseñas nuevas no coinciden' };
-
-    this._authService.putUser(this.user);
-    
+    const user = {
+      user: this.user,
+      oldPasswordTry: this.oldPasswordTry,
+      newPassword: this.newPassword,
+      newPasswordRepeated: this.newPasswordRepeated
+    }
+    this._authService.putUser(user).subscribe(data=>{
+      
+    },err => this.error=err.error);
   }
   
 }

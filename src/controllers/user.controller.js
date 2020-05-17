@@ -54,16 +54,19 @@ userCtrl.createUser = async(req, res) => {
 userCtrl.editUser = async(req, res) => {
     const { id } = req.params;
     user = await User.findById(id);
-    user.email = req.body.email;
-    user.password = req.body.password;
-    user.plan = req.body.plan;
-    user.creditCardName = req.body.creditCardName;
-    user.creditCardNumber = req.body.creditCardNumber;
-    user.creditCardCVV = req.body.creditCardCVV;
-    user.creditCardMM = req.body.creditCardMM;
-    user.creditCardYY = req.body.creditCardYY;
-    user.active = true;
-    //const match = await user.matchPassword(password);
+    user.email = req.body.user.email;
+    user.creditCardName = req.body.user.creditCardName;
+    user.creditCardNumber = req.body.user.creditCardNumber;
+    user.creditCardCVV = req.body.user.creditCardCVV;
+    user.creditCardMM = req.body.user.creditCardMM;
+    user.creditCardYY = req.body.user.creditCardYY;
+
+    if (req.body.oldPasswordTry != "") {
+        if (req.body.newPassword == req.body.newPasswordRepeated) return res.status(401).send('Contraseña incorrecta');
+        const match = await user.matchPassword(req.body.newPassword);
+        if (!match) return res.status(401).send('Contraseña incorrecta');
+        user.password = req.body.newPassword;
+    }
     user.save();
     res.json({ 'status': true });
 }

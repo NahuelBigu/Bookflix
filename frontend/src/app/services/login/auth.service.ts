@@ -98,9 +98,9 @@ export class AuthService {
     this.router.navigate(['']);
   }
 
-  putUser(anUser: User) {
+  putUser(anUser) {
     console.log(anUser);
-    return this.http.put(this.URL_API + `/${anUser._id}`, anUser).subscribe();
+    return this.http.put(this.URL_API + `/${anUser._id}`, anUser);
   }
 
 
