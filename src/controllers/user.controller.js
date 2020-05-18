@@ -65,7 +65,7 @@ userCtrl.editUser = async(req, res) => {
     var numberValidation = valid.number(req.body.user.creditCardNumber);
     var expirationDate = String(req.body.user.creditCardMM) + "/" + String(req.body.user.creditCardYY);
     var expirationValidation = valid.expirationDate(expirationDate);
-    var cvvValidation = valid.cvv(req.body.user.creditCardCVV)
+    var cvvValidation = valid.cvv(String(req.body.user.creditCardCVV));
     if (!expirationValidation.isValid || !numberValidation.isValid || !cvvValidation.isValid) return res.status(401).send('Tarjeta invalida');
 
     user = await User.findById(id);
@@ -83,7 +83,7 @@ userCtrl.editUser = async(req, res) => {
         user.password = req.body.newPassword;
     }
     user.save();
-    res.json({ 'status': true });
+    res.json({ 'status': "true" });
 }
 
 userCtrl.deleteUser = async(req, res) => {

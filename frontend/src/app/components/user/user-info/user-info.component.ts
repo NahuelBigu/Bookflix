@@ -17,6 +17,7 @@ export class UserInfoComponent implements OnInit {
   oldPasswordTry: String= "";
   newPassword: String= "";
   newPasswordRepeated: String= ""; 
+  success: boolean=false;
 
   constructor(private _authService:AuthService,
     private router: Router) {
@@ -38,7 +39,7 @@ export class UserInfoComponent implements OnInit {
       newPasswordRepeated: this.newPasswordRepeated
     }
     this._authService.putUser(user).subscribe(data=>{
-      
+      this.success=true;
     },err => this.error=err.error);
   }
   

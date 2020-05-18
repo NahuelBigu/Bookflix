@@ -3,6 +3,9 @@
 
     <div class="row flex-lg-nowrap">
         <div class="col">
+            <div class="alert alert-success" *ngIf="success">
+                Cambios realizados con exito
+            </div>
             <div class="alert alert-danger" *ngIf="error != '' ">
                 {{error}}
             </div>
@@ -76,13 +79,13 @@
 
                                                             <div class="form-group">
                                                                 <label>Numero de tarjeta</label>
-                                                                <input type="text" name="creditCardNumber" placeholder="Numero de tarjeta" class="form-control" [(ngModel)]="user.creditCardNumber" required>
+                                                                <input type="number" name="creditCardNumber" placeholder="Numero de tarjeta" class="form-control" [(ngModel)]="user.creditCardNumber" required>
                                                             </div>
                                                         </div>
                                                         <div class="col mb-3">
                                                             <div class="form-group">
                                                                 <label>CVV:</label>
-                                                                <input name="creditCardCVV" type="text|number" maxlength="4" class="form-control" [(ngModel)]="user.creditCardCVV" required>
+                                                                <input name="creditCardCVV" type="text" maxlength="4" class="form-control" [(ngModel)]="user.creditCardCVV" required>
                                                             </div>
                                                         </div>
                                                         <div class="col mb-3">
