@@ -11,12 +11,12 @@
                 <div class="card-body">
                     <form (ngSubmit)="addBook()">
                         <div class="form-group">
-                            <input type="text" [(ngModel)]="book.name" name="name" class="form-control" placeholder="Nombre" autofocus>
+                            <input type="text" [(ngModel)]="book.name" name="book.name" class="form-control" placeholder="Nombre" autofocus>
                         </div>
                         <hr style="border: 0.5px solid black">
                         <div class="row mx-0 my-3" *ngIf="autorAdd==true">
                             <div class="col-7" style="left:-50px">
-                                <input [(ngModel)]="autor.name" type="text" name="name" class="mx-5 form-control" placeholder="Escriba el autor que quiera añadir">
+                                <input [(ngModel)]="autor.name" type="text" name="autor.name" class="mx-5 form-control" placeholder="Escriba el autor que quiera añadir">
                             </div>
                             <div class="col-5">
                                 <button type="button" class="btn btn-block btn-outline-danger" (click)="addAutor()">
@@ -26,13 +26,13 @@
                         </div>
                         <div class="row">
                             <div class="col-10">
-                                <select [(ngModel)]="book.author" name="author" class="form-control" required>
+                                <select [(ngModel)]="book.author" name="book.author" class="form-control" required>
                                     <option selected disabled>Autor</option>
                                     <option *ngFor="let each of autors" value="{{each.name}}">{{each.name}}</option>
                                 </select>
                             </div>
                             <div class="col-2">
-                                <button type="button" type="button" class="btn btn-outline-danger" style="position: absolute;right: 25px;" (click)="autorAdd=!autorAdd"><i class="fas " [ngClass]="{'fa-plus': autorAdd==false, 'fa-minus': autorAdd==true}"></i></button>
+                                <button type="button" class="btn btn-outline-danger" style="position: absolute;right: 25px;" (click)="autorAdd=!autorAdd"><i class="fas " [ngClass]="{'fa-plus': autorAdd==false, 'fa-minus': autorAdd==true}"></i></button>
                             </div>
                         </div>
                         <hr style="border: 0.5px solid black">

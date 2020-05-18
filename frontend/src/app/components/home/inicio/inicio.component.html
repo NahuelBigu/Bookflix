@@ -6,14 +6,16 @@
                 <div class="card2 d-flex flex-column">
                     <div class="front"><img class="libroPortada" src="{{book.image}}" ></div>
                     <div class="back">
-                            <h4 class="mt-2">{{book.name}}</h4>
-                            <p class="h6 mr-1 ml-1" style="overflow: hidden;">{{book.synopsis.substring(0, 350 - 3) + "..."}}</p>        
+                      
+                            <h5 class="mt-2 titulo-libro">{{book.name}}</h5>
+                      
+                            <p class="h6 mr-1 ml-1" style="overflow: hidden;">{{book.synopsis.substring(0, 300 - 3) + "..."}}</p>        
                             <button [routerLink]="['/']" class="btn  btn-outline-danger btn-block mt-auto button-libros-left mr-5">
                                     Leer
                             </button>
-                            <button [routerLink]="['/books/book/',book._id]" class="btn btn-link text-warning mt-auto button-libros-right">
+                            <a [routerLink]="['/books/book/',book._id]" class="text-warning mt-auto button-libros-right">
                                 Ver mas
-                            </button>
+                            </a>
                      
                     </div>
                 </div>
