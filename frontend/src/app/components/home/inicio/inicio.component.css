@@ -1,78 +1,87 @@
-label {
-    -webkit-perspective: 1000px;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    display: block;
-    width: 210px;
-    height: 337px;
-    cursor: pointer;
-}
-
-input {
-    display: none;
-}
-
-.card2 {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-transition: all 600ms;
-    transition: all 600ms;
-    z-index: 20;
-}
-
-.libroPortada {
-    height: auto;
-    width: auto;
-    max-width: 100%;
-    max-height: 100%;
-    min-height: 337px;
-    object-fit: cover;
-}
-
-.card2 div {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: #000;
-    text-align: center;
-    line-height: 20px;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    border-radius: 2px;
-}
-
-.card2 .back {
-    background: #222;
-    color: #FFF;
-    -webkit-transform: rotateY(180deg);
-    transform: rotateY(180deg);
-}
-
-label:hover .card2 {
-    -webkit-transform: rotateY(-20deg);
-    transform: rotateY(-20deg);
-    box-shadow: 0 20px 20px rgba(50, 50, 50, .2);
-}
-
-:checked+.card2 {
-    transform: rotateY(-180deg);
-    -webkit-transform: rotateY(-180deg);
-}
-
-label:hover :checked+.card2 {
-    transform: rotateY(-180deg);
-    -webkit-transform: rotateY(-180deg);
-}
-
-.button-libros-left {
-    bottom: 5px;
-    position: absolute;
-}
-
-.button-libros-right {
-    bottom: 0px;
-    position: relative;
-}
+    label {
+        -webkit-perspective: 1000px;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        display: block;
+        width: 210px;
+        height: 337px;
+        cursor: pointer;
+    }
+    
+    input {
+        display: none;
+    }
+    
+    .card2 {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transition: all 600ms;
+        transition: all 600ms;
+        z-index: 20;
+    }
+    
+    .libroPortada {
+        height: auto;
+        width: auto;
+        max-width: 100%;
+        max-height: 100%;
+        min-height: 337px;
+        object-fit: cover;
+    }
+    
+    .card2 div {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: #000;
+        text-align: center;
+        line-height: 20px;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 2px;
+    }
+    
+    .card2 .back {
+        background: #222;
+        color: #FFF;
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+    
+    label:hover .card2 {
+        -webkit-transform: rotateY(-20deg);
+        transform: rotateY(-20deg);
+        box-shadow: 0 20px 20px rgba(50, 50, 50, .2);
+    }
+    
+     :checked+.card2 {
+        transform: rotateY(-180deg);
+        -webkit-transform: rotateY(-180deg);
+    }
+    
+    label:hover :checked+.card2 {
+        transform: rotateY(-180deg);
+        -webkit-transform: rotateY(-180deg);
+    }
+    
+    .button-libros-left {
+        bottom: 5px;
+        position: absolute;
+    }
+    
+    .button-libros-right {
+        bottom: 0px;
+        position: relative;
+    }
+    
+    .titulo-libro {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* number of lines to show */
+        -webkit-box-orient: vertical;
+    }
