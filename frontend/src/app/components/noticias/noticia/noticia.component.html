@@ -1,16 +1,30 @@
-<div class="container ">
-    <h1 class="mt-4 card-title">{{noticia.title}}</h1>
+<div class="container">
+
+    <h1 class="mt-4 card-title" [ngClass]="{noticiaDesactivada: !noticia.active}">{{noticia.title}} <strong *ngIf="!noticia.active"> - Desactivada</strong></h1>
+
+
 
     <!-- Author -->
     <div class="mb-4">
-        <p class="lead small">
-            por {{noticia.author}} <br> Publicado el {{noticia.createdAt | date: 'MMM dd, yyyy'}}
-        </p>
-        <img class="card-img imagen-notica" src="{{noticia.image}}" alt="">
+        <div class="row">
+            <div class="col-2" [ngClass]="{noticiaDesactivada: !noticia.active}">
+                <p class="lead small">
+                    por {{noticia.author}} <br> Publicado el {{noticia.createdAt | date: 'MMM dd, yyyy'}}
+                </p>
+            </div>
+            <div class="col-10">
+                <a [routerLink]="['/noticia/editar/', noticia._id]" class="f btn btn-outline-danger "> <i class="fas fa-edit"> Editar</i>
+
+                </a>
+            </div>
+            <img [ngClass]="{noticiaDesactivada2: !noticia.active}" class="card-img imagen-noticia" src="{{noticia.image}}" alt="">
+        </div>
+
+
 
     </div>
 
-    <h5 class="text-white-50">{{noticia.text}}</h5>
+    <h5 class="text-white-50" [ngClass]="{noticiaDesactivada: !noticia.active}">{{noticia.text}}</h5>
     <hr>
 
 

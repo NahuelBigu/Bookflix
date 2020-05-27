@@ -19,6 +19,9 @@
                                     <div class="form-group">
                                         <input type="text" [(ngModel)]="book.name" name="name" class="form-control" placeholder="Titulo" autofocus>
                                     </div>
+                                    <div class="form-group">
+                                        <input type="text" [(ngModel)]="book.isbn" name="book.isbn" class="form-control" placeholder="ISBN" autofocus>
+                                    </div>
                                     <!-- SELECT DE AUTOR -->
                                     <div class="row mx-0 my-3" *ngIf="autorAdd==true">
                                         <div class="col-7" style="left:-50px">

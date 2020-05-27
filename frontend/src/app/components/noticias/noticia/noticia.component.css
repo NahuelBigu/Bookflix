@@ -1,6 +1,15 @@
-.imagen-notica {
+.imagen-noticia {
     max-height: 450px;
     height: auto;
     object-fit: cover;
     border-radius: 10px;
+}
+
+.noticiaDesactivada {
+    opacity: 0.5;
+    filter: grayscale(100%);
+}
+
+.noticiaDesactivada2 {
+    opacity: 0.5;
 }

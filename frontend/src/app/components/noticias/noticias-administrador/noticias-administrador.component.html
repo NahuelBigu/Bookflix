@@ -8,7 +8,7 @@
     </div>
     <!-- Blog Post -->
     <div class="row" *ngFor="let noticia of noticias">
-        <div class="col-11">
+        <div class="col-11" [ngClass]="{noticiaDesactivada: !noticia.active}">
             <div class="card mb-4">
                 <div class="card-body">
                     <h3 class="card-title">{{noticia.title}}</h3>

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-sm-12 mt-3 mb-3">
-        <h4 class="text-center">Nueva Noticia</h4>
+        <h4 class="text-center">Editar Noticia</h4>
     </div>
     <div class="alert alert-danger" *ngIf="error != '' ">
         {{error}}
@@ -10,7 +10,7 @@
 
 
         <form (ngSubmit)="editar()">
-            <div class="container m-3 mb-2">
+            <div class="container m-3 mb-2 pt-3">
                 <div class="form-group mr-3  row">
                     <label for="staticEmail" class="col-sm-1 col-form-label">Titulo</label>
                     <div class="col-sm-11">
@@ -21,7 +21,7 @@
                     <label for="staticEmail" class="col-sm-1 col-form-label">Imagen</label>
                     <div class="col-sm-11">
                         <input type="text" [(ngModel)]="noticia.image" name="image" class="form-control" id="image" value="" placeholder="Imagen (url)">
-                        <img class="card-img mt-3" src="{{noticia.image}}" alt="">
+                        <img class="card-img mt-3 imagen-noticia" src="{{noticia.image}}" alt="">
                     </div>
 
                 </div>

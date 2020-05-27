@@ -14,6 +14,10 @@
                             <input type="text" [(ngModel)]="book.name" name="book.name" class="form-control" placeholder="Nombre" autofocus>
                         </div>
                         <hr style="border: 0.5px solid black">
+                        <div class="form-group">
+                            <input type="text" [(ngModel)]="book.isbn" name="book.isbn" class="form-control" placeholder="ISBN" autofocus>
+                        </div>
+                        <hr style="border: 0.5px solid black">
                         <div class="row mx-0 my-3" *ngIf="autorAdd==true">
                             <div class="col-7" style="left:-50px">
                                 <input [(ngModel)]="autor.name" type="text" name="autor.name" class="mx-5 form-control" placeholder="Escriba el autor que quiera añadir">

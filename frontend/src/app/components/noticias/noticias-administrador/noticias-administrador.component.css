@@ -1,0 +1,4 @@
+.noticiaDesactivada .card {
+    opacity: 0.5;
+    filter: grayscale(100%);
+}
