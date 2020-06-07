@@ -23,6 +23,7 @@ import { EditBookComponent } from './components/books/edit-book/edit-book.compon
 import { BookSampleComponent } from './components/books/book-sample/book-sample.component';
 import { OpcionesAdministradorComponent } from './components/admin/opciones-administrador/opciones-administrador.component';
 import { SelectperfilComponent } from './components/login/selectperfil/selectperfil/selectperfil.component';
+import { UserListComponent } from './components/user/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SelectperfilComponent } from './components/login/selectperfil/selectper
     BookSampleComponent,
     OpcionesAdministradorComponent,
     SelectperfilComponent,
+    UserListComponent,
 
   ],
   imports: [

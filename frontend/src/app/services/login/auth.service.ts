@@ -10,6 +10,7 @@ import { Profile } from 'src/app/models/profile';
   providedIn: 'root'
 })
 export class AuthService {
+  
   selectedUser: User;
 
   private localStorageService;
@@ -84,6 +85,11 @@ export class AuthService {
   isAuthenticated(): boolean {
     return (this.getCurrentToken() != null)&&(this.verifyToken()) ? true : false;
   }
+
+  isSelectProfile() {
+    return (this.getProfile() != null) ? true : false;
+  }
+
   verifyToken() {
     return this.http.get(this.URL_API + `/verifyToken/${this.getCurrentToken()}`);
   }

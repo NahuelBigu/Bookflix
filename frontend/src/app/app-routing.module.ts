@@ -18,6 +18,7 @@ import { EditBookComponent } from './components/books/edit-book/edit-book.compon
 import { BookSampleComponent } from './components/books/book-sample/book-sample.component';
 import { OpcionesAdministradorComponent } from './components/admin/opciones-administrador/opciones-administrador.component';
 import { SelectperfilComponent } from './components/login/selectperfil/selectperfil/selectperfil.component';
+import { UserListComponent } from './components/user/user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -86,10 +87,17 @@ const routes: Routes = [
   {
     path: 'books/book/:id',
     component: BookSampleComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'select-profile',
     component: SelectperfilComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'administrar-usuarios',
+    component: UserListComponent,
+    canActivate: [AuthGuard,AdminGuard]
   },
   {
     path: '**',

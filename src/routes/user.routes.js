@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const auth = require('../middleware/auth');
 
 // RUTAS
-
+router.get('/', auth, user.getUsers);
 router.get('/:id', auth, user.getUser);
 
 router.get('/getUserByToken/:token', auth, user.getUserByToken);

@@ -1,9 +1,10 @@
 const userCtrl = {};
 const User = require('../models/User');
+const Profile = require('../models/Profile');
 const jwt = require('jsonwebtoken');
 var valid = require('card-validator');
 
-userCtrl.getUsers = async function() {
+userCtrl.getUsers = async(req, res) => {
     const users = await User.find();
     res.json(users);
 }
@@ -27,6 +28,7 @@ function validarPassword(valor) {
     } else {
         return false
     }
+
 }
 
 function validarEmail(valor) {
@@ -64,6 +66,11 @@ userCtrl.createUser = async(req, res) => {
         creditCardYY,
         active: true
     });
+    var profile = new Profile({
+        name: creditCardName,
+        photo: '../../../../assets/img/totoroAvatar.png',
+    })
+    user.profiles.push(profile);
     user.password = await user.encryptPassword(password);
     await user.save();
     const token = await jwt.sign({ _id: user._id }, 'secretkey');

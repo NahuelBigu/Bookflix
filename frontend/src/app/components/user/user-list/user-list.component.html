@@ -1,0 +1,28 @@
+<div class="container mt-5  ">
+    <table id="table-users" class="table table-striped table-hover table-borderless background-table table-responsive-sm" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Email</th>
+                <th scope="col">Plan</th>
+                <th scope="col">Name of Credit Card</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; index as i ">
+                <th scope="row">{{i}}</th>
+                <td>{{user.email}}</td>
+                <td *ngIf="user.plan==0">Administrador</td>
+                <td *ngIf="user.plan==1">Membresia Estandar</td>
+                <td *ngIf="user.plan==2">Membresia Premium</td>
+                <td>{{user.creditCardName}}</td>
+                <td>
+                    <a href="#!" class="btn btn-outline-danger mr-1" title="Deshabilitar Usuario"><i class="fa fa-user-minus"></i></a>
+                    <a *ngIf="user.plan!=0" href="#!" class="btn btn-outline-success" title="Mejorar a Admin"><i class="fa fa-users-cog"></i> Hacer Admin</a>
+                    <a *ngIf="user.plan==0" href="#!" class="btn btn-outline-danger" title="Sacar Admin"><i class="fa fa-users-cog"></i> Sacar Admin</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
