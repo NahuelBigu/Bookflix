@@ -13,3 +13,16 @@ body {
 .height-full {
     height: 100vh;
 }
+
+.page-item.active .page-link {
+    background-color: #630000;
+    border-color: #630000;
+}
+
+.page-link:hover {
+    background-color: #630000;
+}
+
+.page-link {
+    color: white;
+}
