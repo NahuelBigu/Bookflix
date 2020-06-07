@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate , Router} from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 
 import { AuthService } from '../../services/login/auth.service';
 
@@ -8,20 +8,25 @@ import { AuthService } from '../../services/login/auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService:AuthService, private router:Router){}
+  constructor(private authService: AuthService, private router: Router) { }
 
-  canActivate(): boolean{
-    if (this.authService.isAuthenticated()){
-      if((this.router.url !='select-profile') && (this.authService.isSelectProfile())){
+  canActivate(route: ActivatedRouteSnapshot): boolean {
+    if (this.authService.isAuthenticated()) {
+      if (route.url[0].path == 'select-profile') {
         return true;
-      }else{
-        this.router.navigate(['select-profile']);
-        return false;
+      } else {
+        if (!this.authService.isSelectProfile()) {
+          this.router.navigate(['select-profile']);
+          return false;
+        } else {
+          return true;
+        }
       }
+
     }
-    
+    console.log(route.url);
     this.router.navigate(['']);
     return false;
-  } 
-  
+  }
+
 }

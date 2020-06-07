@@ -123,6 +123,25 @@ userCtrl.deleteUser = async(req, res) => {
     res.json({ 'status': true });
 }
 
+userCtrl.habilitarUser = async(req, res) => {
+
+    const user = await User.findById(req.params.id);
+    user.active = true;
+    user.save();
+    res.json({ 'status': true });
+}
+userCtrl.hacerAdmin = async(req, res) => {
+    const user = await User.findById(req.params.id);
+    user.plan = 0;
+    user.save();
+    res.json({ 'status': true });
+}
+userCtrl.sacarAdmin = async(req, res) => {
+    const user = await User.findById(req.params.id);
+    user.plan = 1;
+    user.save();
+    res.json({ 'status': true });
+}
 userCtrl.iniciarSesion = async(req, res) => {
     const { email, password } = req.body;
 

@@ -9,7 +9,9 @@ const auth = require('../middleware/auth');
 // RUTAS
 router.get('/', auth, user.getUsers);
 router.get('/:id', auth, user.getUser);
-
+router.get('/habilitar/:id', auth, user.habilitarUser);
+router.get('/hacerAdmin/:id', user.hacerAdmin);
+router.get('/sacarAdmin/:id', auth, user.sacarAdmin);
 router.get('/getUserByToken/:token', auth, user.getUserByToken);
 
 router.put('/:id', user.editUser);

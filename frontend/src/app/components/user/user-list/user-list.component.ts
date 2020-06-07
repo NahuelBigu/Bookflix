@@ -9,11 +9,32 @@ declare var $:any;
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  users: User[];
-  constructor(private _service:UserService) { 
+  buscarUsuarios() {
     this._service.getUsers().subscribe(data => this.users=data as User[]);
   }
-
+  users: User[];
+  constructor(private _service:UserService) { 
+    this.buscarUsuarios();
+  }
+  
+  
+  hacerAdmin(user: User){
+    this._service.hacerAdmin(user._id).subscribe();
+    user.plan=0;
+  }
+  
+  sacarAdmin(user: User){
+    this._service.sacarAdmin(user._id).subscribe();
+    user.plan=1;
+  }
+  deshabilitar(user: User){
+    this._service.deleteUser(user._id).subscribe();
+    user.active=false;
+  }
+  habilitar(user: User){
+    this._service.habilitar(user._id).subscribe();
+    user.active=true;
+  }
   ngOnInit(): void {
     $(document).ready(function() {
     $('#table-users').DataTable({
@@ -46,5 +67,6 @@ export class UserListComponent implements OnInit {
   $('.dataTables_length').addClass('bs-select');
 });
   }
+  
   
 }

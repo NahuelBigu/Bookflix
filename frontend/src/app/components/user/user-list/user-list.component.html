@@ -18,9 +18,10 @@
                 <td *ngIf="user.plan==2">Membresia Premium</td>
                 <td>{{user.creditCardName}}</td>
                 <td>
-                    <a href="#!" class="btn btn-outline-danger mr-1" title="Deshabilitar Usuario"><i class="fa fa-user-minus"></i></a>
-                    <a *ngIf="user.plan!=0" href="#!" class="btn btn-outline-success" title="Mejorar a Admin"><i class="fa fa-users-cog"></i> Hacer Admin</a>
-                    <a *ngIf="user.plan==0" href="#!" class="btn btn-outline-danger" title="Sacar Admin"><i class="fa fa-users-cog"></i> Sacar Admin</a>
+                    <button *ngIf="user.active" (click)="deshabilitar(user)" class="btn btn-outline-danger mr-1" title="Deshabilitar Usuario"><i class="fa fa-user-minus"></i></button>
+                    <button *ngIf="!user.active" (click)="habilitar(user)" class="btn btn-outline-success mr-1" title="Habilitar Usuario"><i class="fa fa-user-plus"></i></button>
+                    <button *ngIf="user.plan!=0" (click)="hacerAdmin(user)" class="btn btn-outline-success" title="Mejorar a Admin"><i class="fa fa-users-cog"></i> Hacer Admin</button>
+                    <button *ngIf="user.plan==0" (click)="sacarAdmin(user)" class="btn btn-outline-danger" title="Sacar Admin"><i class="fa fa-users-cog"></i> Sacar Admin</button>
                 </td>
             </tr>
         </tbody>

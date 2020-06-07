@@ -25,7 +25,17 @@ export class UserService {
     return this.http.put(this.URL_API + `/${user._id}`, user);
   }
 
-  deleteUser(_id: string) {
+  deleteUser(_id: String) {
     return this.http.delete(this.URL_API + `/${_id}`);
   }
+  hacerAdmin(_id:  String){
+    return this.http.get(this.URL_API + `/hacerAdmin/${_id}`);
+  }
+  sacarAdmin(_id: String){
+    return this.http.get(this.URL_API + `/sacarAdmin/${_id}`);
+  }
+  habilitar(_id: String){
+    return this.http.get(this.URL_API + `/habilitar/${_id}`);
+  }
+  
 }

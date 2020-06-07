@@ -19,6 +19,7 @@ export class SelectperfilComponent implements OnInit {
   }
   seleccionar(pr:Profile){
     this._service.setProfile(pr);
+    console.log("asd");
     this.router.navigate(['/home']);
   }
 }
