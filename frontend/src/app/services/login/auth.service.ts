@@ -38,6 +38,7 @@ export class AuthService {
   removeCurrentSession(): void {
     this.localStorageService.removeItem('currentUser');
     this.localStorageService.removeItem('user');
+    this.localStorageService.removeItem('profile');
     this.currentToken = null;
   }
 
@@ -109,11 +110,17 @@ export class AuthService {
   }
 
   getProfiles(): Profile[] {
-    var user: User=this.getCurrentUser();  
-    return user.profiles ;  
+    var a = this.getCurrentUser2();
+    var r=  JSON.parse(a);
+    return r['profiles'] ;  
   }
 
-
+  setProfile(profile: Profile){
+    this.localStorageService.setItem('profile', JSON.stringify(profile));
+  }
+  getProfile(): Profile {
+    return JSON.parse(this.localStorageService.getItem('profile')) as Profile;
+  }
 }
 
 

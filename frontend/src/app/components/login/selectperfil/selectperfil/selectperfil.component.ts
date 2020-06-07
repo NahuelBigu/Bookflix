@@ -18,6 +18,7 @@ export class SelectperfilComponent implements OnInit {
   ngOnInit(): void {
   }
   seleccionar(pr:Profile){
+    this._service.setProfile(pr);
     this.router.navigate(['/home']);
   }
 }
