@@ -4,14 +4,12 @@ import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { Observable } from 'rxjs/internal/Observable';
 import { UserService } from '../user.service';
+import { Profile } from 'src/app/models/profile';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  
-  
-
   selectedUser: User;
 
   private localStorageService;
@@ -110,7 +108,10 @@ export class AuthService {
     return this.http.post(this.URL_API+ '/signin', user);
   }
 
-
+  getProfiles(): Profile[] {
+    var user: User=this.getCurrentUser();  
+    return user.profiles ;  
+  }
 
 
 }

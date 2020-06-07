@@ -35,7 +35,7 @@ export class SigninComponent implements OnInit {
 
   private correctLogin(data){
     this._servicio.setCurrentSession(data);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/select-profile']);
   }
 
 }

@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit {
   
   private correctLogin(data){
     this._servicio.setCurrentSession(data);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/select-profile']);
   }
   getFormValidationErrors():String {
     var aux :String="";

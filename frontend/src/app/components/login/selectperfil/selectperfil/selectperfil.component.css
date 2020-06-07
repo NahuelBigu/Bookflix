@@ -1,0 +1,13 @@
+.vertical-center {
+    display: flex;
+    align-items: center;
+    background: transparent;
+}
+
+.avatar-wrapper {
+    border: solid 2px transparent;
+}
+
+.avatar-wrapper:hover {
+    border-color: white;
+}

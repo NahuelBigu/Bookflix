@@ -17,6 +17,7 @@ import { EditarNoticiaComponent } from './components/noticias/editar-noticia/edi
 import { EditBookComponent } from './components/books/edit-book/edit-book.component';
 import { BookSampleComponent } from './components/books/book-sample/book-sample.component';
 import { OpcionesAdministradorComponent } from './components/admin/opciones-administrador/opciones-administrador.component';
+import { SelectperfilComponent } from './components/login/selectperfil/selectperfil/selectperfil.component';
 
 const routes: Routes = [
   {
@@ -85,6 +86,10 @@ const routes: Routes = [
   {
     path: 'books/book/:id',
     component: BookSampleComponent,
+  },
+  {
+    path: 'select-profile',
+    component: SelectperfilComponent,
   },
   {
     path: '**',

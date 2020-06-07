@@ -22,6 +22,7 @@ import { EditarNoticiaComponent } from './components/noticias/editar-noticia/edi
 import { EditBookComponent } from './components/books/edit-book/edit-book.component';
 import { BookSampleComponent } from './components/books/book-sample/book-sample.component';
 import { OpcionesAdministradorComponent } from './components/admin/opciones-administrador/opciones-administrador.component';
+import { SelectperfilComponent } from './components/login/selectperfil/selectperfil/selectperfil.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { OpcionesAdministradorComponent } from './components/admin/opciones-admi
     EditBookComponent,
     BookSampleComponent,
     OpcionesAdministradorComponent,
+    SelectperfilComponent,
 
   ],
   imports: [
