@@ -17,9 +17,13 @@ bookCtrl.createBook = async(req, res) => {
     if (!req.body.genre) return res.status(401).send('Genero requerido');
     if (!req.body.editorial) return res.status(401).send('Editorial requerida');
     if (!req.body.image) return res.status(401).send('Imagen requerida');
-    if (!req.body.bookPDF) return res.status(401).send('Libro requerido');
+    if (!req.body.maxChapters) return res.status(401).send('Cantidad de capitulos requerido');
+    if (!req.body.duedate) return res.status(401).send('Fecha requerida');
     if (!req.body.synopsis) return res.status(401).send('Sinopsis requerido');
-
+    var chaptersAux = String[req.body.maxChapters];
+    if (req.body.chapters) {
+        // agregar arreglos
+    }
     const newBook = new Book({
         name: req.body.name,
         isbn: req.body.isbn,
@@ -28,7 +32,9 @@ bookCtrl.createBook = async(req, res) => {
         genre: req.body.genre,
         editorial: req.body.editorial,
         image: req.body.image,
-        bookPDF: req.body.bookPDF,
+        maxChapters: req.body.maxChapters,
+        chapters: chaptersAux,
+        duedate: req.body.duedate,
         active: true
     })
     await newBook.save();
