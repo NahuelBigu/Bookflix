@@ -92,4 +92,9 @@ export class CargarLibroComponent implements OnInit {
     
   }
   
+  
+   chapterChanged()
+   {
+    this.book.chapters= new Array(this.book.maxChapters);
+  }
 }

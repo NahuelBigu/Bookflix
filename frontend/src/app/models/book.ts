@@ -9,4 +9,8 @@ export class Book {
     image: string;
     bookPDF: string;
     active: boolean;
+    maxChapters: number;
+    chapters: Array<String>;
+    duedate: Date;
+    //Capitulos es un arreglo de Strings y duedate es Date
 }
