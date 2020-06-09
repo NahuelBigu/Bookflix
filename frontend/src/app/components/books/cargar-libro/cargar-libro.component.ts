@@ -27,6 +27,7 @@ export class CargarLibroComponent implements OnInit {
   autorAdd: boolean = false;
   generoAdd: boolean = false;
   editorialAdd: boolean = false;
+  arrayOfIndex =new Array<Number>();
 
   constructor(private bookService: BookService, private router: Router, private autorService: AutorService,private generoService: GeneroService,private editorialService: EditorialService) {
 
@@ -39,6 +40,7 @@ export class CargarLibroComponent implements OnInit {
     this.book.author="Autor";
     this.book.genre="Genero";
     this.book.editorial="Editorial";
+    this.book.chapters=new Array<String>();
   }
 
   validate(){
@@ -92,9 +94,11 @@ export class CargarLibroComponent implements OnInit {
     
   }
   
-  
    chapterChanged()
    {
     this.book.chapters= new Array(this.book.maxChapters);
+    for (let i=0;i<this.book.maxChapters;i++) {
+      this.arrayOfIndex[i]=i;
+    }
   }
 }
