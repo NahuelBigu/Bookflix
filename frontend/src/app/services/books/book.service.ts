@@ -15,6 +15,10 @@ export class BookService {
     return this.http.get(this.URL_API);
   }
 
+  getActiveBooks(){
+    return this.http.get(this.URL_API);
+  }
+
   postBook(book: Book) {
     return this.http.post(this.URL_API, book);
   }

@@ -34,7 +34,7 @@ export class EditBookComponent implements OnInit {
     this.ruta.params.subscribe(params => {
       this.bookService.getBook(params['id'])
         .subscribe(data => {
-          this.book= data as Book;
+          this.book= data as Book; 
         },err => this.error=err.error);
     })
    }

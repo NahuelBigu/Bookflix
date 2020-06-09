@@ -7,12 +7,18 @@ bookCtrl.getBooks = async(req, res) => {
     res.json(books);
 }
 
+bookCtrl.getActiveBooks = async(req,res) => {
+    const books = await Book.find();
+    res.json(books.filter(function(x) { return (x.active && Date.parse(x.duedate)>(new Date))}));
+}
+
 bookCtrl.createBook = async(req, res) => {
     if (!req.body.name) return res.status(401).send('Nombre requerido');
     if (!req.body.isbn) return res.status(401).send('ISBN requerido');
     const isbn = req.body.isbn
     const libroAux = await Book.findOne({ isbn: isbn });
     if (libroAux) return res.status(401).send('Libro duplicado');
+    if (!req.body.bookPDF) return res.status(401).send('PDF requerido');
     if (!req.body.author) return res.status(401).send('Author requerido');
     if (!req.body.genre) return res.status(401).send('Genero requerido');
     if (!req.body.editorial) return res.status(401).send('Editorial requerida');
@@ -35,6 +41,8 @@ bookCtrl.createBook = async(req, res) => {
         maxChapters: req.body.maxChapters,
         chapters: chaptersAux,
         duedate: req.body.duedate,
+        trailers: req.body.trailers,
+        bookPDF: req.body.bookPDF,
         active: true
     })
     await newBook.save();
@@ -65,7 +73,7 @@ bookCtrl.editBook = async(req, res) => {
     const book = await Book.findById(id);
 
     const libroAux = await Book.findOne({ "isbn": isbn });
-    if ((libroAux != null) && (libroAux != book)) return res.status(401).send('Libro duplicado');
+    if ((libroAux != null) && !(libroAux._id.equals(book._id))) return res.status(401).send('Libro duplicado');
 
     book.name = req.body.name;
     book.isbn = req.body.isbn;
@@ -75,6 +83,7 @@ bookCtrl.editBook = async(req, res) => {
     book.editorial = req.body.editorial;
     book.image = req.body.image;
     book.bookPDF = req.body.bookPDF;
+    book.duedate = req.body.duedate;
 
     book.save();
 

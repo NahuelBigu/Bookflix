@@ -11,6 +11,7 @@ export class Book {
     active: boolean;
     maxChapters: number;
     chapters: Array<String>;
-    duedate: Date;
+    duedate: String;
+    trailers: Array<String>
     //Capitulos es un arreglo de Strings y duedate es Date
 }

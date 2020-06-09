@@ -12,12 +12,16 @@ import { AuthService } from '../../../services/login/auth.service';
 export class BookSampleComponent implements OnInit {
 
   book: Book;
+  error: String ='';
 
   constructor(private ruta: ActivatedRoute, private router: Router, private bookService: BookService, private authService: AuthService) {
     this.ruta.params.subscribe(params => {
       this.bookService.getBook(params['id'])
         .subscribe(data => {
           this.book= data as Book;
+          if ((this.book.active==false)||(new Date(this.book.duedate as string) < (new Date))) {
+            this.error="El libro no se encuentra activo en este momento";
+          }
         });
     })
    }
