@@ -94,7 +94,6 @@ export class CargarLibroComponent implements OnInit {
     
   }
   
-  //Este comentario es porque bigu metio la pata
 
    chapterChanged()
    {
