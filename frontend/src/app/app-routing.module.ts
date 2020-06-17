@@ -21,6 +21,7 @@ import { SelectperfilComponent } from './components/login/selectperfil/selectper
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { AllBooksComponent } from './components/books/all-books/all-books.component';
 import { BusquedaComponent } from './components/buscar/busqueda/busqueda.component';
+import { TrailerComponent } from './components/books/trailer/trailer.component';
 
 const routes: Routes = [
   {
@@ -89,6 +90,11 @@ const routes: Routes = [
   {
     path: 'books/book/:id',
     component: BookSampleComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'books/trailer/:id',
+    component: TrailerComponent,
     canActivate: [AuthGuard]
   },
   {

@@ -28,6 +28,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { BusquedaComponent } from './components/buscar/busqueda/busqueda.component';
 import { AllBooksComponent } from './components/books/all-books/all-books.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TrailerComponent } from './components/books/trailer/trailer.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     UserListComponent,
     BusquedaComponent,
     AllBooksComponent,
+    TrailerComponent,
    ],
   imports: [
     BrowserModule,

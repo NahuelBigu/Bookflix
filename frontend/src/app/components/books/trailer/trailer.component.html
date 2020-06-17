@@ -1,0 +1,29 @@
+<div class="container" *ngIf="book">
+
+    <div class="row">
+        <div class="col-9">
+            <h2 class="my-4">Trailers de {{book.name}}</h2>
+        </div>
+        <div class="col-3 mt-5">
+            <a class="btn btn-danger btn-block" [routerLink]="['/traileradministrador']" *ngIf="isAdmin()">Agregar Trailer</a>
+        </div>
+        <!-- Blog Entries Column -->
+        
+    </div>
+    <br>
+    <br>
+            <div class="col-md-12" *ngFor="let trailer of book.trailers">
+                <!-- Blog Post -->
+                <div class="card mb-4" >
+                    <div class="card-body">
+                        <h2 class="card-title">{{trailer}}</h2>
+                        <video class="card-img-top"></video>
+                        <p class="card-text"></p>
+                        <a (click)="eliminarTrailer(trailer)" style="color:white" class="btn btn-danger mx-2" *ngIf="isAdmin()">Eliminar trailer &rarr;</a>
+                        <a  class="btn mx-2" style="background-color:gainsboro;color:black" *ngIf="isAdmin()">Editar trailer &rarr;</a>
+                    </div>
+                </div>
+    
+            </div>
+
+</div>
