@@ -1,1 +1,29 @@
-<p>trailer works!</p>
+<div class="container">
+
+    <div class="row">
+        <div class="col-9">
+            <h1 class="my-4">Trailer </h1>
+        </div>
+        <div class="col-3 mt-5">
+            <a class="btn btn-danger btn-block" *ngIf="authServices.isAdmin()">Administrar Noticias</a>
+        </div>
+        <!-- Blog Entries Column -->
+        <div class="col-md-12">
+            <!-- Blog Post -->
+            <div class="card mb-4" >
+                <img class="card-img-top imagen-noticia">
+                <div class="card-body">
+                    <h2 class="card-title"></h2>
+                    <p class="card-text"></p>
+                    <a  class="btn btn-primary ">Seguir leyendo &rarr;</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Posted on <!--{{noticia.createdAt | date: 'MMM dd, yyyy' }} by {{noticia.author}}-->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
