@@ -27,9 +27,7 @@ bookCtrl.createBook = async(req, res) => {
     if (!req.body.duedate) return res.status(401).send('Fecha requerida');
     if (!req.body.synopsis) return res.status(401).send('Sinopsis requerido');
     var chaptersAux = String[req.body.maxChapters];
-    if (req.body.chapters) {
-        // agregar arreglos
-    }
+    if (!req.body.chapters) return res.status(401).send('Capitulos requeridos');
     const newBook = new Book({
         name: req.body.name,
         isbn: req.body.isbn,
@@ -84,6 +82,9 @@ bookCtrl.editBook = async(req, res) => {
     book.image = req.body.image;
     book.bookPDF = req.body.bookPDF;
     book.duedate = req.body.duedate;
+    book.trailers=req.body.trailers;
+    book.chapters=req.body.chapters;
+    book.maxChapters=req.body.maxChapters;
 
     book.save();
 
