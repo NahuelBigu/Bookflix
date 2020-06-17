@@ -13,13 +13,15 @@ export class BusquedaComponent implements OnInit {
   totalRecords: number;
   page: number=1;
   constructor(private ruta: ActivatedRoute, private servicio: FindService) { 
-    this.ruta.params.subscribe(params => {
-      this.busqueda= params['txt'];
-    });
-    this.servicio.search(this.busqueda).subscribe(data  => { this.data=data['books']; this.totalRecords=this.data.length;   });
+    
   }
 
   ngOnInit(): void {
+    this.ruta.params.subscribe(params => {
+      this.busqueda= params['txt'];
+      this.servicio.search(this.busqueda).subscribe(data  => { this.data=data; this.totalRecords=this.data.length; this.page = 1; console.log("asdd"); });
+    });
+    
     
   }
   

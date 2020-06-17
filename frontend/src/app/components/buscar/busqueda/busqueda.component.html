@@ -1,31 +1,32 @@
-<div class="container">
+<div class="container mt-5">
     <div class="card">
         <div class="card-header text-center">
             <h2>Busqueda: "{{busqueda}}"</h2>
         </div>
+
         <div class="card-body">
-            <ng-container *ngIf="data">
+            <ng-container *ngIf="data && data.length != 0;else templateName">
                 <div class="row justify-content-center">
 
 
                     <div class="col-12" *ngFor="let book of data | paginate: { id: 'listing_pagination',
-                    itemsPerPage: 5,
+                    itemsPerPage: 3,
                     currentPage: page,
                     totalItems: totalRecords } ">
                         <div class="row">
                             <div class="col-2">
-                                <img src="{{book.image}}" alt="Portada de {{book.name}}" class="imagen card-img-top">
+                                <img src="{{book.image}}" alt="Portada de {{book.name}}" class="imagen card-img-top" [routerLink]="['/books/book/',book._id ]">
                             </div>
                             <div class="col-10">
                                 <div class="row align-items-center">
                                     <div class="col-12">
-                                        <h3 class="text-ligth">{{book.name}}</h3>
+                                        <h3 class="text-ligth" [routerLink]="['/books/book/',book._id ]">{{book.name}}</h3>
                                     </div>
                                 </div>
                                 <div class="row align-items-center">
-                                    <h6 class="ml-3 mr-1"><a class="badge badge-danger">{{book.author}}</a></h6>
-                                    <h6 class="ml-1 mr-1"><a class="badge badge-danger">{{book.editorial}}</a></h6>
-                                    <h6 class="ml-1"><a class="badge badge-danger">{{book.genre}}</a></h6>
+                                    <h6 class="ml-3 mr-1"><a class="badge badge-danger" [routerLink]="['/busqueda/',book.author ]">{{book.author}}</a></h6>
+                                    <h6 class="ml-1 mr-1"><a class="badge badge-danger" [routerLink]="['/busqueda/',book.editorial ]">{{book.editorial}}</a></h6>
+                                    <h6 class="ml-1"><a class="badge badge-danger" [routerLink]="['/busqueda/',book.genre ]">{{book.genre}}</a></h6>
                                 </div>
                                 <p>{{book.synopsis.substring(0, 300 - 3) + "..." }}</p>
                             </div>
@@ -33,10 +34,18 @@
                         <hr>
                     </div>
                 </div>
+                <div class="row justify-content-center">
+                    <pagination-controls id="listing_pagination" (pageChange)="page = $event" maxSize="5" directionLinks="true" autoHide="true" previousLabel="Anterior" nextLabel="Siguiente">
+                    </pagination-controls>
+                </div>
             </ng-container>
+            <ng-template #templateName>
+                <h4 class="text-muted text-center">No se encontraron libros</h4>
+            </ng-template>
         </div>
-        <pagination-controls id="listing_pagination" (pageChange)="page = $event" maxSize="5" directionLinks="true" previousLabel="Anterior" nextLabel="Siguiente">
-        </pagination-controls>
+
+
+
     </div>
 
 </div>

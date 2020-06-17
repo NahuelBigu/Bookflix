@@ -27,10 +27,7 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { BusquedaComponent } from './components/buscar/busqueda/busqueda.component';
 import { AllBooksComponent } from './components/books/all-books/all-books.component';
-import { AutorComponent } from './components/autor/autor.component';
-import { EditorialComponent } from './components/editorial/editorial.component';
-import { GeneroComponent } from './components/genero/genero.component';
-import { NgxPaginationModule } from 'ngx-pagination'
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -55,11 +52,7 @@ import { NgxPaginationModule } from 'ngx-pagination'
     UserListComponent,
     BusquedaComponent,
     AllBooksComponent,
-    AutorComponent,
-    EditorialComponent,
-    GeneroComponent,
-
-  ],
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
