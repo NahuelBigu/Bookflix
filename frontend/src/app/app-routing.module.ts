@@ -24,6 +24,7 @@ import { AutorComponent } from './components/autor/autor.component';
 import { EditorialComponent } from './components/editorial/editorial.component';
 import { GeneroComponent } from './components/genero/genero.component';
 import { BusquedaComponent } from './components/buscar/busqueda/busqueda.component';
+import { TrailerComponent } from './components/books/trailer/trailer.component';
 
 const routes: Routes = [
   {
@@ -92,6 +93,11 @@ const routes: Routes = [
   {
     path: 'books/book/:id',
     component: BookSampleComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'books/trailer/:id',
+    component: TrailerComponent,
     canActivate: [AuthGuard]
   },
   {
