@@ -31,7 +31,7 @@ import { AutorComponent } from './components/autor/autor.component';
 import { EditorialComponent } from './components/editorial/editorial.component';
 import { GeneroComponent } from './components/genero/genero.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { TrailerComponent } from './components/books/trailer/trailer.component'
+import { TrailerComponent } from './components/books/trailer/trailer.component';
 
 
 @NgModule({

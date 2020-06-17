@@ -20,6 +20,9 @@
                                     <h6 class="ml-1"><a class="badge badge-danger">{{book.genre}}</a></h6>
                                 </div>
                                 <p>{{book.synopsis}}</p>
+                                <button [routerLink]="['url/books/trailer/',book._id]" class="btn btn-block btn-outline-danger">
+                                    Ver trailers
+                                </button>
                             </div>
                         </div>
                     </ng-container>
@@ -31,6 +34,11 @@
                             </button>
                         </div>
                         <div class="col-3"></div>
+                    </div>
+                    <div>
+                        <ul class="list-group list-group-flush mt-3 mb-3">
+                            <a *ngFor="let chapter of book.chapters; index as i" class="list-group-item" href="{{chapter}}">Capitulo {{i+1}}</a>
+                        </ul>
                     </div>
                 </div>
                 <div class="alert alert-danger" *ngIf="error!=''">

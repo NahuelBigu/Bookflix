@@ -98,6 +98,7 @@ export class CargarLibroComponent implements OnInit {
    chapterChanged()
    {
     this.book.chapters= new Array(this.book.maxChapters);
+    this.arrayOfIndex= new Array();
     for (let i=0;i<this.book.maxChapters;i++) {
       this.arrayOfIndex[i]=i;
     }
