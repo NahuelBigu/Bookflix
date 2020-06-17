@@ -1,0 +1,7 @@
+.bgNoActive {
+    background-color: rgba(145, 10, 10, 0.226)!important;
+}
+
+.background-table {
+    background: linear-gradient(90deg, rgba(20, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(20, 0, 0, 1)100%);
+}

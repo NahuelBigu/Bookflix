@@ -15,6 +15,7 @@ app.use(cors({ origin: 'http://localhost:4200' }));
 app.use(express.urlencoded({ extended: false }));
 
 // routes
+app.use('/api/all', require('./routes/find.routes'));
 app.use('/api/users', require('./routes/user.routes'));
 app.use('/api/noticias', require('./routes/noticias.routes'));
 app.use('/api/books', require('./routes/book.routes'));

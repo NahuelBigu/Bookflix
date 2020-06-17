@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark navbar-custom " [ngClass]="{'navbar-fixed-top' : eselhome(),'fixed-top' : !eselhome()} ">
+<nav id="mainNav" class="navbar navbar-expand-md navbar-dark navbar-custom " [ngClass]="{'navbar-fixed-top' : eselhome(),'fixed-top' : !eselhome()} ">
     <a class="navbar-brand logo-image" [routerLink]="['/home']"><img src="/assets/img/bookflix.png" alt="alternative" height="50px" width="150px"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,12 +22,40 @@
 
         <div class="my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
+
+
                 <ng-container *ngIf="!authService.isAuthenticated() ;else loggedIn">
                     <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/signin']" routerLinkActive="active">Iniciar Sesión </a>
                     </li>
                 </ng-container>
                 <ng-template #loggedIn>
+
+                    <div class="ng-autocomplete " style="width: 300px; height: 95%;">
+                        <ng-autocomplete [data]="data" [(ngModel)]="find" placeHolder="Buscar" historyListMaxNumber="5" [searchKeyword]="keyword" (closed)="clear()" (inputCleared)="clear()" (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)' [itemTemplate]="itemTemplate"
+                            [notFoundTemplate]="notFoundTemplate">
+                        </ng-autocomplete>
+
+                        <ng-template #itemTemplate let-item>
+                            <div class="item">
+                                <div class="row">
+                                    <a [innerHTML]="item.name" class="col-12 m-0 pb-1 pt-1"></a>
+                                    <a class="text-muted" class="col-12 align-text-top "><small>{{item.type}}</small></a>
+
+                                </div>
+
+                                <!--<span [innerHTML]="item.name"></span>
+                               -->
+
+                            </div>
+                        </ng-template>
+
+                        <ng-template #notFoundTemplate let-notFound>
+                            <div>No se encuentra</div>
+                        </ng-template>
+
+                    </div><button class="btn " (click)="buscar()"><i class="fa fa-search" aria-hidden="true"></i></button>
+
                     <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/myUserInfo']" routerLinkActive="active"> Mis Datos </a>
                     </li>

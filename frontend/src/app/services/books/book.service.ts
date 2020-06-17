@@ -6,13 +6,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BookService {
+  
 
   readonly URL_API= 'http://localhost:3000/api/books';
   
   constructor(private http: HttpClient) { }
 
   getBooks(){
-    return this.http.get(this.URL_API);
+    return this.http.get(this.URL_API+`/allBooks`);
   }
 
   getActiveBooks(){
@@ -33,6 +34,11 @@ export class BookService {
 
   deleteBook(book: Book){
     book.active=false;
-    return this.http.put(this.URL_API + `/${book._id}`, book);
+    return this.http.delete(this.URL_API + `/${book._id}`);
   }
+  habilitar(book: Book) {
+    book.active=true;
+    return this.http.get(this.URL_API + `/habilitar/${book._id}`);
+  }
+ 
 }

@@ -7,9 +7,9 @@ bookCtrl.getBooks = async(req, res) => {
     res.json(books);
 }
 
-bookCtrl.getActiveBooks = async(req,res) => {
+bookCtrl.getActiveBooks = async(req, res) => {
     const books = await Book.find();
-    res.json(books.filter(function(x) { return (x.active && Date.parse(x.duedate)>(new Date))}));
+    res.json(books.filter(function(x) { return (x.active && Date.parse(x.duedate) > (new Date)) }));
 }
 
 bookCtrl.createBook = async(req, res) => {
@@ -97,5 +97,11 @@ bookCtrl.deleteBook = async(req, res) => {
     book.save();
     res.json({ 'status': 'book deleted' });
 }
+bookCtrl.habilitarBook = async(req, res) => {
 
+    const book = await Book.findById(req.params.id);
+    book.active = true;
+    book.save();
+    res.json({ 'status': true });
+}
 module.exports = bookCtrl;

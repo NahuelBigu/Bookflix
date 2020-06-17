@@ -1,0 +1,13 @@
+.item {
+    flex-direction: row;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    align-items: center;
+    white-space: nowrap;
+    line-height: 0px;
+    height: 45px;
+    padding: 10px 14px;
+    text-align: left;
+    max-width: 100%;
+    box-sizing: border-box;
+}

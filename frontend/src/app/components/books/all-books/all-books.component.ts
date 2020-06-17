@@ -1,44 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
-import { UserService } from 'src/app/services/user.service';
+import { Book } from 'src/app/models/book';
+import { BookService } from 'src/app/services/books/book.service';
 declare var $:any;
 
+
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  selector: 'app-all-books',
+  templateUrl: './all-books.component.html',
+  styleUrls: ['./all-books.component.css']
 })
-export class UserListComponent implements OnInit {
+export class AllBooksComponent implements OnInit {
   
-  users: User[];
-  constructor(private _service:UserService) { 
-    this.buscarUsuarios();
+  books: Book[];
+  constructor(private _service:BookService) { 
+    this._service.getBooks().subscribe(data => {this.books=data as Book[]; this.cargarTabla();});
   }
+
   
-  buscarUsuarios() {
-    this._service.getUsers().subscribe(data => {this.users=data as User[]; this.cargarTabla()});
+
+  deshabilitar(book: Book){
+    this._service.deleteBook(book).subscribe();
+    
   }
- 
-  hacerAdmin(user: User){
-    this._service.hacerAdmin(user._id).subscribe();
-    user.plan=0;
+  habilitar(book: Book){
+    this._service.habilitar(book).subscribe();
+    
   }
-  
-  sacarAdmin(user: User){
-    this._service.sacarAdmin(user._id).subscribe();
-    user.plan=1;
+
+  ngOnInit(): void {
+    
   }
-  deshabilitar(user: User){
-    this._service.deleteUser(user._id).subscribe();
-    user.active=false;
-  }
-  habilitar(user: User){
-    this._service.habilitar(user._id).subscribe();
-    user.active=true;
-  }
+
   cargarTabla() {
     $(function() {
-      $('#table-users').DataTable({
+      $('#table-books').DataTable({
         "bPaginate": "simple", // "simple" option for 'Previous' and 'Next' buttons only
   
         "bFilter": true,
@@ -68,9 +63,4 @@ export class UserListComponent implements OnInit {
     $('.dataTables_length').addClass('bs-select');
   });
   }
-  ngOnInit(): void {
-    
-  }
-  
-  
 }

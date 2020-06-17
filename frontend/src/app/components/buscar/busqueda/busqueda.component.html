@@ -1,14 +1,22 @@
-<div class="container pt-5">
-    <div class="row">
-        <div class="col-md-8 mx-auto">
-            <div class="card bg-transparent">
-                <div class="card.body" *ngIf="error==''">
-                    <ng-container *ngIf="book">
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center">
+            <h2>Busqueda: "{{busqueda}}"</h2>
+        </div>
+        <div class="card-body">
+            <ng-container *ngIf="data">
+                <div class="row justify-content-center">
+
+
+                    <div class="col-12" *ngFor="let book of data | paginate: { id: 'listing_pagination',
+                    itemsPerPage: 5,
+                    currentPage: page,
+                    totalItems: totalRecords } ">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-2">
                                 <img src="{{book.image}}" alt="Portada de {{book.name}}" class="imagen card-img-top">
                             </div>
-                            <div class="col-8">
+                            <div class="col-10">
                                 <div class="row align-items-center">
                                     <div class="col-12">
                                         <h3 class="text-ligth">{{book.name}}</h3>
@@ -19,24 +27,16 @@
                                     <h6 class="ml-1 mr-1"><a class="badge badge-danger">{{book.editorial}}</a></h6>
                                     <h6 class="ml-1"><a class="badge badge-danger">{{book.genre}}</a></h6>
                                 </div>
-                                <p>{{book.synopsis}}</p>
+                                <p>{{book.synopsis.substring(0, 300 - 3) + "..." }}</p>
                             </div>
                         </div>
-                    </ng-container>
-                    <div class="row mt-3">
-                        <div class="col-3"></div>
-                        <div class="col-6">
-                            <button *ngIf="isAdmin()&&book" [routerLink]="['/books/edit/',book._id]" class="btn btn-block btn-outline-danger">
-                                Editar Libro
-                            </button>
-                        </div>
-                        <div class="col-3"></div>
+                        <hr>
                     </div>
                 </div>
-                <div class="alert alert-danger" *ngIf="error!=''">
-                    {{error}}
-                </div>
-            </div>
+            </ng-container>
         </div>
+        <pagination-controls id="listing_pagination" (pageChange)="page = $event" maxSize="5" directionLinks="true" previousLabel="Anterior" nextLabel="Siguiente">
+        </pagination-controls>
     </div>
+
 </div>

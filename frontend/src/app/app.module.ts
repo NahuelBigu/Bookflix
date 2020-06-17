@@ -24,6 +24,14 @@ import { BookSampleComponent } from './components/books/book-sample/book-sample.
 import { OpcionesAdministradorComponent } from './components/admin/opciones-administrador/opciones-administrador.component';
 import { SelectperfilComponent } from './components/login/selectperfil/selectperfil/selectperfil.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { BusquedaComponent } from './components/buscar/busqueda/busqueda.component';
+import { AllBooksComponent } from './components/books/all-books/all-books.component';
+import { AutorComponent } from './components/autor/autor.component';
+import { EditorialComponent } from './components/editorial/editorial.component';
+import { GeneroComponent } from './components/genero/genero.component';
+import { NgxPaginationModule } from 'ngx-pagination'
+
 
 @NgModule({
   declarations: [
@@ -45,6 +53,11 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
     OpcionesAdministradorComponent,
     SelectperfilComponent,
     UserListComponent,
+    BusquedaComponent,
+    AllBooksComponent,
+    AutorComponent,
+    EditorialComponent,
+    GeneroComponent,
 
   ],
   imports: [
@@ -52,7 +65,9 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AutocompleteLibModule,
+    NgxPaginationModule
   ],
   providers: [
     AuthGuard,
