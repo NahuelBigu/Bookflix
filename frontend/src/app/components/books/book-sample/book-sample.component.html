@@ -15,9 +15,9 @@
                                     </div>
                                 </div>
                                 <div class="row align-items-center">
-                                    <h6 class="ml-3 mr-1"><a class="badge badge-danger">{{book.author}}</a></h6>
-                                    <h6 class="ml-1 mr-1"><a class="badge badge-danger">{{book.editorial}}</a></h6>
-                                    <h6 class="ml-1"><a class="badge badge-danger">{{book.genre}}</a></h6>
+                                    <h6 class="ml-3 mr-1"><a class="badge badge-danger" [routerLink]="['/busqueda/',book.author ]">{{book.author}}</a></h6>
+                                    <h6 class="ml-1 mr-1"><a class="badge badge-danger" [routerLink]="['/busqueda/',book.editorial ]">{{book.editorial}}</a></h6>
+                                    <h6 class="ml-1"><a class="badge badge-danger" [routerLink]="['/busqueda/',book.genre ]">{{book.genre}}</a></h6>
                                 </div>
                                 <p>{{book.synopsis}}</p>
                                 <button [routerLink]="['/books/trailer/',book._id]" class="btn btn-block btn-outline-danger">

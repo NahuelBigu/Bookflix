@@ -35,20 +35,28 @@ export class NavComponent implements OnInit {
       this.allAutor.forEach(element => element['type'] = 'Autor');
       this.allEditorial = res['editoriales'];
       this.allEditorial.forEach(element => element['type'] = 'Editorial');
-
       this.allGenero = res['genero'];
       this.allGenero.forEach(element => element['type'] = 'Genero');
      
     })
-  
+    
   }
 
   ngOnInit(): void {
+    
     $(function() {
       $('.input-container').children().css("background-color", "rgba(0, 0, 0, 0.11)")
       $('.input-container').children().css("color", "white")
+      $('.input-container').children().on('keypress',function(e) {
+        if(e.which == 13) {
+          $('#buscarAux').click();
+        }
+    });
+   
     } )
+    
   }
+  
 
   logout() {
     this.authService.logout();
@@ -93,7 +101,7 @@ export class NavComponent implements OnInit {
   isBlank(str) {
     return (!str || /^\s*$/.test(str));
   }
-  buscar() {
+   buscar() {
    
       if (!this.isBlank(this.find)) {
         

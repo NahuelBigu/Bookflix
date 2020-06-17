@@ -35,7 +35,7 @@
                         <ng-autocomplete [data]="data" [(ngModel)]="find" placeHolder="Buscar" historyListMaxNumber="5" [searchKeyword]="keyword" (closed)="clear()" (inputCleared)="clear()" (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)' [itemTemplate]="itemTemplate"
                             [notFoundTemplate]="notFoundTemplate">
                         </ng-autocomplete>
-
+                        <button id="buscarAux" hidden (click)="buscar()"></button>
                         <ng-template #itemTemplate let-item>
                             <div class="item">
                                 <div class="row">

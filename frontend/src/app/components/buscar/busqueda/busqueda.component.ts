@@ -19,7 +19,7 @@ export class BusquedaComponent implements OnInit {
   ngOnInit(): void {
     this.ruta.params.subscribe(params => {
       this.busqueda= params['txt'];
-      this.servicio.search(this.busqueda).subscribe(data  => { this.data=data; this.totalRecords=this.data.length; this.page = 1; console.log("asdd"); });
+      this.servicio.search(this.busqueda).subscribe(data  => { this.data=data; this.totalRecords=this.data.length; this.page = 1;  });
     });
     
     
