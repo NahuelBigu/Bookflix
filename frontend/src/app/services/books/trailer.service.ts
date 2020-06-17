@@ -5,10 +5,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TrailerService {
-  private URL_API= 'http://localhost:3000/api/trailers'
   constructor(private http: HttpClient) { }
 
   getTrailers(){
-    return this.http.get(this.URL_API);
+    
   }
 }

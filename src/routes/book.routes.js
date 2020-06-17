@@ -10,6 +10,7 @@ router.get('/allBooks', auth, book.getBooks);
 router.get('/habilitar/:id', auth, book.habilitarBook);
 router.post('/', auth, book.createBook);
 router.get('/:id', auth, book.getBook);
+router.get('/trailers/:id', auth, book.getBook);
 router.put('/:id', auth, book.editBook);
 router.delete('/:id', auth, book.deleteBook);
 

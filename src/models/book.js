@@ -8,7 +8,7 @@ const bookSchemma = new Schema({
     genre: { type: String, required: true },
     editorial: { type: String, required: true },
     image: { type: String, required: true },
-    trailer: Array,
+    trailers: Array,
     bookPDF: { type: String, required: true },
     maxChapters: { type: Number, required: true },
     duedate: { type: String, required: true },
