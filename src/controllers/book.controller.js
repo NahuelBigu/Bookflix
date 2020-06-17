@@ -39,7 +39,7 @@ bookCtrl.createBook = async(req, res) => {
         editorial: req.body.editorial,
         image: req.body.image,
         maxChapters: req.body.maxChapters,
-        chapters: chaptersAux,
+        chapters: req.body.chapters,
         duedate: req.body.duedate,
         trailers: req.body.trailers,
         bookPDF: req.body.bookPDF,
@@ -104,4 +104,5 @@ bookCtrl.habilitarBook = async(req, res) => {
     book.save();
     res.json({ 'status': true });
 }
+
 module.exports = bookCtrl;

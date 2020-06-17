@@ -16,7 +16,7 @@
             <tr *ngFor="let book of books; index as i " [ngClass]="{bgNoActive: !book.active}">
                 <th scope="row">{{book.isbn}}</th>
                 <td>{{book.name}}</td>
-                <td>{{book.synopsis.substring(0, 300 - 3) + "..."}}</td>
+                <td>{{book.synopsis.substring(0, 100) + "..."}}</td>
                 <td>{{book.author}}</td>
                 <td>{{book.genre}}</td>
                 <td>{{book.editorial}}</td>
@@ -24,6 +24,7 @@
                 <td>
                     <button *ngIf="book.active" (click)="deshabilitar(book)" class="btn btn-outline-danger mr-1" title="Deshabilitar Libro"><i class="fa fa-user-minus"></i></button>
                     <button *ngIf="!book.active" (click)="habilitar(book)" class="btn btn-outline-success mr-1" title="Habilitar Libro"><i class="fa fa-user-plus"></i></button>
+                    <button [routerLink]="['/books/trailer/',book._id]" class="btn btn-outline-success mr-1" title="Trailers"><i class="fa fa-film"></i></button>
                 </td>
             </tr>
         </tbody>

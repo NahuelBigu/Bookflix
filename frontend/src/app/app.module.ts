@@ -30,7 +30,8 @@ import { AllBooksComponent } from './components/books/all-books/all-books.compon
 import { AutorComponent } from './components/autor/autor.component';
 import { EditorialComponent } from './components/editorial/editorial.component';
 import { GeneroComponent } from './components/genero/genero.component';
-import { NgxPaginationModule } from 'ngx-pagination'
+import { NgxPaginationModule } from 'ngx-pagination';
+import { TrailerComponent } from './components/books/trailer/trailer.component'
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { NgxPaginationModule } from 'ngx-pagination'
     AutorComponent,
     EditorialComponent,
     GeneroComponent,
+    TrailerComponent,
 
   ],
   imports: [
