@@ -26,6 +26,7 @@ export class NavComponent implements OnInit {
 
 
   constructor(public authService: AuthService, public router: Router, private findService: FindService) {
+    
     this.data = [];
     this.findService.getAll().subscribe(res => {
       this.allBook = res['books'];
@@ -37,21 +38,23 @@ export class NavComponent implements OnInit {
 
       this.allGenero = res['genero'];
       this.allGenero.forEach(element => element['type'] = 'Genero');
-
+     
     })
+  
   }
 
   ngOnInit(): void {
-    $(document).ready(function() {
-      $('input.ng-untouched.ng-pristine.ng-valid').css("background-color", "rgba(40, 40, 40, 0.11)")
-      $('input.ng-untouched.ng-pristine.ng-valid').css("color", "white")
-  })
+    $(function() {
+      $('.input-container').children().css("background-color", "rgba(0, 0, 0, 0.11)")
+      $('.input-container').children().css("color", "white")
+    } )
   }
 
   logout() {
     this.authService.logout();
   }
   eselhome() {
+   
     return this.router.url != "/"
   }
 
@@ -79,16 +82,13 @@ export class NavComponent implements OnInit {
     this.data = [];
   }
   selectEvent(find) {
-    console.log(find);
+    
     if (this.allBook.includes(find)) {
       this.router.navigate(['books/book/', find['_id']]);
-    } else if (this.allAutor.includes(find)) {
-      this.router.navigate(['autor/', find['_id']]);
-    } else if (this.allEditorial.includes(find)) {
-      this.router.navigate(['editorial/',find['_id']]);
-    } else if (this.allGenero.includes(find)) {
-      this.router.navigate(['genero/', find['_id']]);
+    } else {
+      this.router.navigate(['busqueda/', find['name']]);
     }
+    this.clear();
   }
   isBlank(str) {
     return (!str || /^\s*$/.test(str));
@@ -96,7 +96,9 @@ export class NavComponent implements OnInit {
   buscar() {
    
       if (!this.isBlank(this.find)) {
+        
         this.router.navigate(['busqueda/', this.find]);
+        this.clear();
       }
     
   }

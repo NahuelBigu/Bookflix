@@ -18,8 +18,17 @@ findCtrl.search = async(req, res) => {
     const autor = await Autor.find({ 'name': new RegExp(find, 'i') });
     const genero = await Genero.find({ 'name': new RegExp(find, 'i') });
     const editoriales = await Editorial.find({ 'name': new RegExp(find, 'i') });
-    const books = await Book.find({ 'name': new RegExp(find, 'i') });
-    res.json({ books, autor, genero, editoriales });
+    const booksAux = await Book.find();
+    var books = [];
+    booksAux.forEach(element => {
+        if ((element.name.toUpperCase().indexOf(find.toUpperCase()) > -1) ||
+            (autor.some((a) => element.author.toUpperCase() == a.name.toUpperCase())) ||
+            (genero.some((g) => element.genre.toUpperCase() == g.name.toUpperCase())) ||
+            (editoriales.some((e) => element.editorial.toUpperCase() == e.name.toUpperCase()))
+
+        ) { books.push(element) }
+    })
+    res.json(books);
 }
 
 module.exports = findCtrl;

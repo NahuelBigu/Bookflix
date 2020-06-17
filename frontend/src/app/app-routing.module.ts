@@ -20,9 +20,6 @@ import { OpcionesAdministradorComponent } from './components/admin/opciones-admi
 import { SelectperfilComponent } from './components/login/selectperfil/selectperfil/selectperfil.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { AllBooksComponent } from './components/books/all-books/all-books.component';
-import { AutorComponent } from './components/autor/autor.component';
-import { EditorialComponent } from './components/editorial/editorial.component';
-import { GeneroComponent } from './components/genero/genero.component';
 import { BusquedaComponent } from './components/buscar/busqueda/busqueda.component';
 import { TrailerComponent } from './components/books/trailer/trailer.component';
 
@@ -114,21 +111,6 @@ const routes: Routes = [
     path: 'administrar-libros',
     component: AllBooksComponent,
     canActivate: [AuthGuard,AdminGuard]
-  },
-  {
-    path: 'autor/:id',
-    component: AutorComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'editorial/:id',
-    component: EditorialComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'genero/:id',
-    component: GeneroComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'busqueda/:txt',
