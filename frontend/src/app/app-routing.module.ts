@@ -22,6 +22,7 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 import { AllBooksComponent } from './components/books/all-books/all-books.component';
 import { BusquedaComponent } from './components/buscar/busqueda/busqueda.component';
 import { TrailerComponent } from './components/books/trailer/trailer.component';
+import { ListarTrailersComponent } from './components/books/listar-trailers/listar-trailers.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,11 @@ const routes: Routes = [
   {
     path: 'noticias',
     component: TodasLasNoticiasComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'trailers',
+    component: ListarTrailersComponent,
     canActivate: [AuthGuard]
   },
   {

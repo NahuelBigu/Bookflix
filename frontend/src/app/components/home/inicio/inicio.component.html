@@ -1,46 +1,95 @@
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
-    <!-- Carousel indicators -->
-    <ol class="carousel-indicators">
-        <ng-template *ngFor="let fav of favs, index as k">
-            <li data-target="#myCarousel" data-slide-to="0" [ngClass]="{active: k==0}"></li>
-        </ng-template>
-    </ol>
-    <!-- Wrapper for carousel items -->
-    <div class="carousel-inner">
-        <div class="item carousel-item" *ngFor="let fav of favs, index as i" [ngClass]="{active: i==0}">
-            <div class="row justify-content-center overflow-hidden">
-                <div class="col-md-auto card-container m-1 p-0" style="max-width: 220px;" *ngFor="let book of fav, index as j">
-                    <label class="">
-                        <input type="checkbox"  />
-                        <div class="card2 d-flex flex-column">
-                            <div class="front"><img class="libroPortada" src="{{book.image}}" ></div>
-                            <div class="back">
-                              
-                                    <h5 class="mt-2 titulo-libro">{{book.name}}</h5>
-                              
-                                    <p class="h6 mr-1 ml-1" style="overflow: hidden;">{{book.synopsis.substring(0, 300 - 3) + "..."}}</p>        
-                                    <button [routerLink]="['/']" class="btn  btn-danger btn-block mt-auto button-libros-left mr-5">
-                                            Leer
-                                    </button>
-                                    <a [routerLink]="['/books/book/',book._id]" class="text-warning mt-auto button-libros-right">
-                                        Ver mas
-                                    </a>
-                             
-                            </div>
-                        </div>
-                    </label>
+<div class="container">
+    <p class="h5 ml-1">Historial</p>
+    <ul id="historial">
+        <li *ngFor="let book of books, index as i" [ngClass]="{active: i==0}">
+            <div class="col-md-auto  card-container m-1 p-0 " style="max-width: 220px;">
+                <label class="">
+                <input type="checkbox"  />
+                <div class="card2 d-flex flex-column">
+                    <div class="front"><img class="libroPortada" src="{{book.image}}" ></div>
+                    <div class="back">
+                      
+                            <h5 class="mt-2 titulo-libro">{{book.name}}</h5>
+                      
+                            <p class="h6 mr-1 ml-1" style="overflow: hidden;">{{book.synopsis.substring(0, 300 - 3) + "..."}}</p>        
+                            <button [routerLink]="['/']" class="btn  btn-danger btn-block mt-auto button-libros-left mr-5">
+                                    Leer
+                            </button>
+                            <a [routerLink]="['/books/book/',book._id]" class="text-warning mt-auto button-libros-right">
+                                Ver mas
+                            </a>
+                     
+                    </div>
                 </div>
+            </label>
             </div>
-        </div>
-    </div>
-    <!-- Carousel controls -->
-    <a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
-        <i class="fa fa-angle-left"></i>
-    </a>
-    <a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
-        <i class="fa fa-angle-right"></i>
-    </a>
+        </li>
+    </ul>
 </div>
+
+<div class="container">
+    <p class="h5 ml-1">Libros Favoritos</p>
+    <ul id="favoritos">
+        <li *ngFor="let book of books, index as i" [ngClass]="{active: i==0}">
+            <div class="col-md-auto  card-container m-1 p-0 " style="max-width: 220px;">
+                <label class="">
+                <input type="checkbox"  />
+                <div class="card2 d-flex flex-column">
+                    <div class="front"><img class="libroPortada" src="{{book.image}}" ></div>
+                    <div class="back">
+                      
+                            <h5 class="mt-2 titulo-libro">{{book.name}}</h5>
+                      
+                            <p class="h6 mr-1 ml-1" style="overflow: hidden;">{{book.synopsis.substring(0, 300 - 3) + "..."}}</p>        
+                            <button [routerLink]="['/']" class="btn  btn-danger btn-block mt-auto button-libros-left mr-5">
+                                    Leer
+                            </button>
+                            <a [routerLink]="['/books/book/',book._id]" class="text-warning mt-auto button-libros-right">
+                                Ver mas
+                            </a>
+                     
+                    </div>
+                </div>
+            </label>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+<div class="container">
+    <p class="h5 ml-1">Ultimos Libros</p>
+    <ul id="libros">
+        <li *ngFor="let book of books, index as i" [ngClass]="{active: i==0}">
+            <div class="col-md-auto  card-container m-1 p-0 " style="max-width: 220px;">
+                <label class="">
+                <input type="checkbox"  />
+                <div class="card2 d-flex flex-column">
+                    <div class="front"><img class="libroPortada" src="{{book.image}}" ></div>
+                    <div class="back">
+                      
+                            <h5 class="mt-2 titulo-libro">{{book.name}}</h5>
+                      
+                            <p class="h6 mr-1 ml-1" style="overflow: hidden;">{{book.synopsis.substring(0, 300 - 3) + "..."}}</p>        
+                            <button [routerLink]="['/']" class="btn  btn-danger btn-block mt-auto button-libros-left mr-5">
+                                    Leer
+                            </button>
+                            <a [routerLink]="['/books/book/',book._id]" class="text-warning mt-auto button-libros-right">
+                                Ver mas
+                            </a>
+                     
+                    </div>
+                </div>
+            </label>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+
+
+
 
 
 

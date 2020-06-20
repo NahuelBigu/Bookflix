@@ -6,6 +6,10 @@ noticiaCtrl.getNoticias = async(req, res) => {
     const noticias = await Noticia.find().sort({ createdAt: -1 });
     res.json(noticias);
 }
+noticiaCtrl.getActiveNoticias = async(req, res) => {
+    const noticias = await Noticia.find().sort({ createdAt: -1 });
+    res.json(noticias.filter(function(x) { return (x.active) }));
+}
 
 noticiaCtrl.createNoticia = async(req, res) => {
     if (!req.body.title) { res.status(401).send('Titulo requerido'); return false }

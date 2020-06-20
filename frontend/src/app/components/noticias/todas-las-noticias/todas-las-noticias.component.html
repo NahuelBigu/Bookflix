@@ -8,14 +8,17 @@
             <a class="btn btn-danger btn-block" [routerLink]="['/noticiasadministrador']" *ngIf="authServices.isAdmin()">Administrar Noticias</a>
         </div>
         <!-- Blog Entries Column -->
-        <div class="col-md-12" *ngFor="let noticia of noticias">
+        <div class="col-md-12" *ngFor="let noticia of noticias | paginate: { id: 'listing_pagination',
+        itemsPerPage: 2,
+        currentPage: page,
+        totalItems: totalRecords }">
             <!-- Blog Post -->
             <div class="card mb-4" *ngIf="noticia.active == true">
                 <img class="card-img-top imagen-noticia" src="{{noticia.image}}">
                 <div class="card-body">
                     <h2 class="card-title">{{noticia.title}}</h2>
                     <p class="card-text">{{noticia.text.substring(0, 200 - 3) + "..."}}</p>
-                    <a [routerLink]="['/noticia/', noticia._id]" class="btn btn-primary ">Seguir leyendo &rarr;</a>
+                    <a [routerLink]="['/noticia/', noticia._id]" class="btn btn-danger ">Seguir leyendo &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">
                     Posted on {{noticia.createdAt | date: 'MMM dd, yyyy' }} by {{noticia.author}}
@@ -34,7 +37,12 @@
             </ul>
             -->
         </div>
-
+        <div class="container ">
+            <div class="row justify-content-center algin">
+                <pagination-controls class="my-pagination" id="listing_pagination" (pageChange)="page = $event" maxSize="5" directionLinks="true" autoHide="true" previousLabel="Anterior" nextLabel="Siguiente">
+                </pagination-controls>
+            </div>
+        </div>
     </div>
     <!-- /.row -->
 

@@ -4,3 +4,21 @@
     height: auto;
     object-fit: cover;
 }
+
+.my-pagination /deep/ .ngx-pagination .current {
+    background: rgb(122, 1, 1);
+    border-radius: 13px 13px 13px 13px;
+}
+
+.my-pagination /deep/ .ngx-pagination {
+    padding: 0px;
+    color: white;
+    background: rgb(49, 44, 44);
+    border-radius: 13px 13px 13px 13px;
+}
+
+.my-pagination /deep/ .ngx-pagination :hover {
+    color: white;
+    background: rgb(122, 1, 1);
+    border-radius: 13px 13px 13px 13px;
+}

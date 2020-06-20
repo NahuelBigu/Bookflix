@@ -1,0 +1,51 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-8">
+            <h1 class="my-4">Trailers</h1>
+        </div>
+
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-12" *ngFor="let trailer of trailers | paginate: { id: 'listing_pagination',
+        itemsPerPage: 2,
+        currentPage: page,
+        totalItems: totalRecords }">
+            <!-- Blog Post -->
+            <div class="card mb-4">
+                <div class="card-body ">
+                    <h2 class="card-title ">{{trailer.title}}</h2>
+                    <p class="card-text ">{{trailer.text.substring(0, 200 - 3) + "... "}}</p>
+                    <iframe width="420 " height="315 " src="https://www.youtube.com/embed/tgbNymZ7vqY "></iframe>
+                    <!-- <a [routerLink]="[ '/trailer/', noticia._id] " class="btn btn-primary ">Seguir leyendo &rarr;</a> -->
+                </div>
+                <div class="card-footer text-muted ">
+                    Publicado el {{trailer.createdAt | date: 'MMM dd, yyyy' }}
+                </div>
+
+            </div>
+
+
+            <!-- Pagination 
+            <ul class="pagination justify-content-center mb-4 ">
+                <li class="page-item ">
+                    <a class="page-link " href="# ">&larr; Older</a>
+                </li>
+                <li class="page-item disabled ">
+                    <a class="page-link " href="# ">Newer &rarr;</a>
+                </li>
+            </ul>
+            -->
+
+        </div>
+        <div class="container ">
+            <div class="row justify-content-center algin">
+                <pagination-controls class="my-pagination" id="listing_pagination" (pageChange)="page = $event" maxSize="5" directionLinks="true" autoHide="true" previousLabel="Anterior" nextLabel="Siguiente">
+                </pagination-controls>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>

@@ -7,6 +7,7 @@ import { Noticia } from '../../models/noticia';
 })
 export class NoticiasService {
   
+  
 
   private URL_API= 'http://localhost:3000/api/noticias'
   constructor(private http: HttpClient) { }
@@ -21,6 +22,9 @@ export class NoticiasService {
 
   getNoticias() {
     return this.http.get(this.URL_API);
+  }
+  getNoticiasActivas() {
+    return this.http.get(this.URL_API+'/activas');
   }
 
   putNoticia(noticia: Noticia) {

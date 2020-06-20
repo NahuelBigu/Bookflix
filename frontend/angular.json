@@ -24,12 +24,14 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "node_modules/jquery/dist/jquery.min.js",
                             "src/assets/fontawesome-free-5.13.0-web/css/all.css",
                             "src/bootstrap/bootstrap.min.css",
-                            "src/styles.css"
+                            "src/styles.css",
+                            "node_modules/lightslider/dist/css/lightslider.css"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "node_modules/lightslider/dist/js/lightslider.js"
+                        ]
                     },
                     "configurations": {
                         "production": {

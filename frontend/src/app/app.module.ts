@@ -29,6 +29,7 @@ import { BusquedaComponent } from './components/buscar/busqueda/busqueda.compone
 import { AllBooksComponent } from './components/books/all-books/all-books.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TrailerComponent } from './components/books/trailer/trailer.component';
+import { ListarTrailersComponent } from './components/books/listar-trailers/listar-trailers.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { TrailerComponent } from './components/books/trailer/trailer.component';
     BusquedaComponent,
     AllBooksComponent,
     TrailerComponent,
+    ListarTrailersComponent,
    ],
   imports: [
     BrowserModule,

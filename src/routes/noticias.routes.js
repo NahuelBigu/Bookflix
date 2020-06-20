@@ -6,6 +6,7 @@ const noticias = require('../controllers/noticias.controller');
 const auth = require('../middleware/auth');
 
 router.get('/', auth, noticias.getNoticias);
+router.get('/activas', auth, noticias.getActiveNoticias);
 router.post('/', auth, noticias.createNoticia);
 router.get('/:id', auth, noticias.getNoticia);
 router.get('/activarnoticia/:id', auth, noticias.activateNoticia);

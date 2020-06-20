@@ -24,6 +24,7 @@
                 <td>
                     <button *ngIf="book.active" (click)="deshabilitar(book)" class="btn btn-outline-danger mr-1" title="Deshabilitar Libro"><i class="fa fa-user-minus"></i></button>
                     <button *ngIf="!book.active" (click)="habilitar(book)" class="btn btn-outline-success mr-1" title="Habilitar Libro"><i class="fa fa-user-plus"></i></button>
+                    <button [routerLink]="['/books/edit/',book._id]" class="btn btn-outline-warning mr-1" title="Editar"><i class="fa fa-edit"></i></button>
                     <button [routerLink]="['/books/trailer/',book._id]" class="btn btn-outline-success mr-1" title="Trailers"><i class="fa fa-film"></i></button>
                 </td>
             </tr>

@@ -22,6 +22,7 @@
         "angular-ng-autocomplete": "^2.0.1",
         "bootstrap": "^4.5.0",
         "jquery": "^3.5.1",
+        "lightslider": "^1.1.6",
         "ngx-pagination": "^5.0.0",
         "rxjs": "~6.5.4",
         "tslib": "^1.13.0",
