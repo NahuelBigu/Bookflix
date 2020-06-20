@@ -18,7 +18,7 @@ bookCtrl.createBook = async(req, res) => {
     const isbn = req.body.isbn
     const libroAux = await Book.findOne({ isbn: isbn });
     if (libroAux) return res.status(401).send('Libro duplicado');
-    if (!req.body.bookPDF) return res.status(401).send('PDF requerido');
+    //if (!req.body.bookPDF) return res.status(401).send('PDF requerido');
     if (!req.body.author) return res.status(401).send('Author requerido');
     if (!req.body.genre) return res.status(401).send('Genero requerido');
     if (!req.body.editorial) return res.status(401).send('Editorial requerida');
@@ -64,7 +64,7 @@ bookCtrl.editBook = async(req, res) => {
     if (!req.body.genre) return res.status(401).send('Genero requerido');
     if (!req.body.editorial) return res.status(401).send('Editorial requerida');
     if (!req.body.image) return res.status(401).send('Imagen requerida');
-    if (!req.body.bookPDF) return res.status(401).send('Libro requerido');
+    //if (!req.body.bookPDF) return res.status(401).send('Libro requerido');
     if (!req.body.synopsis) return res.status(401).send('Sinopsis requerido');
 
     const { id } = req.params;
