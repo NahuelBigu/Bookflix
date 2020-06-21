@@ -31,7 +31,8 @@ export class CargarLibroComponent implements OnInit {
   arrayOfIndex =new Array<Number>();
   files = new Array<File>();
   file: File;
-  path= '../../../../../../src/pdfs';
+  hayArchivos: any;
+
 
   constructor(private bookService: BookService, private router: Router, private autorService: AutorService,private generoService: GeneroService,private editorialService: EditorialService, private uploadService: UploadService) {
 
@@ -59,12 +60,22 @@ export class CargarLibroComponent implements OnInit {
     if (this.error==''){
       let formdata= new FormData();
       for(let i=0; i<this.files.length; i++){
-        formdata.append("upload[]",this.files[i],this.files[i].name);
+        if(this.files[i]){
+          this.hayArchivos=true;
+           formdata.append("upload[]",this.files[i],this.book.isbn+"-"+i+".pdf");
+          this.book.chapters[i]=this.book.isbn+"-"+i+".pdf";
+        }
       }
-      formdata.append("upload[]",this.file,this.file.name);
+      if(this.file){
+        this.hayArchivos=true;
+        formdata.append("upload[]",this.file,this.book.isbn+"-complete.pdf");
+        this.book.bookPDF= this.book.isbn+"-complete.pdf";
+      }
+      if(this.hayArchivos){
       this.uploadService.uploadFile(formdata).subscribe((res)=> {
         console.log('response received is ', res);
       });
+    }
     this.bookService.postBook(this.book)
       .subscribe(res => {
         console.log('Book saved');
@@ -125,12 +136,11 @@ export class CargarLibroComponent implements OnInit {
  }
 
  onFileSelect(e, index){
+   console.log(e)
    this.files[index]= e.target.files[0];
-   this.book.chapters[index]= this.path.concat('/', this.files[index].name);
  }
 
- onFileChange(e){
+ onFileChange(e){console.log(e)
   this.file= e.target.files[0];
-  this.book.bookPDF= this.path.concat('/',this.file.name);
  }
 }

@@ -32,14 +32,24 @@ app.use('/api/editoriales', require('./routes/editorial.routes'));
 const multipartMiddleware = multypart({
     uploadDir: './src/pdfs'
 });
+var fs = require('fs');
+app.post('/api/upload', multipartMiddleware, (req, res, next) => {
+    req.files.upload.forEach(e => {
+        console.log(e.path);
+        fs.rename(e.path, "src\\pdfs\\" + e.originalFilename, function(err) {
+            if (err) console.log('ERROR: ' + err);
+        })
 
-app.post('/api/upload', multipartMiddleware, (req, res, next) => {  
+    });
     res.json({
         'message': 'File uploaded succesfully.'
     })
 });
 
+app.get('/api/pdf/:name', function(req, res) {
+    res.sendFile(path.join(__dirname, '/pdfs', req.params.name));
 
+})
 
 
 

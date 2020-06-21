@@ -32,6 +32,7 @@ import { TrailerComponent } from './components/books/trailer/trailer.component';
 import { ListarTrailersComponent } from './components/books/listar-trailers/listar-trailers.component';
 import { TrailerNewOrEditComponent } from './components/trailerNewOrEdit/trailer-new-or-edit/trailer-new-or-edit.component';
 import { TrailerEditComponent } from './components/trailerEdit/trailer-edit/trailer-edit.component';
+import { LeerComponent } from './components/books/leer/leer.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { TrailerEditComponent } from './components/trailerEdit/trailer-edit/trai
     ListarTrailersComponent,
     TrailerNewOrEditComponent,
     TrailerEditComponent,
+    LeerComponent,
    ],
   imports: [
     BrowserModule,

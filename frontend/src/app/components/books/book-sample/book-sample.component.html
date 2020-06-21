@@ -51,20 +51,21 @@
                     </div>
                     <div>
                         <ul class="list-group mt-3 mb-3 " style="border-radius: 13px 13px 13px 13px;">
-                            <li class="list-group-item " *ngFor="let chapter of book.chapters; index as i">
-                                <div class="row d-flex justify-content-between align-items-center">
-                                    <div class="col-10" style="cursor:pointer">
-                                        <a href="{{chapter}}" style="color: rgb(168, 168, 168);">Capitulo {{i+1}}  </a>
+                            <ng-container *ngFor="let chapter of book.chapters; index as i">
+                                <li class="list-group-item " *ngIf="chapter != null">
+                                    <div class="row d-flex justify-content-between align-items-center">
+                                        <div class="col-10" style="cursor:pointer">
+                                            <a [routerLink]="['/books/leer/', book._id , i]" style="color: rgb(168, 168, 168);">Capitulo {{i+1}}  </a>
+                                        </div>
+                                        <div class="col-2 text-right" (click)="verCapitulo(i)">
+                                            <i class="" style="cursor:pointer" [ngClass]="leido(i) ? 'fas fa-eye leido' : 'far fa-eye-slash'  "></i>
+                                        </div>
                                     </div>
-                                    <div class="col-2 text-right" (click)="verCapitulo(i)">
-                                        <i class="" style="cursor:pointer" [ngClass]="leido(i) ? 'fas fa-eye leido' : 'far fa-eye-slash'  "></i>
-                                    </div>
-                                </div>
 
 
 
-                            </li>
-
+                                </li>
+                            </ng-container>
 
                         </ul>
                     </div>

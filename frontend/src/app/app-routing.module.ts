@@ -25,6 +25,7 @@ import { TrailerComponent } from './components/books/trailer/trailer.component';
 import { ListarTrailersComponent } from './components/books/listar-trailers/listar-trailers.component';
 import { TrailerNewOrEditComponent } from './components/trailerNewOrEdit/trailer-new-or-edit/trailer-new-or-edit.component';
 import { TrailerEditComponent } from './components/trailerEdit/trailer-edit/trailer-edit.component';
+import { LeerComponent } from './components/books/leer/leer.component';
 
 const routes: Routes = [
   {
@@ -98,6 +99,11 @@ const routes: Routes = [
   {
     path: 'books/book/:id',
     component: BookSampleComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'books/leer/:id/:cap',
+    component: LeerComponent,
     canActivate: [AuthGuard]
   },
   {

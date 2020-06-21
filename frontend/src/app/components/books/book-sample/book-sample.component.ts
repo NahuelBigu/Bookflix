@@ -15,6 +15,7 @@ export class BookSampleComponent implements OnInit {
   book: Book;
   error: String ='';
   termine=false;
+  
 
   constructor(private ruta: ActivatedRoute, private router: Router, private bookService: BookService, private authService: AuthService) {
     this.ruta.params.subscribe(params => {
@@ -27,6 +28,7 @@ export class BookSampleComponent implements OnInit {
           this.capLeidos=this.bookService.getCapLeidos(this.book);
           this.fav=this.bookService.getFav(this.book._id);
           this.termine = this.bookService.termineLibro(this.book._id);
+          
         });
     })
     
