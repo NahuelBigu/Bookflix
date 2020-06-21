@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const path = require('path');
+//tambien de subir archivos ( :,C )
+const multypart = require('connect-multiparty');
+const upload = require('./controllers/upload.controller');
 module.exports = app;
 
 require('./database');
@@ -22,6 +25,23 @@ app.use('/api/books', require('./routes/book.routes'));
 app.use('/api/autors', require('./routes/autor.routes'));
 app.use('/api/generos', require('./routes/genero.routes'));
 app.use('/api/editoriales', require('./routes/editorial.routes'));
+
+
+
+// subir archivos (no anda en otro lugar F)
+const multipartMiddleware = multypart({
+    uploadDir: './src/pdfs'
+});
+
+app.post('/api/upload', multipartMiddleware, (req, res, next) => {  
+    res.json({
+        'message': 'File uploaded succesfully.'
+    })
+});
+
+
+
+
 
 app.listen(app.get('port'));
 console.log('Server on port', app.get('port'));

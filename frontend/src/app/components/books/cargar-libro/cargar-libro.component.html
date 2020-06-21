@@ -103,7 +103,12 @@
                         </div>
                         <hr style="border: 0.5px solid black">
                         <div class="form-group">
-                            <input type="text" [(ngModel)]="book.bookPDF" name="urlpdf" class="form-control" placeholder="URL del PDF" autofocus>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" name="urlpdf" class="form-control custom-file-input is-invalid" (change)="onFileChange($event)">
+                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                </div>
+                            </div>
                         </div>
                         <hr style="border: 0.5px solid black">
                         <div class="form-group">
@@ -116,13 +121,17 @@
                         </div>
                         <hr style="border: 0.5px solid black">
 
-
                     
                         <div class="form-group">
                             <input type="number" [(ngModel)]="book.maxChapters" (ngModelChange)="chapterChanged()" name="book.maxChapters" class="form-control" placeholder="Cantidad de capitulos" autofocus>
                         </div>
                         <div class="form-group mt-3" *ngFor="let number of arrayOfIndex; index as i">
-                            <input type="text" class="form-control mt-1" [(ngModel)]="book.chapters[i]" name="Capitulo {{i}}" placeholder="URL del Capitulo {{i+1}}">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="form-control mt-1 custom-file-input is-invalid" name="Capitulo {{i}}" placeholder="URL del Capitulo {{i+1}}" (change)="onFileSelect($event, i)">
+                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                </div>
+                            </div>
                         </div>
 
                      
