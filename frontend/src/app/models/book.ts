@@ -7,7 +7,7 @@ export class Book {
     genre: string;
     editorial: string;
     image: string;
-    bookPDF: string;
+    bookPDF: String;
     active: boolean;
     maxChapters: number;
     chapters: Array<String>;

@@ -9,6 +9,7 @@ import { Genero } from 'src/app/models/genero';
 import { GeneroService } from 'src/app/services/genero/genero.service';
 import { Editorial } from 'src/app/models/editorial';
 import { EditorialService } from 'src/app/services/editorial/editorial.service';
+import { UploadService } from 'src/app/services/books/upload.service';
 
 @Component({
   selector: 'app-cargar-libro',
@@ -28,8 +29,11 @@ export class CargarLibroComponent implements OnInit {
   generoAdd: boolean = false;
   editorialAdd: boolean = false;
   arrayOfIndex =new Array<Number>();
+  files = new Array<File>();
+  file: File;
+  path= '../../../../../../src/pdfs';
 
-  constructor(private bookService: BookService, private router: Router, private autorService: AutorService,private generoService: GeneroService,private editorialService: EditorialService) {
+  constructor(private bookService: BookService, private router: Router, private autorService: AutorService,private generoService: GeneroService,private editorialService: EditorialService, private uploadService: UploadService) {
 
    }
 
@@ -53,6 +57,14 @@ export class CargarLibroComponent implements OnInit {
   addBook(){
     this.error=this.validate();
     if (this.error==''){
+      let formdata= new FormData();
+      for(let i=0; i<this.files.length; i++){
+        formdata.append("upload[]",this.files[i],this.files[i].name);
+      }
+      formdata.append("upload[]",this.file,this.file.name);
+      this.uploadService.uploadFile(formdata).subscribe((res)=> {
+        console.log('response received is ', res);
+      });
     this.bookService.postBook(this.book)
       .subscribe(res => {
         console.log('Book saved');
@@ -97,15 +109,28 @@ export class CargarLibroComponent implements OnInit {
 
   chapterChanged()
   {
-    var aux= this.book.chapters;
-   this.book.chapters= new Array(this.book.maxChapters);;
-   for (let i=0;i<this.book.chapters.length && i<aux.length ;i++) {
-     this.book.chapters[i]=aux[i];
+    var aux1= this.book.chapters;
+   this.book.chapters= new Array(this.book.maxChapters);
+   var aux2= this.files;
+   this.files= new Array(this.book.maxChapters);
+   for (let i=0;i<this.book.chapters.length && i<aux1.length ;i++) {
+     this.book.chapters[i]=aux1[i];
+     this.files[i]=aux2[i];
    }
 
    this.arrayOfIndex= new Array();
    for (let i=0;i<this.book.maxChapters;i++) {
      this.arrayOfIndex[i]=i;
    }
+ }
+
+ onFileSelect(e, index){
+   this.files[index]= e.target.files[0];
+   this.book.chapters[index]= this.path.concat('/', this.files[index].name);
+ }
+
+ onFileChange(e){
+  this.file= e.target.files[0];
+  this.book.bookPDF= this.path.concat('/',this.file.name);
  }
 }
