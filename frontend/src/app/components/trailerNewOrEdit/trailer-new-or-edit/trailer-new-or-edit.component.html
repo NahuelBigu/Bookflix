@@ -1,0 +1,38 @@
+<div class="container mt-5" *ngIf="book">
+
+    <div class="col-sm-12 mt-3 mb-3">
+        <h4 class="text-center">Nuevo Trailer</h4>
+    </div>
+    <div class="alert alert-danger" *ngIf="error != '' ">
+        {{error}}
+    </div>
+    <div class="card">
+        <form (ngSubmit)="onSubmit()">
+            <div class="container m-3 mb-2 pt-3">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Titulo</label>
+                    <div class="col-sm-9">
+                        <input type="text" [(ngModel)]="trailer.title" name="title" class="form-control" id="title" value="" placeholder="Titulo">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Video</label>
+                    <div class="col-sm-9">
+                        <input type="text" [(ngModel)]="trailer.video" name="video" class="form-control" id="image" value="" placeholder="Video (url)">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Texto</label>
+                    <div class="col-sm-9">
+                        <textarea id="text" [(ngModel)]="trailer.text" name="text" class="form-control" rows="3" placeholder="Cuerpo del trailer"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row mt-4">
+                    <div class="col-sm-9"></div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-danger btn-block" type="submit">Crear</button></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

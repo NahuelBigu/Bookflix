@@ -23,6 +23,8 @@ import { AllBooksComponent } from './components/books/all-books/all-books.compon
 import { BusquedaComponent } from './components/buscar/busqueda/busqueda.component';
 import { TrailerComponent } from './components/books/trailer/trailer.component';
 import { ListarTrailersComponent } from './components/books/listar-trailers/listar-trailers.component';
+import { TrailerNewOrEditComponent } from './components/trailerNewOrEdit/trailer-new-or-edit/trailer-new-or-edit.component';
+import { TrailerEditComponent } from './components/trailerEdit/trailer-edit/trailer-edit.component';
 
 const routes: Routes = [
   {
@@ -53,22 +55,22 @@ const routes: Routes = [
   {
     path: 'noticia/editar/:id',
     component: EditarNoticiaComponent,
-    canActivate: [AuthGuard,AdminGuard]
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'crear-noticia',
     component: CrearNoticiaComponent,
-    canActivate: [AuthGuard,AdminGuard]
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'noticiasadministrador',
     component: NoticiasAdministradorComponent,
-    canActivate: [AuthGuard,AdminGuard]
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'administrador',
     component: OpcionesAdministradorComponent,
-    canActivate: [AuthGuard,AdminGuard]
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'myUserInfo',
@@ -86,12 +88,12 @@ const routes: Routes = [
   {
     path: 'books/add',
     component: CargarLibroComponent,
-    canActivate: [AuthGuard,AdminGuard]
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'books/edit/:id',
     component: EditBookComponent,
-    canActivate: [AuthGuard,AdminGuard]
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'books/book/:id',
@@ -104,6 +106,15 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'books/trailer/agregar/:id',
+    component: TrailerNewOrEditComponent,
+    canActivate: [AuthGuard]
+  }, {
+    path: 'books/trailer/editar/:id/:i',
+    component: TrailerEditComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'select-profile',
     component: SelectperfilComponent,
     canActivate: [AuthGuard]
@@ -111,12 +122,12 @@ const routes: Routes = [
   {
     path: 'administrar-usuarios',
     component: UserListComponent,
-    canActivate: [AuthGuard,AdminGuard]
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'administrar-libros',
     component: AllBooksComponent,
-    canActivate: [AuthGuard,AdminGuard]
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'busqueda/:txt',
