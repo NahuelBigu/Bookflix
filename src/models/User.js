@@ -12,7 +12,7 @@ const UserSchema = new Schema({
     creditCardCVV: { type: Number, required: true },
     profiles: { type: Array, required: true },
     active: { type: Boolean, required: true },
-    historial: Array
+
 }, {
     timestamps: true
 });

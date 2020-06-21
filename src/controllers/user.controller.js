@@ -82,6 +82,7 @@ userCtrl.createUser = async(req, res) => {
 
 userCtrl.editUser = async(req, res) => {
     const { id } = req.params;
+
     if (req.body.user.email === "" || !validarEmail(req.body.user.email)) return res.status(401).send('Email incorrecto');
     if (req.body.user.creditCardName === "") return res.status(401).send('Nombre completo de tarejata incorrecto');
     var numberValidation = valid.number(req.body.user.creditCardNumber);
@@ -157,10 +158,16 @@ userCtrl.iniciarSesion = async(req, res) => {
         token,
         user
     });
+
+
 }
 
-
-
-
+userCtrl.editarProfile = async(req, res) => {
+    const { id } = req.params;
+    user = await User.findById(id);
+    user.profiles = req.body.profiles;
+    user.save();
+    res.json({ 'status': "true" });
+}
 
 module.exports = userCtrl;

@@ -11,12 +11,13 @@ import { Profile } from 'src/app/models/profile';
 })
 export class AuthService {
   
+  
   selectedUser: User;
 
   private localStorageService;
   private currentToken : String = null;
   private URL_API= 'http://localhost:3000/api/users'
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router , private  userService:UserService) {
 
     this.localStorageService = localStorage;
     this.currentToken = this.loadSessionData();
@@ -37,6 +38,7 @@ export class AuthService {
     return this.currentToken;
   }
   removeCurrentSession(): void {
+    this.actualizarPerfil();
     this.localStorageService.removeItem('currentUser');
     this.localStorageService.removeItem('user');
     this.localStorageService.removeItem('profile');
@@ -73,7 +75,9 @@ export class AuthService {
   getCurrentUser2() {
     return this.localStorageService.getItem('user');
   }
-  
+  setCurrentUser(user){
+    this.localStorageService.setItem('user', JSON.stringify(user));
+  }
   isAdmin(): boolean {
    
     if (this.isAuthenticated()){
@@ -126,6 +130,16 @@ export class AuthService {
   }
   getProfile(): Profile {
     return JSON.parse(this.localStorageService.getItem('profile')) as Profile;
+  }
+
+  actualizarPerfil() {
+    var a = this.getCurrentUser2();
+    var user=  JSON.parse(a) as User;
+    var p= this.getProfile()
+    var profilePos = user.profiles.map(function(e) { return e._id; }).indexOf(p._id);
+    user.profiles.splice(profilePos,1,p);
+    this.userService.putProfile(user).subscribe();
+    this.setCurrentUser(user);
   }
 }
 

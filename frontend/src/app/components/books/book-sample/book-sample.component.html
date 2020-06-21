@@ -1,4 +1,4 @@
-<div class="container pt-5">
+<div class="container pt-5" *ngIf="book">
     <div class="row">
         <div class="col-md-8 mx-auto">
             <div class="card bg-transparent">
@@ -6,7 +6,12 @@
                     <ng-container *ngIf="book">
                         <div class="row">
                             <div class="col-4">
-                                <img src="{{book.image}}" alt="Portada de {{book.name}}" class="imagen card-img-top">
+                                <img src="{{book.image}}" alt="Portada de {{book.name}}" style="position: relative ; z-index: -1; " class="imagen card-img-top">
+
+                                <div class="text-center mt-2">
+                                    <input id="toggle-heart" type="checkbox" (click)="agregarFav()" [checked]="fav" />
+                                    <label for="toggle-heart">❤</label>
+                                </div>
                             </div>
                             <div class="col-8">
                                 <div class="row align-items-center">
@@ -26,18 +31,41 @@
                             </div>
                         </div>
                     </ng-container>
-                    <div class="row mt-3">
-                        <div class="col-3"></div>
-                        <div class="col-6">
+                    <div class="row mt-2">
+                        <div class="col-4"></div>
+                        <div class="col-8">
                             <button *ngIf="isAdmin()&&book" [routerLink]="['/books/edit/',book._id]" class="btn btn-block btn-outline-danger">
                                 Editar Libro
                             </button>
                         </div>
-                        <div class="col-3"></div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <p class="h5">Capitulos </p>
+                        </div>
+                        <div class="col-4 text-right">
+                            <button class="btn btn-outline-danger" type="button" (click)="terminar()" *ngIf="!termine">Terminar</button>
+                            <button class="btn btn-outline-danger" type="button" (click)="sacarDelHistorial()" *ngIf="termine">Sacar de Historial</button>
+                        </div>
                     </div>
                     <div>
-                        <ul class="list-group list-group-flush mt-3 mb-3">
-                            <a *ngFor="let chapter of book.chapters; index as i" class="list-group-item" href="{{chapter}}">Capitulo {{i+1}}</a>
+                        <ul class="list-group mt-3 mb-3 " style="border-radius: 13px 13px 13px 13px;">
+                            <li class="list-group-item " *ngFor="let chapter of book.chapters; index as i">
+                                <div class="row d-flex justify-content-between align-items-center">
+                                    <div class="col-10" style="cursor:pointer">
+                                        <a href="{{chapter}}" style="color: rgb(168, 168, 168);">Capitulo {{i+1}}  </a>
+                                    </div>
+                                    <div class="col-2 text-right" (click)="verCapitulo(i)">
+                                        <i class="" style="cursor:pointer" [ngClass]="leido(i) ? 'fas fa-eye leido' : 'far fa-eye-slash'  "></i>
+                                    </div>
+                                </div>
+
+
+
+                            </li>
+
+
                         </ul>
                     </div>
                 </div>

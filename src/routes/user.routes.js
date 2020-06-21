@@ -15,7 +15,7 @@ router.get('/sacarAdmin/:id', auth, user.sacarAdmin);
 router.get('/getUserByToken/:token', auth, user.getUserByToken);
 
 router.put('/:id', user.editUser);
-
+router.put('/perfiles/:id', user.editarProfile);
 router.delete('/:id', user.deleteUser);
 
 router.post('/signup', user.createUser);

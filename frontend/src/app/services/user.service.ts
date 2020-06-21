@@ -25,6 +25,9 @@ export class UserService {
     return this.http.put(this.URL_API + `/${user._id}`, user);
   }
 
+  putProfile(user: User) {
+    return this.http.put(this.URL_API + `/perfiles/${user._id}`, user);
+  }
   deleteUser(_id: String) {
     return this.http.delete(this.URL_API + `/${_id}`);
   }

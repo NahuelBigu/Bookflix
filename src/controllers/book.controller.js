@@ -82,9 +82,9 @@ bookCtrl.editBook = async(req, res) => {
     book.image = req.body.image;
     book.bookPDF = req.body.bookPDF;
     book.duedate = req.body.duedate;
-    book.trailers=req.body.trailers;
-    book.chapters=req.body.chapters;
-    book.maxChapters=req.body.maxChapters;
+    book.trailers = req.body.trailers;
+    book.chapters = req.body.chapters;
+    book.maxChapters = req.body.maxChapters;
 
     book.save();
 
@@ -105,5 +105,13 @@ bookCtrl.habilitarBook = async(req, res) => {
     book.save();
     res.json({ 'status': true });
 }
+
+
+bookCtrl.getSpecificBooks = async(req, res) => {
+    const booksH = req.body;
+    const books = await Book.find({ _id: { $in: booksH } })
+    return res.json(books.filter(function(x) { return (x.active && Date.parse(x.duedate) > (new Date)) }));
+}
+
 
 module.exports = bookCtrl;

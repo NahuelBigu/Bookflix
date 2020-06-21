@@ -1,3 +1,83 @@
 .imagen {
     object-fit: cover;
 }
+
+.leido {
+    color: rgb(158, 35, 35);
+}
+
+[id='toggle-heart'] {
+    position: absolute;
+    left: -100vw;
+}
+
+[id='toggle-heart']:checked+label {
+    color: #e2264d;
+    will-change: font-size;
+    animation: heart 1s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+}
+
+[id='toggle-heart']:checked+label:before,
+[id='toggle-heart']:checked+label:after {
+    animation: inherit;
+    animation-timing-function: ease-out;
+}
+
+[id='toggle-heart']:checked+label:before {
+    will-change: transform, border-width, border-color;
+    animation-name: bubble;
+}
+
+[id='toggle-heart']:checked+label:after {
+    will-change: opacity, box-shadow;
+    animation-name: particles;
+}
+
+[for='toggle-heart'] {
+    align-self: center;
+    position: relative;
+    color: #aab8c2;
+    font-size: 2em;
+    user-select: none;
+    cursor: pointer;
+}
+
+[for='toggle-heart']:before,
+[for='toggle-heart']:after {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    content: '';
+}
+
+[for='toggle-heart']:before {
+    box-sizing: border-box;
+    margin: -2.25rem;
+    border: solid 2.25rem #e2264d;
+    width: 4.5rem;
+    height: 4.5rem;
+    transform: scale(0);
+}
+
+@keyframes heart {
+    0%,
+    17.5% {
+        font-size: 0;
+    }
+}
+
+@keyframes bubble {
+    15% {
+        transform: scale(0.75);
+        border-color: rgba(255, 0, 0, 0.308);
+        border-width: 2.25rem;
+    }
+    30%,
+    100% {
+        transform: scale(0.75);
+        border-color: rgba(255, 0, 0, 0.308);
+        border-width: 0;
+    }
+}

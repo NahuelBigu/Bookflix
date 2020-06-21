@@ -14,7 +14,7 @@ const bookSchemma = new Schema({
     duedate: { type: String, required: true },
     chapters: { type: Array, required: true },
     active: { type: Boolean, required: true },
-    historial: Array
+
 }, {
     timestamps: true
 })

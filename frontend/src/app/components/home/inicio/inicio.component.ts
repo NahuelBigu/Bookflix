@@ -11,6 +11,9 @@ declare var $:any;
 export class InicioComponent implements OnInit {
 
   books: Book[];
+  history: Book[];
+  favs: Book[];
+  reading: Book[];
   constructor(private bookService: BookService) {
    
 
@@ -25,18 +28,32 @@ export class InicioComponent implements OnInit {
       this.books = res as Book[];
       this.arrancar();
     });
-    
-   
-
+    this.bookService.getActiveBooksFavs()
+    .subscribe(res => {
+      
+      this.favs = res as Book[];
+      this.arrancarFavs();
+    });
+    this.bookService.getActiveBooksHistory()
+    .subscribe(res => {
+      
+      this.history = res as Book[];
+      this.arrancarHistory();
+    });
+    this.bookService.getActiveBooksReading()
+    .subscribe(res => {
+      
+      this.reading = res as Book[];
+      this.arrancarReading();
+    });
     
   }
-
-  arrancar(){
+  arrancarHistory() {
     $(function(){
       var slider= $('#historial').lightSlider({
         item:5,
         loop:true,
-        slideMove:2,
+        slideMove:1,
         easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
         speed:600,
         pause: 8000,
@@ -74,10 +91,14 @@ export class InicioComponent implements OnInit {
         ]
     });  
     slider.play(); 
+  });
+  }
+  arrancarFavs() {
+    $(function(){
     var slider= $('#favoritos').lightSlider({
       item:5,
       loop:true,
-      slideMove:2,
+      slideMove:1,
       easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
       speed:600,
       pause: 8000,
@@ -114,11 +135,14 @@ export class InicioComponent implements OnInit {
         }
       ]
   });  
-  slider.play(); 
+  slider.play(); });
+  }
+  arrancar(){
+    $(function(){
   var slider= $('#libros').lightSlider({
     item:5,
     loop:true,
-    slideMove:2,
+    slideMove:1,
     easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
     speed:600,
     pause: 8000,
@@ -158,7 +182,51 @@ export class InicioComponent implements OnInit {
 slider.play(); 
   });
   }
-
+  arrancarReading() {
+    $(function(){
+      var slider= $('#leyendo').lightSlider({
+        item:5,
+        loop:true,
+        slideMove:1,
+        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+        speed:600,
+        pause: 8000,
+        responsive : [
+            {
+                breakpoint:1200,
+                settings: {
+                    item:4,
+                    slideMove:1,
+                    slideMargin:6,
+                  }
+            },
+            {
+              breakpoint:990,
+              settings: {
+                  item:3,
+                  slideMove:1,
+                  slideMargin:6,
+                }
+          },
+            {
+                breakpoint:768,
+                settings: {
+                    item:2,
+                    slideMove:1
+                  }
+            },
+            {
+              breakpoint:440,
+              settings: {
+                  item:1,
+                  slideMove:1
+                }
+          }
+        ]
+    });  
+    slider.play(); 
+  });
+  }
 
   
     
