@@ -30,6 +30,8 @@ import { AllBooksComponent } from './components/books/all-books/all-books.compon
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TrailerComponent } from './components/books/trailer/trailer.component';
 import { ListarTrailersComponent } from './components/books/listar-trailers/listar-trailers.component';
+import { TrailerNewOrEditComponent } from './components/trailerNewOrEdit/trailer-new-or-edit/trailer-new-or-edit.component';
+import { TrailerEditComponent } from './components/trailerEdit/trailer-edit/trailer-edit.component';
 
 
 @NgModule({
@@ -56,6 +58,8 @@ import { ListarTrailersComponent } from './components/books/listar-trailers/list
     AllBooksComponent,
     TrailerComponent,
     ListarTrailersComponent,
+    TrailerNewOrEditComponent,
+    TrailerEditComponent,
    ],
   imports: [
     BrowserModule,

@@ -4,6 +4,10 @@ import { TrailerService } from 'src/app/services/books/trailer.service';
 import { BookService } from 'src/app/services/books/book.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/models/book';
+import { Trailer } from 'src/app/models/trailer';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { transcode } from 'buffer';
+
 
 @Component({
   selector: 'app-trailer',
@@ -13,13 +17,23 @@ import { Book } from 'src/app/models/book';
 export class TrailerComponent implements OnInit {
   book: Book;
   error: String = '';
-  trailers: Array<String>;
-  constructor(private ruta: ActivatedRoute, private router: Router, private bookService: BookService, private authService: AuthService) {
+  trailers: Array<Trailer> = new Array<Trailer>();
+  constructor(private _sanitizer: DomSanitizer
+    , private ruta: ActivatedRoute, private router: Router, private bookService: BookService, private authService: AuthService) {
     this.ruta.params.subscribe(params => {
       this.bookService.getBook(params['id'])
         .subscribe(data => {
           this.book = data as Book;
-          this.trailers = this.book.trailers as Array<String>;
+          this.book.trailers.forEach(element => {
+            let aux = JSON.parse(element as string) as Trailer;
+            //let aux=trailer.video.lastIndexOf("/");
+            //trailer.video= trailer.video.slice(0, aux) + "/embed" +trailer.video.slice(aux);
+            //console.log(aux);
+            this.trailers.push(JSON.parse(element as string) as Trailer);
+
+
+          });;
+
         });
     })
   }
@@ -32,11 +46,26 @@ export class TrailerComponent implements OnInit {
   }
 
   eliminarTrailer(trailer: String) {
-    const index = this.book.trailers.indexOf(trailer, 0);
+    const index = this.book.trailers.indexOf(JSON.stringify(trailer), 0);
     if (index > -1) {
       this.book.trailers.splice(index, 1);
+      this.trailers.splice(index, 1);
     }
+    
     this.bookService.putBook(this.book).subscribe();
   }
+
+  getVideoIframe(url) {
+    var video, results;
+ 
+    if (url === null) {
+        return '';
+    }
+    results = url.match('[\\?&]v=([^&#]*)');
+    video   = (results === null) ? url : results[1];
+ 
+    return this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);   
+}
+
 
 }
