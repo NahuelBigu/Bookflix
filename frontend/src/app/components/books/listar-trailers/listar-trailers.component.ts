@@ -36,7 +36,6 @@ export class ListarTrailersComponent implements OnInit {
               this.trailers.push(JSON.parse(each as string) as Trailer);
             })
           });;
-          console.log(this.trailers[0].createdAt);
           this.trailers.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
           this.trailers=this.trailers.slice(0,10);
         });
