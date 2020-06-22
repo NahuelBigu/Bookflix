@@ -33,11 +33,20 @@ export class ListarTrailersComponent implements OnInit {
           this.books.forEach(element => {
             element.trailers.forEach(each => {
               let aux = JSON.parse(each as string) as Trailer;
-              this.trailers.push(JSON.parse(each as string) as Trailer);
+              var video, results;
+
+              if (aux.video === null) {
+                return '';
+              }
+              results = aux.video.match('[\\?&]v=([^&#]*)');
+              video = (results === null) ? aux.video : results[1];
+
+              aux.video = this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video) as string;
+              this.trailers.push(aux);
             })
           });;
           this.trailers.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-          this.trailers=this.trailers.slice(0,10);
+          this.trailers = this.trailers.slice(0, 10);
         });
     })
   }
@@ -49,16 +58,6 @@ export class ListarTrailersComponent implements OnInit {
     return this.authService.isAdmin();
   }
 
-  getVideoIframe(url) {
-    var video, results;
-
-    if (url === null) {
-      return '';
-    }
-    results = url.match('[\\?&]v=([^&#]*)');
-    video = (results === null) ? url : results[1];
-
-    return this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);
-  }
+  
 
 }

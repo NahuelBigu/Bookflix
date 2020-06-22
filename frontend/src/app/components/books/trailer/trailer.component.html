@@ -5,8 +5,7 @@
             <h2 class="my-4">Trailers de {{book.name}}</h2>
         </div>
         <div class="col-3 mt-5">
-            <a class="btn btn-danger btn-block" [routerLink]="['/books/trailer/agregar/',book._id]"
-                *ngIf="isAdmin()">Agregar Trailer</a>
+            <a class="btn btn-danger btn-block" [routerLink]="['/books/trailer/agregar/',book._id]" *ngIf="isAdmin()">Agregar Trailer</a>
         </div>
         <!-- Blog Entries Column -->
 
@@ -18,13 +17,10 @@
         <div class="card mb-4">
             <div class="card-body">
                 <h2 class="card-title">{{trailer.title}}</h2>
-                    <iframe width="560" height="315" [src]="getVideoIframe(trailer.video)" frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen *ngIf="trailer.video"></iframe>
+                <iframe width="560" height="315" [src]="trailer.video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen *ngIf="trailer.video"></iframe>
 
                 <p class="card-text" *ngIf="trailer.video">{{trailer.text}}</p>
-                <a (click)="eliminarTrailer(trailer)" style="color:white" class="btn btn-danger mx-2"
-                    *ngIf="isAdmin()">Eliminar trailer &rarr;</a>
+                <a (click)="eliminarTrailer(trailer)" style="color:white" class="btn btn-danger mx-2" *ngIf="isAdmin()">Eliminar trailer &rarr;</a>
                 <a class="btn mx-2" style="background-color:gainsboro;color:black" [routerLink]="['/books/trailer/editar/',book._id,i]" *ngIf="isAdmin()">Editar trailer
                     &rarr;</a>
             </div>

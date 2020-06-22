@@ -6,10 +6,13 @@ const Genero = require('../models/Genero');
 const findCtrl = {};
 
 findCtrl.getFind = async(req, res) => {
-    const autor = await Autor.find().select('name');
-    const genero = await Genero.find().select('name');
-    const editoriales = await Editorial.find().select('name');
-    const books = await Book.find().select('name');
+    var autor = await Autor.find().select('name');
+    var genero = await Genero.find().select('name');
+    var editoriales = await Editorial.find().select('name');
+    var books = await Book.find()
+    books = books.filter(function(x) { return (x.active && Date.parse(x.duedate) > (new Date)) })
+    books = books.map(function(x) { return { "_id": x._id, "name": x.name } });
+
     res.json({ books, autor, genero, editoriales });
 }
 
@@ -28,6 +31,7 @@ findCtrl.search = async(req, res) => {
 
         ) { books.push(element) }
     })
+    books = books.filter(function(x) { return (x.active && Date.parse(x.duedate) > (new Date)) })
     res.json(books);
 }
 

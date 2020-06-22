@@ -15,10 +15,8 @@
             <div class="card mb-4">
                 <div class="card-body ">
                     <h2 class="card-title ">{{trailer.title}}</h2>
-                    <p class="card-text "*ngIf="trailer.text">{{trailer.text}}</p>
-                    <iframe width="560" *ngIf="trailer.video" height="315" [src]="getVideoIframe(trailer.video)" frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                    <p class="card-text " *ngIf="trailer.text">{{trailer.text}}</p>
+                    <iframe width="560" *ngIf="trailer.video" height="315" [src]="trailer.video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <!-- <a [routerLink]="[ '/trailer/', noticia._id] " class="btn btn-primary ">Seguir leyendo &rarr;</a> -->
                 </div>
                 <div class="card-footer text-muted ">
