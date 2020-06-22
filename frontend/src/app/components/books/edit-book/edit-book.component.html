@@ -99,8 +99,15 @@
                                     <div class="form-group">
                                         <input type="text" [(ngModel)]="book.image" name="book.image" class="form-control" placeholder="URL de la imagen" autofocus>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="text" [(ngModel)]="book.bookPDF" name="book.bookPDF" class="form-control" placeholder="URL del PDF" autofocus>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                          <button class="btn btn-outline-danger" type="button" id="inputGroupFileAddon03" (click)="deleteBookPdf()"><i class="fa fa-user-minus"></i></button>
+                                        </div>
+                                        <div class="custom-file">
+                                          <input type="file" class="custom-file-input is-invalid" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" (change)="onFileChange($event)">
+                                          <label class="custom-file-label" for="inputGroupFile03" style="color: black">{{book.bookPDF}}</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

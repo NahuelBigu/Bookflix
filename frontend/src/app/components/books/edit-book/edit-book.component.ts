@@ -9,6 +9,7 @@ import { Genero } from 'src/app/models/genero';
 import { AutorService } from 'src/app/services/autor/autor.service';
 import { GeneroService } from 'src/app/services/genero/genero.service';
 import { EditorialService } from 'src/app/services/editorial/editorial.service';
+import { UploadService } from 'src/app/services/books/upload.service';
 
 @Component({
   selector: 'app-edit-book',
@@ -27,10 +28,13 @@ export class EditBookComponent implements OnInit {
   autorAdd: boolean = false;
   generoAdd: boolean = false;
   editorialAdd: boolean = false;
+  file: File;
+  hayArchivos: boolean;
+  files = Array<File>();
   
   constructor(private autorService: AutorService,private generoService: GeneroService,
      private editorialService: EditorialService,private ruta: ActivatedRoute,
-      private router: Router, private bookService: BookService) {
+      private router: Router, private bookService: BookService, private uploadService: UploadService) {
     this.ruta.params.subscribe(params => {
       this.bookService.getBook(params['id'])
         .subscribe(data => {
@@ -58,12 +62,31 @@ export class EditBookComponent implements OnInit {
   editBook(){
     this.error=this.validate();
     if (this.error==''){
+      let formdata= new FormData();
+      for(let i=0; i<this.files.length; i++){
+        if(this.files[i]){
+          this.hayArchivos=true;
+           formdata.append("upload[]",this.files[i],this.book.isbn+"-"+i+".pdf");
+          this.book.chapters[i]=this.book.isbn+"-"+i+".pdf";
+        }
+      }
+      if(this.file){
+        this.hayArchivos=true;
+        formdata.append("upload[]",this.file,this.book.isbn+"-complete.pdf");
+        this.book.bookPDF= this.book.isbn+"-complete.pdf";
+      }
+      if(this.hayArchivos){
+      this.uploadService.uploadFile(formdata).subscribe((res)=> {
+        console.log('response received is ', res);
+      });
+    }
     this.bookService.putBook(this.book)
       .subscribe(res => {
         this.router.navigate(["/books/book/"+this.book._id]);
       },err => this.error=err.error);
     }
   }
+
   addAutor(){
     if (this.autor.name!=''){
       this.autorService.postAutor(this.autor)
@@ -97,5 +120,19 @@ export class EditBookComponent implements OnInit {
     
   }
 
+  deleteBookPdf(){
+    this.book.bookPDF='';
+  }
+
+  onFileSelect(e, index){
+    console.log(e)
+    this.files[index]= e.target.files[0];
+    this.book.chapters[index]= this.files[index].name;
+  }
+ 
+  onFileChange(e){console.log(e)
+   this.file= e.target.files[0];
+   this.book.bookPDF=this.file.name;
+  }
   
 }
