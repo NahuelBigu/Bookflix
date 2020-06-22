@@ -63,7 +63,6 @@ export class TrailerComponent implements OnInit {
     }
     results = url.match('[\\?&]v=([^&#]*)');
     video   = (results === null) ? url : results[1];
- 
     return this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);   
 }
 

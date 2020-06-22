@@ -22,7 +22,7 @@
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen *ngIf="trailer.video"></iframe>
 
-                <p class="card-text" *ngIf="trailer.video">{{trailer.text}}</p>
+                <p class="card-text" *ngIf="trailer.text">{{trailer.text}}</p>
                 <a (click)="eliminarTrailer(trailer)" style="color:white" class="btn btn-danger mx-2"
                     *ngIf="isAdmin()">Eliminar trailer &rarr;</a>
                 <a class="btn mx-2" style="background-color:gainsboro;color:black" [routerLink]="['/books/trailer/editar/',book._id,i]" *ngIf="isAdmin()">Editar trailer
