@@ -21,7 +21,7 @@ export class ListarTrailersComponent implements OnInit {
   book: Book;
   books: Array<Book>;
   error: String = '';
-  trailers: Array<Trailer> = new Array<Trailer>();
+  trailers: Array<any> = new Array<any>();
 
 
   constructor(private _sanitizer: DomSanitizer
@@ -35,13 +35,13 @@ export class ListarTrailersComponent implements OnInit {
               let aux = JSON.parse(each as string) as Trailer;
               var video, results;
 
-              if (aux.video === null) {
-                return '';
+              if (aux.video != null && aux.video != "" ) {
+                results = aux.video.match('[\\?&]v=([^&#]*)');
+                video = (results === null) ? aux.video : results[1];
+                aux.video = this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video) as string; 
               }
-              results = aux.video.match('[\\?&]v=([^&#]*)');
-              video = (results === null) ? aux.video : results[1];
-
-              aux.video = this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video) as string;
+              aux['bookid']= element._id;
+              aux['bookname']= element.name;
               this.trailers.push(aux);
             })
           });;
