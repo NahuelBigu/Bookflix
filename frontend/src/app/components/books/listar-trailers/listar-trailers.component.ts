@@ -17,31 +17,31 @@ export class ListarTrailersComponent implements OnInit {
 
   data: any;
   totalRecords: number;
-  page: number=1;
+  page: number = 1;
   book: Book;
+  books: Array<Book>;
   error: String = '';
   trailers: Array<Trailer> = new Array<Trailer>();
 
 
   constructor(private _sanitizer: DomSanitizer
-    , private ruta: ActivatedRoute, private router: Router, private bookService: BookService, private authService: AuthService) { 
-      this.ruta.params.subscribe(params => {
-        this.bookService.getBook(params['id'])
-          .subscribe(data => {
-            this.book = data as Book;
-            this.book.trailers.forEach(element => {
-              let aux = JSON.parse(element as string) as Trailer;
-              //let aux=trailer.video.lastIndexOf("/");
-              //trailer.video= trailer.video.slice(0, aux) + "/embed" +trailer.video.slice(aux);
-              //console.log(aux);
-              this.trailers.push(JSON.parse(element as string) as Trailer);
-  
-  
-            });;
-  
-          });
-      })
-    }
+    , private ruta: ActivatedRoute, private router: Router, private bookService: BookService, private authService: AuthService) {
+    this.ruta.params.subscribe(params => {
+      this.bookService.getBooks()
+        .subscribe(data => {
+          this.books = data as Array<Book>;
+          this.books.forEach(element => {
+            element.trailers.forEach(each => {
+              let aux = JSON.parse(each as string) as Trailer;
+              this.trailers.push(JSON.parse(each as string) as Trailer);
+            })
+          });;
+          console.log(this.trailers[0].createdAt);
+          this.trailers.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+          this.trailers=this.trailers.slice(0,10);
+        });
+    })
+  }
 
   ngOnInit(): void {
   }
@@ -52,14 +52,14 @@ export class ListarTrailersComponent implements OnInit {
 
   getVideoIframe(url) {
     var video, results;
- 
+
     if (url === null) {
-        return '';
+      return '';
     }
     results = url.match('[\\?&]v=([^&#]*)');
-    video   = (results === null) ? url : results[1];
- 
-    return this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);   
-}
+    video = (results === null) ? url : results[1];
+
+    return this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);
+  }
 
 }
