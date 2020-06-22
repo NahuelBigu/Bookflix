@@ -32,6 +32,7 @@ export class TrailerNewOrEditComponent implements OnInit {
   onSubmit(){
     this.trailer.createdAt=new Date;
     if (!this.trailer.title) return this.error='Se necesita especificar el titulo del trailer';
+    if (!this.trailer.video || !this.trailer.text) return this.error='Se necesita especificar el url del video o texto del cuerpo';
     this.trailerString=JSON.stringify(this.trailer);
     this.book.trailers.push(this.trailerString);
     this.bookService.putBook(this.book).subscribe();
