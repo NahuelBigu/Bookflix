@@ -29,7 +29,14 @@ export class TrailerComponent implements OnInit {
             //let aux=trailer.video.lastIndexOf("/");
             //trailer.video= trailer.video.slice(0, aux) + "/embed" +trailer.video.slice(aux);
             //console.log(aux);
-            this.trailers.push(JSON.parse(element as string) as Trailer);
+            var video, results;
+
+            if (aux.video != null && aux.video != "" ) {
+              results = aux.video.match('[\\?&]v=([^&#]*)');
+              video = (results === null) ? aux.video : results[1];
+              aux.video = this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video) as string; 
+            }
+            this.trailers.push(aux);
 
 
           });;
@@ -45,27 +52,17 @@ export class TrailerComponent implements OnInit {
     return this.authService.isAdmin();
   }
 
-  eliminarTrailer(trailer: String) {
-    const index = this.book.trailers.indexOf(JSON.stringify(trailer), 0);
+  eliminarTrailer(trailer) {
+    const index = this.trailers.indexOf(trailer);
     if (index > -1) {
       this.book.trailers.splice(index, 1);
       this.trailers.splice(index, 1);
+      this.bookService.putBook(this.book).subscribe();
     }
+
     
-    this.bookService.putBook(this.book).subscribe();
   }
 
-  getVideoIframe(url) {
-    var video, results;
- 
-    if (url === null) {
-        return '';
-    }
-    results = url.match('[\\?&]v=([^&#]*)');
-    video   = (results === null) ? url : results[1];
- 
-    return this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);   
-}
 
 
 }

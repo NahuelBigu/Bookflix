@@ -15,10 +15,12 @@
             <div class="card mb-4">
                 <div class="card-body ">
                     <h2 class="card-title ">{{trailer.title}}</h2>
-                    <p class="card-text "*ngIf="trailer.text">{{trailer.text}}</p>
-                    <iframe width="560" *ngIf="trailer.video" height="315" [src]="getVideoIframe(trailer.video)" frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                    <a [routerLink]="['/books/book/',trailer.bookid]"><span class="badge badge-danger" style="font-size: 100%">{{trailer.bookname}}</span></a>
+                    <div class="card-text mt-2">
+                        <p *ngIf="trailer.text">{{trailer.text}}</p>
+                        <iframe width="560" *ngIf="trailer.video" height="315" [src]="trailer.video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+
                     <!-- <a [routerLink]="[ '/trailer/', noticia._id] " class="btn btn-primary ">Seguir leyendo &rarr;</a> -->
                 </div>
                 <div class="card-footer text-muted ">
