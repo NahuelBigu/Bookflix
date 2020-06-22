@@ -13,7 +13,7 @@
                       
                             <p class="h6 mr-1 ml-1" style="overflow: hidden;">{{book.synopsis.substring(0, 300 - 3) + "..."}}</p>        
                             <button [routerLink]="['/books/book/',book._id]" class="btn  btn-danger btn-block mt-auto button-libros-left mr-5">
-                                Leer
+                                Ver mas
                         </button>
                      
                     </div>
@@ -23,7 +23,7 @@
         </li>
     </ul>
 </div>
-
+<!--
 <div class="container" *ngIf="favs && favs.length > 0">
     <p class="h5 ml-1">Libros Favoritos</p>
     <ul id="favoritos">
@@ -39,7 +39,7 @@
                       
                             <p class="h6 mr-1 ml-1" style="overflow: hidden;">{{book.synopsis.substring(0, 300 - 3) + "..."}}</p>        
                             <button [routerLink]="['/books/book/',book._id]" class="btn  btn-danger btn-block mt-auto button-libros-left mr-5">
-                                Leer
+                                Ver mas
                         </button>
                      
                     </div>
@@ -49,7 +49,7 @@
         </li>
     </ul>
 </div>
-
+-->
 <div class="container" *ngIf="history && history.length > 0">
     <p class="h5 ml-1">Historial</p>
     <ul id="historial">
@@ -65,7 +65,7 @@
                       
                             <p class="h6 mr-1 ml-1" style="overflow: hidden;">{{book.synopsis.substring(0, 300 - 3) + "..."}}</p>        
                             <button [routerLink]="['/books/book/',book._id]" class="btn  btn-danger btn-block mt-auto button-libros-left mr-5">
-                                    Leer
+                                Ver mas
                             </button>
                             
                      
@@ -93,7 +93,7 @@
                       
                             <p class="h6 mr-1 ml-1" style="overflow: hidden;">{{book.synopsis.substring(0, 300 - 3) + "..."}}</p>        
                             <button [routerLink]="['/books/book/',book._id]" class="btn  btn-danger btn-block mt-auto button-libros-left mr-5">
-                                Leer
+                                Ver mas
                         </button>
                      
                     </div>

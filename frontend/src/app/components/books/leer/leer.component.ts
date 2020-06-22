@@ -19,12 +19,17 @@ export class LeerComponent implements OnInit {
       this.bookService.getBook(params['id'])
         .subscribe(data => {
           this.book= data as Book;
-          this.cap=params['cap'];
+          
           if ((this.book.active==false)||(new Date(this.book.duedate as string) < (new Date))) {
             this.error="El libro no se encuentra activo en este momento";
           }else{
+            if(params['cap'] != "completo"){
+            this.cap=params['cap'];
             this.url=this._sanitizer.bypassSecurityTrustResourceUrl("http://localhost:3000/api/pdf/"+this.book.chapters[this.cap]);
-            console.log(this.url)
+            }else{
+              this.url=this._sanitizer.bypassSecurityTrustResourceUrl("http://localhost:3000/api/pdf/"+this.book.bookPDF);
+            }
+            
           }
         });
     })

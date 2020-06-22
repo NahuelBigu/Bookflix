@@ -7,11 +7,12 @@
                         <div class="row">
                             <div class="col-4">
                                 <img src="{{book.image}}" alt="Portada de {{book.name}}" style="position: relative ; z-index: -1; " class="imagen card-img-top">
-
-                                <div class="text-center mt-2">
+                                <!--
+                                <div class="text-center mt-2" style="min-height: 4.5rem;">
                                     <input id="toggle-heart" type="checkbox" (click)="agregarFav()" [checked]="fav" />
                                     <label for="toggle-heart">❤</label>
                                 </div>
+                                -->
                             </div>
                             <div class="col-8">
                                 <div class="row align-items-center">
@@ -28,34 +29,37 @@
                                 <button [routerLink]="['/books/trailer/',book._id]" class="btn btn-block btn-outline-danger">
                                     Ver trailers
                                 </button>
+                                <button *ngIf="isAdmin()&&book" [routerLink]="['/books/edit/',book._id]" class="btn btn-block btn-outline-danger">
+                                    Editar Libro
+                                </button>
                             </div>
                         </div>
                     </ng-container>
-                    <div class="row mt-2">
-                        <div class="col-4"></div>
-                        <div class="col-8">
-                            <button *ngIf="isAdmin()&&book" [routerLink]="['/books/edit/',book._id]" class="btn btn-block btn-outline-danger">
-                                Editar Libro
-                            </button>
-                        </div>
 
-                    </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-8">
                             <p class="h5">Capitulos </p>
                         </div>
                         <div class="col-4 text-right">
-                            <button class="btn btn-outline-danger" type="button" (click)="terminar()" *ngIf="!termine">Terminar</button>
+                            <button class="btn btn-outline-danger mr-1" type="button" (click)="sacarDeLeidos()" *ngIf="leyendo">Dejar de leer</button>
+                            <button class="btn btn-outline-danger" type="button" (click)="terminar()" *ngIf="!termine && leyendo">Terminar</button>
                             <button class="btn btn-outline-danger" type="button" (click)="sacarDelHistorial()" *ngIf="termine">Sacar de Historial</button>
                         </div>
                     </div>
                     <div>
                         <ul class="list-group mt-3 mb-3 " style="border-radius: 13px 13px 13px 13px;">
+                            <li class="list-group-item " *ngIf="book.bookPDF != null && book.bookPDF != '' ">
+                                <div class="row d-flex justify-content-between align-items-center">
+                                    <div class="col-10" style="cursor:pointer">
+                                        <a (click)="verCapitulo(-1)" [routerLink]="['/books/leer/', book._id , 'completo']" style="color: rgb(168, 168, 168);">Libro Completo</a>
+                                    </div>
+                                </div>
+                            </li>
                             <ng-container *ngFor="let chapter of book.chapters; index as i">
-                                <li class="list-group-item " *ngIf="chapter != null">
+                                <li class="list-group-item " *ngIf="chapter != null && chapter != '' ">
                                     <div class="row d-flex justify-content-between align-items-center">
                                         <div class="col-10" style="cursor:pointer">
-                                            <a [routerLink]="['/books/leer/', book._id , i]" style="color: rgb(168, 168, 168);">Capitulo {{i+1}}  </a>
+                                            <a (click)="verCapitulo(i)" [routerLink]="['/books/leer/', book._id , i]" style="color: rgb(168, 168, 168);">Capitulo {{i+1}}  </a>
                                         </div>
                                         <div class="col-2 text-right" (click)="verCapitulo(i)">
                                             <i class="" style="cursor:pointer" [ngClass]="leido(i) ? 'fas fa-eye leido' : 'far fa-eye-slash'  "></i>

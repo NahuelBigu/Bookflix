@@ -46,6 +46,7 @@ export class CargarLibroComponent implements OnInit {
     this.book.genre="Genero";
     this.book.editorial="Editorial";
     this.book.chapters=new Array<String>();
+    this.book.isbn="";
   }
 
   validate(){
@@ -62,14 +63,18 @@ export class CargarLibroComponent implements OnInit {
       for(let i=0; i<this.files.length; i++){
         if(this.files[i]){
           this.hayArchivos=true;
-           formdata.append("upload[]",this.files[i],this.book.isbn+"-"+i+".pdf");
-          this.book.chapters[i]=this.book.isbn+"-"+i+".pdf";
+           formdata.append("upload[]",this.files[i],this.book.isbn+"-"+(i+1)+".pdf");
+          this.book.chapters[i]=this.book.isbn+"-"+(i+1)+".pdf";
+        }else{
+          this.book.chapters[i]="";
         }
       }
       if(this.file){
         this.hayArchivos=true;
-        formdata.append("upload[]",this.file,this.book.isbn+"-complete.pdf");
-        this.book.bookPDF= this.book.isbn+"-complete.pdf";
+        formdata.append("upload[]",this.file,this.book.isbn+"-completo.pdf");
+        this.book.bookPDF= this.book.isbn+"-completo.pdf";
+      }else{
+        this.book.bookPDF=""
       }
       if(this.hayArchivos){
       this.uploadService.uploadFile(formdata).subscribe((res)=> {
@@ -136,11 +141,24 @@ export class CargarLibroComponent implements OnInit {
  }
 
  onFileSelect(e, index){
-   console.log(e)
+   
    this.files[index]= e.target.files[0];
+   this.book.chapters[index]= this.book.isbn+"-"+(index+1)+".pdf";
  }
 
- onFileChange(e){console.log(e)
+ onFileChange(e){
   this.file= e.target.files[0];
+  this.book.bookPDF= this.book.isbn+"-completo.pdf";
  }
+ 
+ isbnChange(){
+  for(let i=0; i<this.book.chapters.length; i++){
+    if(this.book.chapters[i] != ""  && this.book.chapters[i] != null){
+       this.book.chapters[i]=this.book.isbn+"-"+(i+1)+".pdf";
+    }
+  }
+  if(this.book.bookPDF != ""){
+    this.book.bookPDF= this.book.isbn+"-completo.pdf";
+  }
+}
 }

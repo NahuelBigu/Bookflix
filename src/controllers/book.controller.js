@@ -1,4 +1,5 @@
 const Book = require('../models/Book');
+var fs = require('fs');
 
 const bookCtrl = {};
 
@@ -74,7 +75,7 @@ bookCtrl.editBook = async(req, res) => {
     if ((libroAux != null) && !(libroAux._id.equals(book._id))) return res.status(401).send('Libro duplicado');
 
     book.name = req.body.name;
-    book.isbn = req.body.isbn;
+
     book.synopsis = req.body.synopsis;
     book.author = req.body.author;
     book.genre = req.body.genre;
@@ -83,6 +84,22 @@ bookCtrl.editBook = async(req, res) => {
     book.bookPDF = req.body.bookPDF;
     book.duedate = req.body.duedate;
     book.trailers = req.body.trailers;
+
+    if (book.isbn != req.body.isbn) {
+
+        for (let index = 0; index < book.chapters.length; index++) {
+            if (book.chapters[index] != "") {
+                if (req.body.chapters[index] != "") {
+                    fs.rename("src\\pdfs\\" + book.chapters[index], "src\\pdfs\\" + req.body.chapters[index], function(err) {
+                        if (err) console.log('ERROR: ' + err);
+                    })
+                } else {
+                    fs.unlinkSync("src\\pdfs\\" + book.chapters[index]);
+                }
+            }
+        }
+    }
+    book.isbn = req.body.isbn;
     book.chapters = req.body.chapters;
     book.maxChapters = req.body.maxChapters;
 

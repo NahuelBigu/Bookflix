@@ -15,7 +15,7 @@ export class BookSampleComponent implements OnInit {
   book: Book;
   error: String ='';
   termine=false;
-  
+  leyendo=false;
 
   constructor(private ruta: ActivatedRoute, private router: Router, private bookService: BookService, private authService: AuthService) {
     this.ruta.params.subscribe(params => {
@@ -28,7 +28,7 @@ export class BookSampleComponent implements OnInit {
           this.capLeidos=this.bookService.getCapLeidos(this.book);
           this.fav=this.bookService.getFav(this.book._id);
           this.termine = this.bookService.termineLibro(this.book._id);
-          
+          this.leyendo = this.capLeidos != -1 ;
         });
     })
     
@@ -50,8 +50,11 @@ export class BookSampleComponent implements OnInit {
       this.sacarDelHistorial();
     }
     this.capLeidos=this.bookService.setCapLeido(libro);
-    
+    this.leyendo=true;
   }
+  
+
+  
   leido(i){
     return (this.termine)||(this.capLeidos >= i+1)
   }
@@ -60,9 +63,16 @@ export class BookSampleComponent implements OnInit {
   } 
   terminar(){
     this.termine =this.bookService.setHistory(this.book._id);
+    this.leyendo=false;
   }
   sacarDelHistorial(){
     this.termine =this.bookService.removeHistory(this.book._id);
     this.capLeidos=0;
   }
+  sacarDeLeidos(){
+    this.bookService.removeReading(this.book._id);
+    this.capLeidos=0;
+    this.leyendo=false;
+ }
+
 }

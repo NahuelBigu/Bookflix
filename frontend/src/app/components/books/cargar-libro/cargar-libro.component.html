@@ -15,7 +15,7 @@
                         </div>
                         <hr style="border: 0.5px solid black">
                         <div class="form-group">
-                            <input type="text" [(ngModel)]="book.isbn" name="book.isbn" class="form-control" placeholder="ISBN" autofocus>
+                            <input type="text" [(ngModel)]="book.isbn" (ngModelChange)="isbnChange()" name="book.isbn" class="form-control" placeholder="ISBN" autofocus>
                         </div>
                         <hr style="border: 0.5px solid black">
                         <div class="row mx-0 my-3" *ngIf="autorAdd==true">
@@ -106,7 +106,7 @@
                             <div class="input-group mb-3">
                                 <div class="custom-file">
                                     <input type="file" name="urlpdf" class="form-control custom-file-input is-invalid" (change)="onFileChange($event)">
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                    <label class="custom-file-label" for="inputGroupFile01" style="color: black;">Seleccionar archivo</label>
                                 </div>
                             </div>
                         </div>
@@ -117,24 +117,25 @@
                         <hr style="border: 0.5px solid black">
                         <div class="form-group">
                             <p class="ml-1">Fecha de vencimiento</p>
-                            <input type="date"  [(ngModel)]="book.duedate" name="book.duedate" class="form-control"autofocus>
+                            <input type="date" [(ngModel)]="book.duedate" name="book.duedate" class="form-control" autofocus>
                         </div>
                         <hr style="border: 0.5px solid black">
 
-                    
+
                         <div class="form-group">
                             <input type="number" [(ngModel)]="book.maxChapters" (ngModelChange)="chapterChanged()" name="book.maxChapters" class="form-control" placeholder="Cantidad de capitulos" autofocus>
                         </div>
-                        <div class="form-group mt-3" *ngFor="let number of arrayOfIndex; index as i">
+                        <div class="form-group mt-3" *ngFor="let b of book.chapters; index as i">
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" class="form-control mt-1 custom-file-input is-invalid" name="Capitulo {{i}}" placeholder="URL del Capitulo {{i+1}}" (change)="onFileSelect($event, i)">
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                    <label class="custom-file-label" for="inputGroupFile01" style="color: black;" *ngIf="b!=null">{{b}}</label>
+                                    <label class="custom-file-label" for="inputGroupFile01" style="color: black;" *ngIf="b==null">Seleccionar archivo</label>
                                 </div>
                             </div>
                         </div>
 
-                     
+
                         <hr style="border: 0.5px solid black">
                         <button type="submit" class="btn btn-block btn-outline-danger">
                             Cargar libro

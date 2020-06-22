@@ -28,9 +28,10 @@ export class EditBookComponent implements OnInit {
   autorAdd: boolean = false;
   generoAdd: boolean = false;
   editorialAdd: boolean = false;
+  arrayOfIndex =new Array<Number>();
   file: File;
   hayArchivos: boolean;
-  files = Array<File>();
+  files = new Array<File>();
   
   constructor(private autorService: AutorService,private generoService: GeneroService,
      private editorialService: EditorialService,private ruta: ActivatedRoute,
@@ -39,6 +40,7 @@ export class EditBookComponent implements OnInit {
       this.bookService.getBook(params['id'])
         .subscribe(data => {
           this.book= data as Book; 
+
         },err => this.error=err.error);
     })
    }
@@ -66,14 +68,14 @@ export class EditBookComponent implements OnInit {
       for(let i=0; i<this.files.length; i++){
         if(this.files[i]){
           this.hayArchivos=true;
-           formdata.append("upload[]",this.files[i],this.book.isbn+"-"+i+".pdf");
-          this.book.chapters[i]=this.book.isbn+"-"+i+".pdf";
+           formdata.append("upload[]",this.files[i],this.book.isbn+"-"+(i+1)+".pdf");
+          this.book.chapters[i]=this.book.isbn+"-"+(i+1)+".pdf";
         }
       }
       if(this.file){
         this.hayArchivos=true;
-        formdata.append("upload[]",this.file,this.book.isbn+"-complete.pdf");
-        this.book.bookPDF= this.book.isbn+"-complete.pdf";
+        formdata.append("upload[]",this.file,this.book.isbn+"-completo.pdf");
+        this.book.bookPDF= this.book.isbn+"-completo.pdf";
       }
       if(this.hayArchivos){
       this.uploadService.uploadFile(formdata).subscribe((res)=> {
@@ -120,19 +122,48 @@ export class EditBookComponent implements OnInit {
     
   }
 
+  chapterChanged()
+  {
+    var aux1= this.book.chapters;
+   this.book.chapters= new Array(this.book.maxChapters);
+   var aux2= this.files;
+   this.files= new Array(this.book.maxChapters);
+   for (let i=0;i<this.book.chapters.length && i<aux1.length ;i++) {
+     this.book.chapters[i]=aux1[i];
+     this.files[i]=aux2[i];
+   }
+
+   this.arrayOfIndex= new Array();
+   for (let i=0;i<this.book.maxChapters;i++) {
+     this.arrayOfIndex[i]=i;
+   }
+ }
+
   deleteBookPdf(){
     this.book.bookPDF='';
   }
+  deleteChapter(i){
+    this.book.chapters[i]='';
+  }
 
   onFileSelect(e, index){
-    console.log(e)
     this.files[index]= e.target.files[0];
-    this.book.chapters[index]= this.files[index].name;
+    this.book.chapters[index]= this.book.isbn+"-"+(index+1)+".pdf";
   }
  
-  onFileChange(e){console.log(e)
+  onFileChange(e){
    this.file= e.target.files[0];
-   this.book.bookPDF=this.file.name;
+   this.book.bookPDF= this.book.isbn+"-completo.pdf";
   }
-  
+
+  isbnChange(){
+    for(let i=0; i<this.book.chapters.length; i++){
+      if(this.book.chapters[i] != ""  && this.book.chapters[i] != null){
+         this.book.chapters[i]=this.book.isbn+"-"+(i+1)+".pdf";
+      }
+    }
+    if(this.book.bookPDF != ""){
+      this.book.bookPDF= this.book.isbn+"-completo.pdf";
+    }
+  }
 }

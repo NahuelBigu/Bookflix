@@ -20,7 +20,7 @@
                                         <input type="text" [(ngModel)]="book.name" name="name" class="form-control" placeholder="Titulo" autofocus>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" [(ngModel)]="book.isbn" name="book.isbn" class="form-control" placeholder="ISBN" autofocus>
+                                        <input type="text" [(ngModel)]="book.isbn" (ngModelChange)="isbnChange()" name="book.isbn" class="form-control" placeholder="ISBN" autofocus>
                                     </div>
                                     <div class="form-group">
                                         <p class="ml-1">Fecha de vencimiento</p>
@@ -102,11 +102,11 @@
 
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                          <button class="btn btn-outline-danger" type="button" id="inputGroupFileAddon03" (click)="deleteBookPdf()"><i class="fa fa-user-minus"></i></button>
+                                            <button class="btn btn-outline-danger" type="button" id="inputGroupFileAddon03" (click)="deleteBookPdf()"><i class="fa fa-trash-alt"></i></button>
                                         </div>
                                         <div class="custom-file">
-                                          <input type="file" class="custom-file-input is-invalid" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" (change)="onFileChange($event)">
-                                          <label class="custom-file-label" for="inputGroupFile03" style="color: black">{{book.bookPDF}}</label>
+                                            <input type="file" class="custom-file-input is-invalid" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" (change)="onFileChange($event)">
+                                            <label class="custom-file-label" for="inputGroupFile03" style="color: black">{{book.bookPDF}}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -116,6 +116,20 @@
                             <div class="pr-2">
                                 <div class="form-group">
                                     <textarea type="text" [(ngModel)]="book.synopsis" name="synopsis" class="form-control" placeholder="Sinopsis" rows="4" autofocus></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" [(ngModel)]="book.maxChapters" (ngModelChange)="chapterChanged()" name="book.maxChapters" class="form-control" placeholder="Cantidad de capitulos" autofocus>
+                                </div>
+                                <div class="form-group mt-3" *ngFor="let b of book.chapters; index as i">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-danger" type="button" id="inputGroupFileAddon03" (click)="deleteChapter(i)"><i class="fa fa-trash-alt"></i></button>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="form-control mt-1 custom-file-input is-invalid" name="Capitulo {{i}}" placeholder="URL del Capitulo {{i+1}}" (change)="onFileSelect($event, i)">
+                                            <label class="custom-file-label" for="inputGroupFile01" style="color: black">{{b}}</label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-block btn-outline-danger">
                                     Editar Libro

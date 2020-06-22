@@ -58,7 +58,14 @@ export class BookService {
 
    return true
   }
- 
+  removeReading(_id: string){
+    var profile = JSON.parse(this.localStorageService.getItem('profile'));
+    var aux=profile.reading.map(function(e) { return e.bookId; }).indexOf(_id);
+    if(aux > -1){
+        profile.reading.splice(aux, 1);
+    }
+    this.localStorageService.setItem('profile', JSON.stringify(profile));
+  }
   removeHistory(_id: string) {
     var profile = JSON.parse(this.localStorageService.getItem('profile'));
     var esta = profile.history.indexOf(_id);
@@ -72,7 +79,7 @@ export class BookService {
   
   getCapLeidos(book: Book) {
     var aux = JSON.parse(this.localStorageService.getItem('profile'));
-    var cap = 0;
+    var cap = -1;
     aux.reading.forEach(element => {
       if (element.bookId == book._id) {
         cap = element.capAct;
