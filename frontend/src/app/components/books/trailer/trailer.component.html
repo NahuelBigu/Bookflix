@@ -28,6 +28,9 @@
                 <a class="btn mx-2" style="background-color:gainsboro;color:black" [routerLink]="['/books/trailer/editar/',book._id,i]" *ngIf="isAdmin()">Editar trailer
                     &rarr;</a>
             </div>
+            <div class="card-footer text-muted ">
+                Publicado el {{trailer.createdAt | date: 'MMM dd, yyyy' }}
+            </div>
         </div>
     </div>
 </div>
