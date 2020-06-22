@@ -32,19 +32,19 @@ export class InicioComponent implements OnInit {
     .subscribe(res => {
       
       this.favs = res as Book[];
-      this.arrancarFavs();
+      if(this.favs.length > 0) {this.arrancarFavs();}
     });
     this.bookService.getActiveBooksHistory()
     .subscribe(res => {
       
       this.history = res as Book[];
-      this.arrancarHistory();
+      if(this.history.length > 0) {this.arrancarHistory();}
     });
     this.bookService.getActiveBooksReading()
     .subscribe(res => {
       
       this.reading = res as Book[];
-      this.arrancarReading();
+      if(this.reading.length > 0) {this.arrancarReading();}
     });
     
   }
