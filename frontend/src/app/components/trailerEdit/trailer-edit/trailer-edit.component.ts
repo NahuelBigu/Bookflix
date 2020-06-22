@@ -33,8 +33,6 @@ export class TrailerEditComponent implements OnInit {
 
   onSubmit(){
     if (!this.trailer.title) return this.error='Se necesita especificar el titulo del trailer';
-    if (!this.trailer.video) return this.error='Se necesita especificar el url del video';
-    if (!this.trailer.text) return this.error='Se necesita especificar el cuerpo del trailer';
     this.trailerString=JSON.stringify(this.trailer);
     this.book.trailers[this.i]=this.trailerString;
     this.bookService.putBook(this.book).subscribe();
