@@ -1,0 +1,56 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6" *ngFor="let plan of planes">
+            <div class="card">
+                <div class="card-body">
+                    <div *ngIf="!estado(plan.value); else elseBlock">
+                        <div class="form-group">
+                            <label for="staticEmail" class="col-sm-12 col-form-label">Titulo</label>
+                            <div class="col-sm-12">
+                                <h3>{{plan.name}}</h3>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="staticEmail" class="col-sm-12 col-form-label">Precio</label>
+                            <div class="col-sm-12">
+                                <h3>{{plan.price}}</h3>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="staticEmail" class="col-sm-12 col-form-label">Cantidad de Perfiles</label>
+                            <div class="col-sm-12">
+                                <h3>{{plan.cantProfile}}</h3>
+                            </div>
+                        </div>
+                        <button class="btn btn-danger" type="button" (click)="editar(plan.value)">Edit</button>
+                    </div>
+                    <ng-template #elseBlock>
+                        <div class="form-group">
+                            <label for="staticEmail" class="col-sm-12 col-form-label">Titulo</label>
+                            <div class="col-sm-12">
+                                <input type="text" [(ngModel)]="plan.name" name="name" class="form-control" value="" placeholder="Nombre del Plan">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="staticEmail" class="col-sm-12 col-form-label">Precio</label>
+                            <div class="col-sm-12">
+                                <input type="number" [(ngModel)]="plan.price" name="price" class="form-control" value="" placeholder="Precio">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="staticEmail" class="col-sm-12 col-form-label">Cantidad de perfiles</label>
+                            <div class="col-sm-12">
+                                <input type="text" [(ngModel)]="plan.cantProfile" name="price" class="form-control" value="" placeholder="Cantidad de perfiles">
+                            </div>
+                        </div>
+                        <button class="btn btn-danger mr-2" type="button" (click)="cancelar(plan.value)">Cancelar</button>
+                        <button class="btn btn-danger " type="button" (click)="guardar(plan)">Guardar</button>
+                    </ng-template>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

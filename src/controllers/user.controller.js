@@ -143,6 +143,18 @@ userCtrl.sacarAdmin = async(req, res) => {
     user.save();
     res.json({ 'status': true });
 }
+userCtrl.descenderUser = async(req, res) => {
+    const user = await User.findById(req.params.id);
+    user.plan = 1;
+    user.save();
+    res.json({ 'status': true });
+}
+userCtrl.ascenderUser = async(req, res) => {
+    const user = await User.findById(req.params.id);
+    user.plan = 2;
+    user.save();
+    res.json({ 'status': true });
+}
 userCtrl.iniciarSesion = async(req, res) => {
     const { email, password } = req.body;
 

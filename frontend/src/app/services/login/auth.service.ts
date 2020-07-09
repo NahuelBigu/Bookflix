@@ -51,7 +51,25 @@ export class AuthService {
     return this.http.get<User>(this.URL_API+ '/getUserByToken/'+ this.getCurrentToken());
   }
 
-
+  actualizarUser(): User{
+    var user: User=new User;
+    this.getCurrentUser3().subscribe((data) => {
+        user._id =  data._id; // fijarse si hay que poner dato a dato
+        user.creditCardNumber = data.creditCardNumber;
+        user.creditCardName = data.creditCardName;
+        user.creditCardMM = data.creditCardMM;
+        user.creditCardYY = data.creditCardYY;
+        user.creditCardCVV= data.creditCardCVV;
+        user.email = data.email;
+        user.plan = data.plan;
+        user.password = data.password;
+        user.profiles= data.profiles;
+        user.createdAt=data.createdAt;
+        this.setCurrentUser(user);
+    });
+    
+    return (user);
+  }
   getCurrentUser(): User {
     var user: User=new User;
     var ruta=this.URL_API+ '/getUserByToken/'+ this.getCurrentToken();
@@ -75,6 +93,7 @@ export class AuthService {
   getCurrentUser2() {
     return this.localStorageService.getItem('user');
   }
+  
   setCurrentUser(user){
     this.localStorageService.setItem('user', JSON.stringify(user));
   }

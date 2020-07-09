@@ -12,6 +12,7 @@ export class Book {
     maxChapters: number;
     chapters: Array<String>;
     duedate: String;
-    trailers: Array<String>
+    trailers: Array<String>;
     //Capitulos es un arreglo de Strings y duedate es Date
+    views:number;
 }

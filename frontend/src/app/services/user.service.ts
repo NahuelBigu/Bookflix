@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
+  
+  
   private URL_API= 'http://localhost:3000/api/users'
   constructor(private http: HttpClient) { }
   
@@ -40,5 +42,10 @@ export class UserService {
   habilitar(_id: String){
     return this.http.get(this.URL_API + `/habilitar/${_id}`);
   }
-  
+  ascender(_id: String) {
+    return this.http.get(this.URL_API + `/ascender/${_id}`);
+  }
+  descender(_id: String) {
+    return this.http.get(this.URL_API + `/descender/${_id}`);
+  }
 }

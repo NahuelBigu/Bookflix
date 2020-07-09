@@ -20,8 +20,7 @@
                         <div class="form-group">
                             <select class="form-control" formControlName="plan">
                             <option value="0" selected disabled>Seleccione un plan</option>
-                            <option value="1">Plan comun 5$/mes</option>
-                            <option value="2">Plan familiar 10$/mes</option>
+                            <option *ngFor="let plan of planes" value="plan.value" >{{plan.name}} {{plan.price}}/mes</option>
                           </select>
                         </div>
                         <div class="form-group owner">

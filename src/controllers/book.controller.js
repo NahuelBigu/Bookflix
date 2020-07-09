@@ -42,7 +42,8 @@ bookCtrl.createBook = async(req, res) => {
         duedate: req.body.duedate,
         trailers: req.body.trailers,
         bookPDF: req.body.bookPDF,
-        active: true
+        active: true,
+        views: 0
     })
     await newBook.save();
     res.json({
@@ -102,7 +103,7 @@ bookCtrl.editBook = async(req, res) => {
     book.isbn = req.body.isbn;
     book.chapters = req.body.chapters;
     book.maxChapters = req.body.maxChapters;
-
+    book.views = req.body.views;
     book.save();
 
     res.json({ 'status': 'book updeted' });
@@ -131,4 +132,18 @@ bookCtrl.getSpecificBooks = async(req, res) => {
 }
 
 
+bookCtrl.view = async(req, res) => {
+
+    const book = await Book.findById(req.params.id);
+    book.views = book.views + 1;
+    book.save();
+    res.json({ 'status': 'book view' });
+}
+bookCtrl.unview = async(req, res) => {
+
+    const book = await Book.findById(req.params.id);
+    book.views = book.views - 1;
+    book.save();
+    res.json({ 'status': 'book unview' });
+}
 module.exports = bookCtrl;

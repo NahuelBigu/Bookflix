@@ -14,4 +14,6 @@ router.get('/trailers/:id', auth, book.getBook);
 router.put('/:id', auth, book.editBook);
 router.delete('/:id', auth, book.deleteBook);
 router.post('/specific', auth, book.getSpecificBooks);
+router.get('/view/:id', auth, book.view);
+router.get('/unview/:id', auth, book.unview);
 module.exports = router;

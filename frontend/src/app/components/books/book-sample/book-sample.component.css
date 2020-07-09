@@ -1,5 +1,11 @@
 .imagen {
     object-fit: cover;
+    position: relative;
+    z-index: -1;
+    min-width: 222.656;
+    max-width: 222.656;
+    min-height: 345.281;
+    max-height: 345.281;
 }
 
 .leido {

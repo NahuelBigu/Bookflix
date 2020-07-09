@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import { UserService } from 'src/app/services/user.service';
 import { FormGroup, FormBuilder, Validators, FormControl, ValidationErrors } from '@angular/forms';
 import { User } from 'src/app/models/user';
+import { Plan } from 'src/app/models/Plan';
+import { PlanesService } from '../../../services/plan/planes.service';
 
 
 @Component({
@@ -16,11 +18,12 @@ export class SignupComponent implements OnInit {
   user : User
 
   userForm: FormGroup;
-
+  planes:Plan[];
   constructor(private _builder: FormBuilder,
     private _servicio: AuthService,
-    private router: Router) {
-
+    private router: Router,
+    private planService: PlanesService) {
+    planService.getPlanes().subscribe(p => {this.planes=p as Plan[] } )
     this.userForm = this._builder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required],

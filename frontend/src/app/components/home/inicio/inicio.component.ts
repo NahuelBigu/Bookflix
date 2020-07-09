@@ -52,7 +52,7 @@ export class InicioComponent implements OnInit {
     $(function(){
       var slider= $('#historial').lightSlider({
         item:5,
-        loop:true,
+        loop:false,
         slideMove:1,
         easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
         speed:600,
@@ -97,7 +97,7 @@ export class InicioComponent implements OnInit {
     $(function(){
     var slider= $('#favoritos').lightSlider({
       item:5,
-      loop:true,
+      loop:false,
       slideMove:1,
       easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
       speed:600,
@@ -141,11 +141,12 @@ export class InicioComponent implements OnInit {
     $(function(){
   var slider= $('#libros').lightSlider({
     item:5,
-    loop:true,
+    loop:false,
     slideMove:1,
     easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
     speed:600,
     pause: 8000,
+    slideEndAnimation: false,
     responsive : [
         {
             breakpoint:1200,
@@ -186,7 +187,7 @@ slider.play();
     $(function(){
       var slider= $('#leyendo').lightSlider({
         item:5,
-        loop:true,
+        loop:false,
         slideMove:1,
         easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
         speed:600,

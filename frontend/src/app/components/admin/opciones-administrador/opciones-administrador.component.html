@@ -1,40 +1,53 @@
-<div class="container-fluid m-5">
-    <div class="row">
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
         <div class="col-3 mb-3">
-            <h5 class="card-title">Administrar Noticias</h5>
+            <h5 class="card-title text-center">Administrar Noticias</h5>
             <div class="card">
                 <div class="card-body">
-                    <button class="btn btn-outline-danger mr-2 mt-2 " [routerLink]="['/noticiasadministrador']">Ir a adminsitrar Noticias </button>
-                    <button class="btn btn-outline-danger mt-2" [routerLink]="['/crear-noticia']">Ir a crear Noticias </button>
+                    <div class="text-center">
+                        <button class="btn btn-outline-danger m-2" [routerLink]="['/noticiasadministrador']">Ir a adminsitrar Noticias </button>
+                        <button class="btn btn-outline-danger  m-2" [routerLink]="['/crear-noticia']">Ir a crear Noticias </button>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-1">
         </div>
         <div class="col-3">
-            <h5 class="card-title">Administrar Libros</h5>
+            <h5 class="card-title text-center">Administrar Libros</h5>
             <div class="card">
                 <div class="card-body">
-
-                    <button class="btn btn-outline-danger mr-2 mt-2" [routerLink]="['/administrar-libros']">Ir a adminsitrar Libros </button>
-                    <button class="btn btn-outline-danger mt-2" [routerLink]="['/books/add']">Ir a crear libro </button>
-
+                    <div class="text-center">
+                        <button class="btn btn-outline-danger m-2" [routerLink]="['/administrar-libros']">Ir a adminsitrar Libros </button>
+                        <button class="btn btn-outline-danger m-2 " [routerLink]="['/books/add']">Ir a crear libro </button>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-1">
         </div>
         <div class="col-3 mb-3">
-            <h5 class="card-title">Administrar Usuarios</h5>
+            <h5 class="card-title text-center">Administrar Usuarios</h5>
             <div class="card">
                 <div class="card-body">
-                    <button class="btn btn-outline-danger mr-2 mt-2" [routerLink]="['/administrar-usuarios']">Ir a adminsitrar Usuarios </button>
-
+                    <div class="text-center">
+                        <button class="btn btn-outline-danger m-2" [routerLink]="['/administrar-usuarios']">Ir a adminsitrar Usuarios </button>
+                    </div>
 
                 </div>
             </div>
         </div>
+        <div class="col-3 mb-3">
+            <h5 class="card-title text-center">Administrar Planes</h5>
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+                        <button class="btn btn-outline-danger m-2" [routerLink]="['/administrar-planes']">Ir a adminsitrar Planes </button>
+                    </div>
 
+                </div>
+            </div>
+        </div>
 
 
     </div>

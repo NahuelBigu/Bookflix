@@ -9,6 +9,7 @@
                 <th scope="col">Genero</th>
                 <th scope="col">Editorial</th>
                 <th scope="col">Fecha de vencimiento</th>
+                <th scope="col">Cantidad de leidos</th>
                 <th scope="col">Opciones</th>
             </tr>
         </thead>
@@ -21,6 +22,7 @@
                 <td>{{book.genre}}</td>
                 <td>{{book.editorial}}</td>
                 <td>{{book.duedate}}</td>
+                <td>{{book.views}}</td>
                 <td>
                     <button *ngIf="book.active" (click)="deshabilitar(book)" class="btn btn-outline-danger mr-1" title="Deshabilitar Libro"><i class="fa fa-user-minus"></i></button>
                     <button *ngIf="!book.active" (click)="habilitar(book)" class="btn btn-outline-success mr-1" title="Habilitar Libro"><i class="fa fa-user-plus"></i></button>

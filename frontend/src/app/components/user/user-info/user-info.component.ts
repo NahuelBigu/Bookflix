@@ -3,6 +3,9 @@ import { User } from '../../../models/user';
 import { AuthService } from '../../../services/login/auth.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from "@angular/router";
+import { PlanesService } from '../../../services/plan/planes.service';
+import { Plan } from 'src/app/models/Plan';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-user-info',
@@ -18,10 +21,14 @@ export class UserInfoComponent implements OnInit {
   newPassword: String= "";
   newPasswordRepeated: String= ""; 
   success: boolean=false;
-
+  planes: Plan[];
+  
+  
   constructor(private _authService:AuthService,
-    private router: Router) {
+    private router: Router, private planService: PlanesService , private userService:UserService) {
     this.user=_authService.getCurrentUser();     
+    planService.getPlanes().subscribe(p =>{ this.planes = p as Plan[]; console.log(this.planes);} );
+    
   }
   
   ngOnInit(): void {
@@ -43,4 +50,13 @@ export class UserInfoComponent implements OnInit {
     },err => this.error=err.error);
   }
   
+
+  ascender(){
+    this.userService.ascender(this.user._id).subscribe( a => {this.user=this._authService.actualizarUser();});
+    
+  }
+  descender(){
+    this.userService.descender(this.user._id).subscribe(a => {this.user=this._authService.actualizarUser();});
+    
+  }
 }

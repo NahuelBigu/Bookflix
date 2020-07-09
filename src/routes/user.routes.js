@@ -10,10 +10,12 @@ const auth = require('../middleware/auth');
 router.get('/', auth, user.getUsers);
 router.get('/:id', auth, user.getUser);
 router.get('/habilitar/:id', auth, user.habilitarUser);
-router.get('/hacerAdmin/:id', user.hacerAdmin);
+router.get('/hacerAdmin/:id', auth, user.hacerAdmin);
 router.get('/sacarAdmin/:id', auth, user.sacarAdmin);
 router.get('/getUserByToken/:token', auth, user.getUserByToken);
 
+router.get('/ascender/:id', auth, user.ascenderUser);
+router.get('/descender/:id', auth, user.descenderUser);
 router.put('/:id', user.editUser);
 router.put('/perfiles/:id', user.editarProfile);
 router.delete('/:id', user.deleteUser);

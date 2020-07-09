@@ -26,6 +26,7 @@ import { ListarTrailersComponent } from './components/books/listar-trailers/list
 import { TrailerNewOrEditComponent } from './components/trailerNewOrEdit/trailer-new-or-edit/trailer-new-or-edit.component';
 import { TrailerEditComponent } from './components/trailerEdit/trailer-edit/trailer-edit.component';
 import { LeerComponent } from './components/books/leer/leer.component';
+import { PlanesComponent } from './components/admin/planes/planes.component';
 
 const routes: Routes = [
   {
@@ -133,6 +134,11 @@ const routes: Routes = [
   {
     path: 'administrar-libros',
     component: AllBooksComponent,
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path: 'administrar-planes',
+    component: PlanesComponent,
     canActivate: [AuthGuard, AdminGuard]
   },
   {

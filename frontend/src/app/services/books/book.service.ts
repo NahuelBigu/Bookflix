@@ -46,8 +46,10 @@ export class BookService {
     var esta = profile.history.indexOf(_id);
     if (esta > -1) {
       profile.history.splice(esta, 1);
+      this.unviewBook(_id);
     } else {
       profile.history.push(_id);
+      this.viewBook(_id);
       var aux=profile.reading.map(function(e) { return e.bookId; }).indexOf(_id);
       if(aux > -1){
         profile.reading.splice(aux, 1);
@@ -57,6 +59,12 @@ export class BookService {
     
 
    return true
+  }
+  viewBook(_id: string) {
+    this.http.get(this.URL_API + `/view/${_id}`).subscribe();
+  }
+  unviewBook(_id: string) {
+    this.http.get(this.URL_API + `/unview/${_id}`).subscribe();
   }
   removeReading(_id: string){
     var profile = JSON.parse(this.localStorageService.getItem('profile'));
@@ -71,6 +79,7 @@ export class BookService {
     var esta = profile.history.indexOf(_id);
     if (esta > -1) {
       profile.history.splice(esta, 1);
+      this.unviewBook(_id);
     }
     this.localStorageService.setItem('profile', JSON.stringify(profile));
     
