@@ -18,6 +18,7 @@ router.get('/ascender/:id', auth, user.ascenderUser);
 router.get('/descender/:id', auth, user.descenderUser);
 router.put('/:id', user.editUser);
 router.put('/perfiles/:id', user.editarProfile);
+router.put('/perfiles/agregar/:id', user.crearProfile);
 router.delete('/:id', user.deleteUser);
 
 router.post('/signup', user.createUser);

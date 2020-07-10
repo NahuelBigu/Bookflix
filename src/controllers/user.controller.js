@@ -182,4 +182,17 @@ userCtrl.editarProfile = async(req, res) => {
     res.json({ 'status': "true" });
 }
 
+userCtrl.crearProfile = async(req, res) => {
+    const { id } = req.params;
+    user = await User.findById(id);
+    user.profiles.push(
+        new Profile({
+            name: req.body.name,
+            photo: "../../../../assets/img/perfil"+(Math.floor(Math.random() * 7) + 1  )+".png"
+        })
+    );
+    user.save();
+    res.json({ 'status': "true" });
+}
+
 module.exports = userCtrl;

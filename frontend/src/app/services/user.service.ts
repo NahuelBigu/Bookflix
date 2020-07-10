@@ -48,4 +48,8 @@ export class UserService {
   descender(_id: String) {
     return this.http.get(this.URL_API + `/descender/${_id}`);
   }
+  crearProfile(str, _id) {
+    return this.http.put(this.URL_API + `/perfiles/agregar/${_id}`, {name: str});
+    
+  }
 }
