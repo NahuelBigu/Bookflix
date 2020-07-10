@@ -15,4 +15,5 @@ export class Book {
     trailers: Array<String>;
     //Capitulos es un arreglo de Strings y duedate es Date
     views:number;
+    comments: Array<String>;
 }
