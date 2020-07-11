@@ -15,6 +15,7 @@ const bookSchemma = new Schema({
     chapters: { type: Array, required: true },
     active: { type: Boolean, required: true },
     views: { type: Number, required: true },
+    comments: Array
 }, {
     timestamps: true
 })

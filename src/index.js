@@ -26,6 +26,7 @@ app.use('/api/autors', require('./routes/autor.routes'));
 app.use('/api/generos', require('./routes/genero.routes'));
 app.use('/api/editoriales', require('./routes/editorial.routes'));
 app.use('/api/planes', require('./routes/planes.routes'));
+app.use('/api/comments', require('./routes/comentario.routes'));
 
 
 // subir archivos (no anda en otro lugar F)

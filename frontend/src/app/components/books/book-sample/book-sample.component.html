@@ -1,3 +1,34 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Calificar</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <textarea type="text" [(ngModel)]="comentario.texto" name="texto" id="texto" class="form-control" rows="4"></textarea>
+                <div class="row">
+                    <div class="col-6">
+                        <button class="btn btn-block btn-outline-success m-1 mt-2" (click)="like()"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-block btn-outline-danger m-1 mt-2" (click)="dislike()"><i class="fa fa-thumbs-down" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-outline-danger" (click)="calificar()" data-dismiss="modal">Guardar calificacion</button>
+        </div>
+        </div>
+    </div>
+</div>
+
 <div class="container pt-5" *ngIf="book">
     <div class="row">
         <div class="col-md-8 mx-auto">
@@ -12,6 +43,10 @@
                                     <input id="toggle-heart" type="checkbox" (click)="agregarFav()" [checked]="fav" />
                                     <label for="toggle-heart">❤</label>
                                 </div>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-block btn-outline-danger" *ngIf="puedeComentar" data-toggle="modal" data-target="#exampleModalCenter">
+                                Calificar Libro
+                                </button>
 
                             </div>
                             <div class="col-8">

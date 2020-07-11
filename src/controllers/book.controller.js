@@ -43,7 +43,8 @@ bookCtrl.createBook = async(req, res) => {
         trailers: req.body.trailers,
         bookPDF: req.body.bookPDF,
         active: true,
-        views: 0
+        views: 0,
+        comments: req.body.comments
     })
     await newBook.save();
     res.json({
@@ -103,7 +104,8 @@ bookCtrl.editBook = async(req, res) => {
     book.isbn = req.body.isbn;
     book.chapters = req.body.chapters;
     book.maxChapters = req.body.maxChapters;
-
+    book.views = req.body.views;
+    book.comments = req.body.comments;
     book.save();
 
     res.json({ 'status': 'book updeted' });
