@@ -35,6 +35,7 @@ import { TrailerEditComponent } from './components/trailerEdit/trailer-edit/trai
 import { LeerComponent } from './components/books/leer/leer.component';
 import { PlanesComponent } from './components/admin/planes/planes.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { UserWhitinDatesComponent } from './components/user/user-whitin-dates/user-whitin-dates.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     TrailerEditComponent,
     LeerComponent,
     PlanesComponent,
+    UserWhitinDatesComponent,
    ],
   imports: [
     BrowserModule,

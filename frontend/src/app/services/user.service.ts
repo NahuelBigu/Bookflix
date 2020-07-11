@@ -19,6 +19,11 @@ export class UserService {
     return this.http.get(this.URL_API + `/${_id}`);
   }
 
+  getUserBetweenDates(dateBase: Date, dateLimit: Date) {
+    return this.http.post(this.URL_API + `/user-within-dates`, {dateIni: dateBase,
+      dateFin: dateLimit});
+  }
+
   getUsers() {
     return this.http.get(this.URL_API);
   }

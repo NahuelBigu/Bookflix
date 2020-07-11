@@ -23,6 +23,8 @@ export class UserListComponent implements OnInit {
   buscarUsuarios() {
     this._service.getUsers().subscribe(data => {this.users=data as User[]; this.cargarTabla()});
   }
+
+  
  
   hacerAdmin(user: User){
     this._service.hacerAdmin(user._id).subscribe();
