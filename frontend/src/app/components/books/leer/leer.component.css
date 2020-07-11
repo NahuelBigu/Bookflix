@@ -1,8 +1,51 @@
-.embed-responsive {
-    position: relative;
-    display: block;
-    height: 0;
-    max-height: 100vh;
-    padding: 0;
-    overflow: hidden;
+.pdf-container {
+    max-height: 87vh;
+    top: 64px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+.pdf-container::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+.pdf-container::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(61, 55, 55, 0.5);
+}
+
+.pdf-container::-webkit-scrollbar-corner {
+    background: rgba(0, 0, 0, 0);
+}
+
+.pdf-btn {
+    height: 50px;
+    background-color: rgba(37, 37, 37, 0.685);
+}
+
+.page-selector {
+    color: #CC0000;
+    border-color: #CC0000;
+    background-color: rgba(66, 66, 66, 0);
+}
+
+.page-selector::selection {
+    border-color: #919191;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
 }
