@@ -100,6 +100,7 @@ userCtrl.editUser = async(req, res) => {
     user.creditCardCVV = req.body.user.creditCardCVV;
     user.creditCardMM = req.body.user.creditCardMM;
     user.creditCardYY = req.body.user.creditCardYY;
+    user.active = req.body.user.active;
 
     if (req.body.oldPasswordTry != "") {
         const match = await user.matchPassword(req.body.oldPasswordTry);
@@ -120,7 +121,7 @@ userCtrl.deleteUser = async(req, res) => {
 
     const user = await User.findById(req.params.id);
     user.active = false;
-    user.save();
+    await user.save();
     res.json({ 'status': true });
 }
 

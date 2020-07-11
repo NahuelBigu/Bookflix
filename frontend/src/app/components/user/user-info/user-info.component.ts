@@ -101,8 +101,15 @@ export class UserInfoComponent implements OnInit {
   }
 
   cambiarPerfil(profile){
+    this._authService.actualizarPerfil();
     this._authService.setProfile(profile);
     this.loggedProfile=this._authService.getProfile();
+  }
+
+  darDeBajaUsuario(){
+    this.userService.deleteUser(this.user._id).subscribe();
+    this._authService.removeCurrentSession();
+    this.router.navigate(['']);
   }
 
 }

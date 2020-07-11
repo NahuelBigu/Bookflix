@@ -129,6 +129,9 @@ export class AuthService {
   putUser(anUser) {
     return this.http.put(this.URL_API + `/${anUser.user._id}`, anUser);
   }
+  putUser2(anUser) {
+    return this.http.put(this.URL_API + `/${anUser._id}`, anUser);
+  }
 
 
   signUp(user) {
