@@ -8,7 +8,7 @@
         <div class="form-group row justify-content-center">
             <div class="col-4">
                 <p style="margin-bottom: 0px; color: white;" class="">Fecha base</p>
-                <input  type="date" [(ngModel)]="baseDate" name="baseDate" autofocus>
+                <input type="date" [(ngModel)]="baseDate" name="baseDate" autofocus>
             </div>
             <div class="col-4">
                 <p style="margin-bottom: 0px;color: white;" class="">Fecha limite</p>
@@ -35,8 +35,7 @@
                     <th scope="row">{{i}}</th>
                     <td>{{user.email}}</td>
                     <td *ngIf="user.plan==0">Administrador</td>
-                    <td *ngIf="user.plan==1">Membresia Estandar</td>
-                    <td *ngIf="user.plan==2">Membresia Premium</td>
+                    <td *ngIf="user.plan!=0">{{planes[user.plan - 1].name}}</td>
                     <td>{{user.creditCardName}}</td>
                     <td>
                         <button *ngIf="user.active" (click)="deshabilitar(user)" class="btn btn-outline-danger mr-1" title="Deshabilitar Usuario"><i class="fa fa-user-minus"></i></button>

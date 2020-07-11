@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/login/auth.service';
 import { Router } from '@angular/router';
 import { PlanesService } from 'src/app/services/plan/planes.service';
 import { UserService } from 'src/app/services/user.service';
+import { Plan } from 'src/app/models/Plan';
 declare var $: any;
 
 @Component({
@@ -17,11 +18,12 @@ export class UserWhitinDatesComponent implements OnInit {
   error: string;
   bol = false;
   users;
+  planes: any[];
   constructor(private _servicio: AuthService,
     private router: Router,
     private planService: PlanesService,
     private _service: UserService) {
-
+      planService.getPlanes().subscribe(p =>{ this.planes = p as Plan[];} );
   }
 
   ngOnInit(): void {

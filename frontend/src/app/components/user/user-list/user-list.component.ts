@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { PlanesService } from '../../../services/plan/planes.service';
+import { Plan } from 'src/app/models/Plan';
 declare var $:any;
 
 @Component({
@@ -11,8 +13,11 @@ declare var $:any;
 export class UserListComponent implements OnInit {
   
   users: User[];
-  constructor(private _service:UserService) { 
+  planes: any[];
+  constructor(private _service:UserService, private planService:PlanesService) { 
+    planService.getPlanes().subscribe(p =>{ this.planes = p as Plan[];} );
     this.buscarUsuarios();
+    
   }
   
   buscarUsuarios() {
