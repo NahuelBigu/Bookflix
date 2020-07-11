@@ -1,43 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/login/auth.service';
+import { Router } from '@angular/router';
+import { PlanesService } from 'src/app/services/plan/planes.service';
 import { UserService } from 'src/app/services/user.service';
 declare var $:any;
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  selector: 'app-user-whitin-dates',
+  templateUrl: './user-whitin-dates.component.html',
+  styleUrls: ['./user-whitin-dates.component.css']
 })
-export class UserListComponent implements OnInit {
-  
-  users: User[];
-  constructor(private _service:UserService) { 
-    this.buscarUsuarios();
+export class UserWhitinDatesComponent implements OnInit {
+  baseDate: Date;
+  limitDate: Date;
+  error: string;
+  users;
+  constructor(private _servicio: AuthService,
+    private router: Router,
+    private planService: PlanesService,
+    private _service:UserService) { 
+      
+    }
+
+  ngOnInit(): void {
   }
-  
+
   buscarUsuarios() {
     this._service.getUsers().subscribe(data => {this.users=data as User[]; this.cargarTabla()});
   }
 
-  
- 
-  hacerAdmin(user: User){
-    this._service.hacerAdmin(user._id).subscribe();
-    user.plan=0;
-  }
-  
-  sacarAdmin(user: User){
-    this._service.sacarAdmin(user._id).subscribe();
-    user.plan=1;
-  }
-  deshabilitar(user: User){
-    this._service.deleteUser(user._id).subscribe();
-    user.active=false;
-  }
-  habilitar(user: User){
-    this._service.habilitar(user._id).subscribe();
-    user.active=true;
-  }
   cargarTabla() {
     $(function() {
       $('#table-users').DataTable({
@@ -70,9 +62,13 @@ export class UserListComponent implements OnInit {
     $('.dataTables_length').addClass('bs-select');
   });
   }
-  ngOnInit(): void {
-    
+
+  search(){
+    if (!this.baseDate || !this.limitDate) {return this.error= 'Se debe especificar las fechas para buscar usuarios'};
+    if (new Date(this.baseDate)>(new Date) || new Date(this.limitDate)>(new Date)) {return this.error= 'Las fechas a especificar deben ser anteriores a la fecha del dia de hoy'}
+    this.error=null;
+    this.buscarUsuarios();
   }
   
-  
+
 }
