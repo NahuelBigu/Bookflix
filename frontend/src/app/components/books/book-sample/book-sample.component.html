@@ -53,13 +53,16 @@
                                     <div class="col-10" style="cursor:pointer">
                                         <a (click)="verCapitulo(-1)" [routerLink]="['/books/leer/', book._id , 'completo']" style="color: rgb(168, 168, 168);">Libro Completo</a>
                                     </div>
+                                    <div class="col-2 text-right" (click)="verCapitulo(-1)">
+                                        <i class="" style="cursor:pointer" [ngClass]="leidoCompleto() ? 'fas fa-eye leido' : 'far fa-eye-slash'  "></i>
+                                    </div>
                                 </div>
                             </li>
                             <ng-container *ngFor="let chapter of book.chapters; index as i">
                                 <li class="list-group-item " *ngIf="chapter != null && chapter != '' ">
                                     <div class="row d-flex justify-content-between align-items-center">
                                         <div class="col-10" style="cursor:pointer">
-                                            <a (click)="verCapitulo(i)" [routerLink]="['/books/leer/', book._id , i]" style="color: rgb(168, 168, 168);">Capitulo {{i+1}}  </a>
+                                            <a [routerLink]="['/books/leer/', book._id , i+1]" style="color: rgb(168, 168, 168);">Capitulo {{i+1}}  </a>
                                         </div>
                                         <div class="col-2 text-right" (click)="verCapitulo(i)">
                                             <i class="" style="cursor:pointer" [ngClass]="leido(i) ? 'fas fa-eye leido' : 'far fa-eye-slash'  "></i>

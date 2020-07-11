@@ -1,3 +1,44 @@
-<div class="embed-responsive" style='padding-bottom:50.5%'>
+<!-- <div class="embed-responsive" style='padding-bottom:50.5%'>
     <embed [src]="url" type="application/pdf" />
+</div>
+-->
+<div class="container">
+    <div class="alert alert-danger" *ngIf="error!=''">
+        {{error}}
+    </div>
+    <div class="pdf-container">
+        <pdf-viewer [src]="url2" [original-size]="true" [(page)]="pageVariable" [render-text]="false" [show-all]="false" style="display: block;" (after-load-complete)="callBackFn($event)" [fit-to-page]="false"></pdf-viewer>
+    </div>
+</div>
+
+<div class="footer  pdf-btn" *ngIf="book && error==''">
+    <div class="container-fluid">
+        <div class="row justify-content-center pt-2">
+            <div class="col-2">
+                <div class="col-1 text-center">
+                    <button class="btn btn-outline-danger" type="button" [routerLink]="['/books/book', book._id ]">Volver</button>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="row justify-content-center">
+                    <div class="col-2 text-center">
+                        <button class="btn btn-outline-danger" type="button" (click)="retroceder()"><</button>
+                    </div>
+                    <div class="col-2">
+                        <input type="number" class="form-control text-center page-selector p-0" [(ngModel)]="pageVariable" (ngModelChange)="numberChange()" />
+                    </div>
+                    <div class=" col-2 text-center">
+                        <button class="btn btn-outline-danger" type="button" (click)="avanzar()">></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 ">
+                <div *ngIf="fin && proximoCapitulo" class="col d-flex justify-content-end"><a class="btn btn-outline-danger" type="button" href="http://localhost:4200/books/leer/{{book._id}}/{{capProximo}}">Proximo Capitulo</a>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 </div>

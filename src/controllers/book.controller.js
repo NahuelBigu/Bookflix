@@ -103,7 +103,7 @@ bookCtrl.editBook = async(req, res) => {
     book.isbn = req.body.isbn;
     book.chapters = req.body.chapters;
     book.maxChapters = req.body.maxChapters;
-    book.views = req.body.views;
+
     book.save();
 
     res.json({ 'status': 'book updeted' });
