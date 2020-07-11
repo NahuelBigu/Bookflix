@@ -64,11 +64,12 @@ userCtrl.createUser = async(req, res) => {
         creditCardCVV,
         creditCardMM,
         creditCardYY,
-        active: true
+        active: true,
+        photo: "../../../../assets/img/perfil" + (Math.floor(Math.random() * 7) + 1) + ".png"
     });
     var profile = new Profile({
         name: creditCardName,
-        photo: '../../../../assets/img/totoroAvatar.png',
+        photo: "../../../../assets/img/perfil" + (Math.floor(Math.random() * 7) + 1) + ".png"
     })
     user.profiles.push(profile);
     user.password = await user.encryptPassword(password);
@@ -100,8 +101,8 @@ userCtrl.editUser = async(req, res) => {
     user.creditCardCVV = req.body.user.creditCardCVV;
     user.creditCardMM = req.body.user.creditCardMM;
     user.creditCardYY = req.body.user.creditCardYY;
-    user.active = req.body.user.active;
 
+    user.photo = req.body.user.photo;
     if (req.body.oldPasswordTry != "") {
         const match = await user.matchPassword(req.body.oldPasswordTry);
         if (!match) return res.status(401).send('Contraseña actual incorrecta');

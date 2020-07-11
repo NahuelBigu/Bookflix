@@ -12,5 +12,6 @@ export class User {
     creditCardCVV: number;
     profiles: Array<Profile>;
     active: boolean;
+    photo: string;
     createdAt: Date;
 }

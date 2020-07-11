@@ -54,17 +54,19 @@ export class AuthService {
   actualizarUser(): User{
     var user: User=new User;
     this.getCurrentUser3().subscribe((data) => {
-        user._id =  data._id; // fijarse si hay que poner dato a dato
-        user.creditCardNumber = data.creditCardNumber;
-        user.creditCardName = data.creditCardName;
-        user.creditCardMM = data.creditCardMM;
-        user.creditCardYY = data.creditCardYY;
-        user.creditCardCVV= data.creditCardCVV;
-        user.email = data.email;
-        user.plan = data.plan;
-        user.password = data.password;
-        user.profiles= data.profiles;
-        user.createdAt=data.createdAt;
+      user._id =  data._id; // fijarse si hay que poner dato a dato
+      user.creditCardNumber = data.creditCardNumber;
+      user.creditCardName = data.creditCardName;
+      user.creditCardMM = data.creditCardMM;
+      user.creditCardYY = data.creditCardYY;
+      user.creditCardCVV= data.creditCardCVV;
+      user.email = data.email;
+      user.plan = data.plan;
+      user.password = data.password;
+      user.profiles= data.profiles;
+      user.createdAt=data.createdAt;
+      user.photo=data.photo;
+      user.active=data.active;
         this.setCurrentUser(user);
     });
     
@@ -85,7 +87,8 @@ export class AuthService {
       user.password = data.password;
       user.profiles= data.profiles;
       user.createdAt=data.createdAt;
-     
+      user.photo=data.photo;
+      user.active=data.active;
    });
     
     return (user);

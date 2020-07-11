@@ -11,6 +11,7 @@ const UserSchema = new Schema({
     creditCardYY: { type: Number, required: true },
     creditCardCVV: { type: Number, required: true },
     profiles: { type: Array, required: true },
+    photo: { type: String, required: true },
     active: { type: Boolean, required: true },
 
 }, {

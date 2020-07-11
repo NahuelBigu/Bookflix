@@ -27,6 +27,7 @@ export class UserInfoComponent implements OnInit {
   putProfile: string;
   profileToEdit: Profile;
   loggedProfile: Profile;
+  photoSelected: string;
   
   
   constructor(private _authService:AuthService,
@@ -90,7 +91,6 @@ export class UserInfoComponent implements OnInit {
   modificar(profile){
     if (!profile) { return this.error="Debe especificar un nombre no vacio para modificar un perfil"; };
     const i=this.user.profiles.findIndex(element => element._id==this.profileToEdit._id);
-    console.log(i);
     this.user.profiles[i].name=profile;
     this.userService.putProfile(this.user).subscribe();
     this.user=this._authService.actualizarUser();
@@ -112,4 +112,13 @@ export class UserInfoComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  cambiarImagen(num){
+    this.user.photo= "../../../../assets/img/perfil"+num+".png";
+    this.editUser();
+  }
+
+  cambiarImagenPerfil(num){
+    this.profileToEdit.photo= "../../../../assets/img/perfil"+num+".png";
+    this.modificar(this.profileToEdit.name);
+  }
 }
