@@ -189,11 +189,18 @@ userCtrl.crearProfile = async(req, res) => {
     user.profiles.push(
         new Profile({
             name: req.body.name,
-            photo: "../../../../assets/img/perfil"+(Math.floor(Math.random() * 7) + 1  )+".png"
+            photo: "../../../../assets/img/perfil" + (Math.floor(Math.random() * 7) + 1) + ".png"
         })
     );
     user.save();
     res.json({ 'status': "true" });
+}
+
+userCtrl.getUsersWithinDates = async(req, res) => {
+    const users = await User.find();
+    const dateIni = req.body.dateIni;
+    const dateFin = req.body.dateFin;
+    res.json(users.filter(function(x) { return (Date.parse(x.createdAt) >= dateIni && Date.parse(x.createdAt) <= dateFIn) }));
 }
 
 module.exports = userCtrl;
