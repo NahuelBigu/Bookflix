@@ -200,7 +200,7 @@ userCtrl.getUsersWithinDates = async(req, res) => {
     const users = await User.find();
     const dateIni = Date.parse(req.body.dateIni);
     const dateFin = Date.parse(req.body.dateFin);
-    res.json(users.filter(function(x) { return (Date.parse(x.createdAt) >= dateIni && Date.parse(x.createdAt) <= dateFIn) }));
+    res.json(users.filter(function(x) { return (Date.parse(x.createdAt) >= dateIni && Date.parse(x.createdAt) <= dateFin) }));
 }
 
 module.exports = userCtrl;
