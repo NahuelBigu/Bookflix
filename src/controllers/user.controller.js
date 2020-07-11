@@ -198,8 +198,8 @@ userCtrl.crearProfile = async(req, res) => {
 
 userCtrl.getUsersWithinDates = async(req, res) => {
     const users = await User.find();
-    const dateIni = req.body.dateIni;
-    const dateFin = req.body.dateFin;
+    const dateIni = Date.parse(req.body.dateIni);
+    const dateFin = Date.parse(req.body.dateFin);
     res.json(users.filter(function(x) { return (Date.parse(x.createdAt) >= dateIni && Date.parse(x.createdAt) <= dateFIn) }));
 }
 
