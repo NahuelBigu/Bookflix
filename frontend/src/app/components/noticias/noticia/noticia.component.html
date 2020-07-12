@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="noticia">
 
     <h1 class="mt-4 card-title" [ngClass]="{noticiaDesactivada: !noticia.active}">{{noticia.title}} <strong *ngIf="!noticia.active"> - Desactivada</strong></h1>
 
@@ -13,7 +13,7 @@
                 </p>
             </div>
             <div class="col-10">
-                <a [routerLink]="['/noticia/editar/', noticia._id]" class="f btn btn-outline-danger "> <i class="fas fa-edit"> Editar</i>
+                <a *ngIf="isAdmin" [routerLink]="['/noticia/editar/', noticia._id]" class="f btn btn-outline-danger "> <i class="fas fa-edit"> Editar</i>
 
                 </a>
             </div>

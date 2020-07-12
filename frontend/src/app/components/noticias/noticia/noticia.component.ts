@@ -12,8 +12,9 @@ import { Observable } from 'rxjs';
 })
 export class NoticiaComponent implements OnInit {
   noticia: any;
-  constructor(private router: ActivatedRoute , private service:NoticiasService) { 
-    
+  isAdmin:boolean=false;
+  constructor(private router: ActivatedRoute , private service:NoticiasService, private AuthService:AuthService) { 
+    this.isAdmin=AuthService.isAdmin();
   }
 
   ngOnInit(): void {
