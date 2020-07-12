@@ -4,7 +4,7 @@
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Calificar</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="refresh()">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-outline-warning" (click)="refresh()" data-dismiss="modal">Cerrar</button>
             <button type="button" class="btn btn-outline-danger" (click)="calificar()" data-dismiss="modal">Guardar calificacion</button>
         </div>
         </div>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="col-4 text-right">
                             <button class="btn btn-outline-danger mr-1" type="button" (click)="sacarDeLeidos()" *ngIf="leyendo">Dejar de leer</button>
-                            <button class="btn btn-outline-danger" type="button" (click)="terminar()" *ngIf="!termine && leyendo">Terminar</button>
+                            <button class="btn btn-outline-danger" type="button" (click)="terminar()" *ngIf="!termine && leyendo" data-toggle="modal" data-target="#exampleModalCenter">Terminar</button>
                             <button class="btn btn-outline-danger" type="button" (click)="sacarDelHistorial()" *ngIf="termine">Sacar de Historial</button>
                         </div>
                     </div>
@@ -108,6 +108,75 @@
 
                         </ul>
                     </div>
+                    <div>
+                        <p class="h5">Comentarios</p>
+                    </div>
+                    <ul class="list-group m-2">
+                        <ng-container *ngIf="existeMiComentario()">
+                            <ng-container *ngIf="comentarioTieneTexto(miComentario.texto)">
+                                <li class="list-group-item align-items-center">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <p class="mt-1">{{miComentario.texto}}</p>
+                                            <h6><span class="badge badge-pill badge-warning">{{miComentario.nomPerfil}}</span></h6>
+                                        </div>
+                                        <div class="col-2 text-right">
+                                            <h4 class="ml-4 mt-2" *ngIf="miComentario.like"><span class="badge badge-success badge-pill"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span></h4>
+                                            <h4 class="ml-4 mt-2" *ngIf="!miComentario.like"><span class="badge badge-danger badge-pill"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span></h4>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <hr style="color: black; border-width: 2px;">
+                                    </div>
+                                    <div class="text-right">
+                                        <button class="btn btn-outline-warning mr-1" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-edit" aria-hidden="true"></i></button>
+                                        <button class="btn btn-outline-danger" (click)="borrarComentario()"><i class="fas fa-trash" aria-hidden="true"></i></button>
+                                    </div>
+                                </li>
+                            </ng-container>
+                            <ng-container *ngIf="!comentarioTieneTexto(miComentario.texto)">
+                                <li class="list-group-item align-items-center text-center">
+                                    <div>
+                                        <h2 class="ml-1 mt-2" *ngIf="miComentario.like"><span class="badge badge-success badge-pill"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span></h2>
+                                        <h2 class="ml-1 mt-2" *ngIf="!miComentario.like"><span class="badge badge-danger badge-pill"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span></h2>
+                                        <h6><span class="badge badge-pill badge-warning">{{miComentario.nomPerfil}}</span></h6>
+                                    </div>
+                                    <div>
+                                        <hr style="color: black; border-width: 2px;">
+                                    </div>
+                                    <div class="">
+                                        <button class="btn btn-outline-warning mr-1" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-edit" aria-hidden="true"></i></button>
+                                        <button class="btn btn-outline-danger" (click)="borrarComentario()"><i class="fas fa-trash" aria-hidden="true"></i></button>
+                                    </div>
+                                </li>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngFor="let com of comentarios; index as i">
+                            <ng-container *ngIf="comentarioTieneTexto(com.texto)">
+                                <li class="list-group-item align-items-center">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <p class="mt-1">{{com.texto}}</p>
+                                            <h6><span class="badge badge-pill badge-warning">{{com.nomPerfil}}</span></h6>
+                                        </div>
+                                        <div class="col-2 text-right">
+                                            <h4 class="ml-4 mt-2" *ngIf="com.like"><span class="badge badge-success badge-pill"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span></h4>
+                                            <h4 class="ml-4 mt-2" *ngIf="!com.like"><span class="badge badge-danger badge-pill"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span></h4>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ng-container>
+                            <ng-container *ngIf="!comentarioTieneTexto(com.texto)">
+                                <li class="list-group-item align-items-center text-center">
+                                    <div>
+                                        <h2 class="ml-1 mt-2" *ngIf="com.like"><span class="badge badge-success badge-pill"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span></h2>
+                                        <h2 class="ml-1 mt-2" *ngIf="!com.like"><span class="badge badge-danger badge-pill"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span></h2>
+                                        <h6><span class="badge badge-pill badge-warning">{{com.nomPerfil}}</span></h6>
+                                    </div>
+                                </li>
+                            </ng-container>
+                        </ng-container>
+                    </ul>
                 </div>
                 <div class="alert alert-danger" *ngIf="error!=''">
                     {{error}}

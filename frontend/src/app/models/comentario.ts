@@ -3,4 +3,5 @@ export class Comentario {
     texto: String;
     perfil: String;
     active: boolean;
+    nomPerfil: String;
 }

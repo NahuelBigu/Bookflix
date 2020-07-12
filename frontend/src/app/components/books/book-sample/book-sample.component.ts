@@ -25,6 +25,7 @@ export class BookSampleComponent implements OnInit {
   perfil: Profile;
   puedeComentar: boolean;
   comentarioStringify: string;
+  miComentario: Comentario;
 
   constructor(private ruta: ActivatedRoute, private router: Router, private bookService: BookService, private authService: AuthService) {
     this.ruta.params.subscribe(params => {
@@ -38,9 +39,19 @@ export class BookSampleComponent implements OnInit {
           this.fav=this.bookService.getFav(this.book._id);
           this.termine = this.bookService.termineLibro(this.book._id);
           this.leyendo = this.capLeidos != -1 ;
+          this.comentarios=new Array<Comentario>();
           this.book.comments.forEach(element => {
             let aux = JSON.parse(element as string) as Comentario;
-            this.comentarios.push(aux);
+            if(aux.perfil!=this.perfil._id){
+              this.comentarios.push(aux);
+            } else{
+              this.comentario.texto = aux.texto;
+              this.comentario.like = aux.like;
+              this.comentario.perfil = aux.perfil;
+              this.comentario.nomPerfil = aux.nomPerfil;
+              this.comentario.active = aux.active;
+              this.miComentario = aux;
+            }
           })
           this.puedeComentar = this.puedeCalificar();
         });
@@ -90,8 +101,7 @@ export class BookSampleComponent implements OnInit {
  }
 
  existeMiComentario(){
-  var aux = this.comentarios.find(element => element.perfil==this.perfil._id);
-  return aux ? true : false;
+  return this.miComentario ? true : false;
  }
 
  puedeCalificar(){
@@ -110,16 +120,70 @@ export class BookSampleComponent implements OnInit {
  }
 
  calificar(){
-  this.comentario.perfil=this.perfil._id;
-  this.comentario.active=true;
-  this.comentarioStringify= JSON.stringify(this.comentario);
-  this.book.comments.push(this.comentarioStringify);
-  this.bookService.putBook(this.book).subscribe(params =>{
-    this.book.comments.forEach(element => {
-      let aux = JSON.parse(element as string) as Comentario;
-      this.comentarios.push(aux);
-    })
+  if(this.comentario.like!= null){
+    this.comentario.perfil=this.perfil._id;
+    this.comentario.nomPerfil=this.perfil.name;
+    this.comentario.active=true;
+    this.error='';
+    this.comentarioStringify= JSON.stringify(this.comentario);
+    if(this.existeMiComentario()){
+      let aux = JSON.stringify(this.miComentario)
+      let aux2 = this.book.comments.indexOf(aux);
+      this.book.comments.splice(aux2,1);
+      this.book.comments.push(this.comentarioStringify);
+      this.bookService.putBook(this.book).subscribe(params => {
+        this.miComentario.texto = this.comentario.texto;
+        this.miComentario.like = this.comentario.like;
+        this.miComentario.nomPerfil = this.comentario.nomPerfil;
+        this.miComentario.active = this.comentario.active;
+        this.miComentario.perfil = this.comentario.perfil;
+      });
+    }else{
+      this.book.comments.push(this.comentarioStringify);
+      this.bookService.putBook(this.book).subscribe(params =>{
+        this.comentarios=new Array<Comentario>();
+        this.book.comments.forEach(element => {
+          let aux = JSON.parse(element as string) as Comentario;
+          if(aux.perfil!=this.perfil._id){
+            this.comentarios.push(aux);
+          }
+        })
+        this.miComentario = new Comentario();
+        this.miComentario.texto = this.comentario.texto;
+        this.miComentario.like = this.comentario.like;
+        this.miComentario.nomPerfil = this.comentario.nomPerfil;
+        this.miComentario.active = this.comentario.active;
+        this.miComentario.perfil = this.comentario.perfil;
+        this.puedeComentar = this.puedeCalificar();
+      })
+    }
+    } else {
+      this.error= 'Se debe calificar con like o dislike obligatoriamente';
+    }
+ }
+
+ refresh(){
+  this.puedeComentar = this.puedeCalificar();
+  this.comentario.texto = this.miComentario.texto;
+  this.comentario.like = this.miComentario.like;
+ }
+ 
+ comentarioTieneTexto(texto: String){
+  if(texto && texto!=''){
+    return true;
+  }
+  return false;
+ }
+
+ borrarComentario(){
+   let aux = JSON.stringify(this.miComentario)
+   let aux2 = this.book.comments.indexOf(aux);
+   this.book.comments.splice(aux2,1);
+   this.bookService.putBook(this.book).subscribe(params => {
+    this.miComentario = null;
     this.puedeComentar = this.puedeCalificar();
-  })
+    this.comentario.texto = '';
+    this.comentario.like = null;
+   })
  }
 }
