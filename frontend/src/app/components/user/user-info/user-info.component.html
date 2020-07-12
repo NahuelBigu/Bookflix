@@ -1,7 +1,8 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container " *ngIf="user && planes">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container " *ngIf="user">
 
-    <div class="row flex-lg-nowrap">
+    <div class="row flex-lg-nowrap" *ngIf="planes">
         <div class="col">
             <div class="alert alert-success" *ngIf="success">
                 Cambios realizados con exito
@@ -29,7 +30,7 @@
                                     <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                         <div class="text-center text-sm-left mb-2 mb-sm-0">
                                             <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user.creditCardName}}</h4>
-                                            <p class="mb-0">@{{user.creditCardName}}</p>
+                                            <p class="mb-0">@{{loggedProfile.name}}</p>
                                             <br>
                                             <div class="mt-2">
                                                 <button class="btn btn-primary" type="button">
@@ -39,15 +40,15 @@
                                             </div>
                                         </div>
                                         <div class="text-center text-sm-right">
-                                            <span class="badge badge-danger" *ngIf="user.plan==0">Administrador</span>
+                                            <!--<span class="badge badge-danger" *ngIf="user.plan==0">Administrador</span>
                                             <span class="badge" *ngIf="user && user.plan!=0"
-                                                [ngClass]="{'badge-primary': planes[user.plan -1 ].value == 1,'badge-warning': planes[user.plan -1 ].value == 2}">{{planes[user.plan - 1 ].name }}</span>
+                                                [ngClass]="{'badge-primary': planes[user.plan -1 ].value == 1,'badge-warning': planes[user.plan -1 ].value == 2}">{{planes[user.plan - 1 ].name }}</span>-->
                                             <div class="text-muted ">
                                                 <small>{{user.createdAt | date: 'MMM dd, yyyy'}}</small></div>
                                         </div>
                                     </div>
                                 </div>
-                                <ul class="nav nav-tabs disable-select">
+                                <ul class="nav nav-tabs disable-select pointer">
                                     <li class=" "><a (click)="info=true" *ngIf="info" class="active nav-link ">Mis
                                             datos</a></li>
                                     <li class=" "><a (click)="info=false" *ngIf="info"
@@ -187,9 +188,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="row ">
-                                                    <div class="col d-flex justify-content-end ">
-                                                        <button class="btn btn-primary " type="submit ">Confirmar
+                                                    <div class="col d-flex justify-content-end">
+                                                        <button style="width: 200px;" class="btn btn-primary mx-3" type="submit ">Confirmar
                                                             cambios</button>
+                                                            <button (click)="darDeBajaUsuario()" class="btn btn-danger mx-3" style="width: 200px;" >Dar de baja a mi usuario</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -199,19 +201,20 @@
                                 </div>
                                 <!-- Fin de Info del usuario Comienzo de Perfiles -->
                                 <div class="row" *ngIf="!info">
-                                    <div class="m-3 col-3 card p-3" *ngFor="let profile of user.profiles"
+                                    <div class="m-3 col-3 card icardi p-3" *ngFor="let profile of user.profiles" [ngClass]="(profile._id==loggedProfile._id)?'logeado':''"
                                         style="min-width: 180px; max-height: 400px;">
                                         <img *ngIf="profile" class="card-img-top"  src="{{profile.photo}}"
                                             alt="Card image cap">
-                                        <div *ngIf="profile" class="card-body">
-                                            <h5 class="card-title text-center">{{profile.name}}</h5>
+                                        <div *ngIf="profile" class="card-body" >
+                                            <h5 class="card-title text-center" >{{profile.name}}</h5>
                                             <div class="row justify-content-center">
-                                                <button class="btn btn-warning m-2" style="width: 50px;"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
+                                                <button (click)="cambiarPerfil(profile)" class="btn btn-primary m-2" style="width: 50px;"><i class="fa fa-user-circle-o" aria-hidden="true"></i></button>
+                                                <button (click)="setProfileToEdit(profile)" data-toggle="modal" data-target="#modificarModal" class="btn btn-warning m-2" style="width: 50px;"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
                                                 <button *ngIf="user.profiles.length>1" (click)="borrar(profile)" class="btn btn-danger m-2" style="width: 50px;"><i class="fas fa-times" aria-hidden="true"></i></button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="m-3 col-3 card p-3" style="min-width: 180px; max-height: 400px;">
+                                    <div class="m-3 col-3 card p-3 icardi" style="min-width: 180px; max-height: 400px;">
                                         <a data-toggle="modal" data-target="#exampleModal" href="javascript:void(0);">
                                             <img class="card-img-top mt-4" width="200px" height="200px" src="https://assets.dryicons.com/uploads/icon/svg/12631/d3fab4d2-3a88-4439-9a83-3bea496ed86b.svg" alt="Card image cap">
                                             <div class="card-body">
@@ -227,7 +230,7 @@
                                     <div class="modal-dialog" role="document">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">Agregando nuevo perfil</h5>
+                                          <h5 class="modal-title" id="exampleModal" >Agregar perfil</h5>
                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                           </button>
@@ -240,6 +243,27 @@
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar ventana</button>
                                           <button type="button" (click)="agregar(newProfile)" data-dismiss="modal" class="btn btn-primary">Agregar perfil</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="modificarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="profileToEdit">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Modificando perfil</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <input type="text" 
+                                          placeholder="Nuevo nombre del perfil" [(ngModel)]="putProfile"
+                                          class="form-control " name="putProfile">
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar ventana</button>
+                                          <button type="button" (click)="modificar(putProfile)" data-dismiss="modal" class="btn btn-primary">Modificar perfil</button>
                                         </div>
                                       </div>
                                     </div>

@@ -34,6 +34,8 @@ import { TrailerNewOrEditComponent } from './components/trailerNewOrEdit/trailer
 import { TrailerEditComponent } from './components/trailerEdit/trailer-edit/trailer-edit.component';
 import { LeerComponent } from './components/books/leer/leer.component';
 import { PlanesComponent } from './components/admin/planes/planes.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { UserWhitinDatesComponent } from './components/user/user-whitin-dates/user-whitin-dates.component';
 
 
 @NgModule({
@@ -64,6 +66,7 @@ import { PlanesComponent } from './components/admin/planes/planes.component';
     TrailerEditComponent,
     LeerComponent,
     PlanesComponent,
+    UserWhitinDatesComponent,
    ],
   imports: [
     BrowserModule,
@@ -72,7 +75,8 @@ import { PlanesComponent } from './components/admin/planes/planes.component';
     HttpClientModule,
     ReactiveFormsModule,
     AutocompleteLibModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    PdfViewerModule
   ],
   providers: [
     AuthGuard,

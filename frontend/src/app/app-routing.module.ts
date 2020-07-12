@@ -27,6 +27,7 @@ import { TrailerNewOrEditComponent } from './components/trailerNewOrEdit/trailer
 import { TrailerEditComponent } from './components/trailerEdit/trailer-edit/trailer-edit.component';
 import { LeerComponent } from './components/books/leer/leer.component';
 import { PlanesComponent } from './components/admin/planes/planes.component';
+import { UserWhitinDatesComponent } from './components/user/user-whitin-dates/user-whitin-dates.component';
 
 const routes: Routes = [
   {
@@ -106,6 +107,11 @@ const routes: Routes = [
     path: 'books/leer/:id/:cap',
     component: LeerComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'users-whitin-dates',
+    component: UserWhitinDatesComponent,
+    canActivate: [AuthGuard,AdminGuard]
   },
   {
     path: 'books/trailer/:id',

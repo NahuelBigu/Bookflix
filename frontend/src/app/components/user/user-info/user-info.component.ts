@@ -24,13 +24,17 @@ export class UserInfoComponent implements OnInit {
   success: boolean=false;
   planes: Plan[];
   newProfile: string;
+  putProfile: string;
+  profileToEdit: Profile;
+  loggedProfile: Profile;
   
   
   constructor(private _authService:AuthService,
     private router: Router, private planService: PlanesService , private userService:UserService) {
     this.user=_authService.getCurrentUser();     
     planService.getPlanes().subscribe(p =>{ this.planes = p as Plan[];} );
-    
+    this.loggedProfile=this._authService.getProfile();
+    console.log(this.loggedProfile);
   }
   
   ngOnInit(): void {
@@ -76,7 +80,6 @@ export class UserInfoComponent implements OnInit {
     let p;
     if (!profile) { return this.error="Debe especificar un nombre no vacio para crear un perfil"; }
     if (this.user.plan==0) { p = 1 } else { p = this.user.plan-1 };
-    console.log(this.planes);
     if (this.user.profiles.length==this.planes[p].cantProfile) {return this.error="Ya se cuenta con el maximo de perfiles que el plan provee"};
     this.userService.crearProfile(profile,this.user._id).subscribe();
     this.user=this._authService.actualizarUser();
@@ -85,7 +88,28 @@ export class UserInfoComponent implements OnInit {
 
 
   modificar(profile){
+    if (!profile) { return this.error="Debe especificar un nombre no vacio para modificar un perfil"; };
+    const i=this.user.profiles.findIndex(element => element._id==this.profileToEdit._id);
+    console.log(i);
+    this.user.profiles[i].name=profile;
+    this.userService.putProfile(this.user).subscribe();
+    this.user=this._authService.actualizarUser();
+  }
 
+  setProfileToEdit(profile){
+    this.profileToEdit=profile;
+  }
+
+  cambiarPerfil(profile){
+    this._authService.actualizarPerfil();
+    this._authService.setProfile(profile);
+    this.loggedProfile=this._authService.getProfile();
+  }
+
+  darDeBajaUsuario(){
+    this.userService.deleteUser(this.user._id).subscribe();
+    this._authService.removeCurrentSession();
+    this.router.navigate(['']);
   }
 
 }

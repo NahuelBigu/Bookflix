@@ -10,7 +10,7 @@ body {
     /* Resize the background image to cover the entire container */
 }
 
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
     display: none;
 }
 

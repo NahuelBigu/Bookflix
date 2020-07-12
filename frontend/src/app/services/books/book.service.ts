@@ -88,7 +88,7 @@ export class BookService {
   
   getCapLeidos(book: Book) {
     var aux = JSON.parse(this.localStorageService.getItem('profile'));
-    var cap = -1;
+    var cap = -2;
     aux.reading.forEach(element => {
       if (element.bookId == book._id) {
         cap = element.capAct;
@@ -103,20 +103,44 @@ export class BookService {
     var profile = JSON.parse(this.localStorageService.getItem('profile'));
     var esta = profile.reading.find(element => { return element.bookId == (aux.bookId) });
     if (esta) {
-      if (aux.capAct <= esta.capAct) { esta.capAct = aux.capAct - 1 } else { esta.capAct = aux.capAct }
+      //if (aux.capAct <= esta.capAct) { esta.capAct = aux.capAct - 1 }  // if para cuadno volves a dar a ver que lo quite
+      //else {
+         esta.capAct = aux.capAct
+      //   }
       this.localStorageService.setItem('profile', JSON.stringify(profile));
       return esta.capAct;
     } else {
       profile.reading.push(aux)
       this.localStorageService.setItem('profile', JSON.stringify(profile));
-      return esta.capAct;
+      return aux.capAct;
     }
     
    
    
 
   }
-
+  setCapLeidoSacarLeido(aux){
+    var profile = JSON.parse(this.localStorageService.getItem('profile'));
+    var esta = profile.reading.find(element => { return element.bookId == (aux.bookId) });
+    if (esta) {
+      if (aux.capAct <= esta.capAct) { 
+        esta.capAct = aux.capAct - 1 
+        if(esta.capAct <= 0){// dejo de leer el primero
+          this.removeReading(aux.bookId);
+          return -1
+        }
+      }  // if para cuadno volves a dar a ver que lo quite
+      else {
+         esta.capAct = aux.capAct
+         }
+      this.localStorageService.setItem('profile', JSON.stringify(profile));
+      return esta.capAct;
+    } else {
+      profile.reading.push(aux)
+      this.localStorageService.setItem('profile', JSON.stringify(profile));
+      return aux.capAct;
+    }
+  }
   setFav(_id: string) {
     var profile = JSON.parse(this.localStorageService.getItem('profile'));
     var esta = profile.favorite.indexOf(_id);

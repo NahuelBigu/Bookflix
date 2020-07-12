@@ -38,7 +38,7 @@ export class BookSampleComponent implements OnInit {
           this.capLeidos=this.bookService.getCapLeidos(this.book);
           this.fav=this.bookService.getFav(this.book._id);
           this.termine = this.bookService.termineLibro(this.book._id);
-          this.leyendo = this.capLeidos != -1 ;
+          this.leyendo = this.capLeidos != -2 ;
           this.comentarios=new Array<Comentario>();
           this.book.comments.forEach(element => {
             let aux = JSON.parse(element as string) as Comentario;
@@ -74,8 +74,13 @@ export class BookSampleComponent implements OnInit {
     if(this.termine){
       this.sacarDelHistorial();
     }
-    this.capLeidos=this.bookService.setCapLeido(libro);
-    this.leyendo=true;
+    this.capLeidos=this.bookService.setCapLeidoSacarLeido(libro);
+    if (this.capLeidos != -1){
+      this.leyendo=true;
+    }else{
+      this.leyendo=false;
+    }
+    
   }
   
 
@@ -92,14 +97,16 @@ export class BookSampleComponent implements OnInit {
   }
   sacarDelHistorial(){
     this.termine =this.bookService.removeHistory(this.book._id);
-    this.capLeidos=0;
+    this.capLeidos=-1;
   }
   sacarDeLeidos(){
     this.bookService.removeReading(this.book._id);
-    this.capLeidos=0;
+    this.capLeidos=-1;
     this.leyendo=false;
  }
-
+ leidoCompleto(){
+  return (this.termine)||(this.capLeidos == 0)
+ }
  existeMiComentario(){
   return this.miComentario ? true : false;
  }

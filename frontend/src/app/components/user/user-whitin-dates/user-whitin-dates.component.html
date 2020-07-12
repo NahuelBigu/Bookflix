@@ -1,0 +1,50 @@
+<div class="container">
+    <h2 class="title mt-5">Busqueda de usuarios suscriptos entre dos fechas</h2>
+    <br>
+    <div class="alert alert-danger" *ngIf="error">
+        {{error}}
+    </div>
+    <form (ngSubmit)="search()">
+        <div class="form-group row justify-content-center">
+            <div class="col-4">
+                <p style="margin-bottom: 0px; color: white;" class="">Fecha base</p>
+                <input type="date" [(ngModel)]="baseDate" name="baseDate" autofocus>
+            </div>
+            <div class="col-4">
+                <p style="margin-bottom: 0px;color: white;" class="">Fecha limite</p>
+                <input type="date" [(ngModel)]="limitDate" name="limitDate" autofocus>
+            </div>
+            <div class="col-4">
+                <button type="submit" style="margin-top: 15px;" class="btn btn-block btn-outline-danger">Buscar</button>
+            </div>
+        </div>
+    </form>
+    <div class="container-fluid mt-5  ">
+        <table id="table-users" class="table table-striped table-hover table-borderless background-table table-responsive-sm" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Plan</th>
+                    <th scope="col">Name of Credit Card</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users; index as i " [ngClass]="{bgNoActive: !user.active}">
+                    <th scope="row">{{i}}</th>
+                    <td>{{user.email}}</td>
+                    <td *ngIf="user.plan==0">Administrador</td>
+                    <td *ngIf="user.plan!=0">{{planes[user.plan - 1].name}}</td>
+                    <td>{{user.creditCardName}}</td>
+                    <td>
+                        <button *ngIf="user.active" (click)="deshabilitar(user)" class="btn btn-outline-danger mr-1" title="Deshabilitar Usuario"><i class="fa fa-user-minus"></i></button>
+                        <button *ngIf="!user.active" (click)="habilitar(user)" class="btn btn-outline-success mr-1" title="Habilitar Usuario"><i class="fa fa-user-plus"></i></button>
+                        <button *ngIf="user.plan!=0" (click)="hacerAdmin(user)" class="btn btn-outline-success" title="Mejorar a Admin"><i class="fa fa-users-cog"></i> Hacer Admin</button>
+                        <button *ngIf="user.plan==0" (click)="sacarAdmin(user)" class="btn btn-outline-danger" title="Sacar Admin"><i class="fa fa-users-cog"></i> Sacar Admin</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

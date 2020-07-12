@@ -100,6 +100,7 @@ userCtrl.editUser = async(req, res) => {
     user.creditCardCVV = req.body.user.creditCardCVV;
     user.creditCardMM = req.body.user.creditCardMM;
     user.creditCardYY = req.body.user.creditCardYY;
+    user.active = req.body.user.active;
 
     if (req.body.oldPasswordTry != "") {
         const match = await user.matchPassword(req.body.oldPasswordTry);
@@ -120,7 +121,7 @@ userCtrl.deleteUser = async(req, res) => {
 
     const user = await User.findById(req.params.id);
     user.active = false;
-    user.save();
+    await user.save();
     res.json({ 'status': true });
 }
 
@@ -188,11 +189,18 @@ userCtrl.crearProfile = async(req, res) => {
     user.profiles.push(
         new Profile({
             name: req.body.name,
-            photo: "../../../../assets/img/perfil"+(Math.floor(Math.random() * 7) + 1  )+".png"
+            photo: "../../../../assets/img/perfil" + (Math.floor(Math.random() * 7) + 1) + ".png"
         })
     );
     user.save();
     res.json({ 'status': "true" });
+}
+
+userCtrl.getUsersWithinDates = async(req, res) => {
+    const users = await User.find();
+    const dateIni = Date.parse(req.body.dateIni);
+    const dateFin = Date.parse(req.body.dateFin);
+    res.json(users.filter(function(x) { return (Date.parse(x.createdAt) >= dateIni && Date.parse(x.createdAt) <= dateFin) }));
 }
 
 module.exports = userCtrl;

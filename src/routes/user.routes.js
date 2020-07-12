@@ -8,6 +8,7 @@ const auth = require('../middleware/auth');
 
 // RUTAS
 router.get('/', auth, user.getUsers);
+router.post('/user-within-dates', auth, user.getUsersWithinDates);
 router.get('/:id', auth, user.getUser);
 router.get('/habilitar/:id', auth, user.habilitarUser);
 router.get('/hacerAdmin/:id', auth, user.hacerAdmin);
