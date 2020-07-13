@@ -46,7 +46,6 @@ export class BookService {
     var esta = profile.history.indexOf(_id);
     if (esta > -1) {
       profile.history.splice(esta, 1);
-      this.unviewBook(_id);
     } else {
       profile.history.push(_id);
       this.viewBook(_id);
@@ -61,9 +60,11 @@ export class BookService {
    return true
   }
   viewBook(_id: string) {
+    console.log("view"+ _id);
     this.http.get(this.URL_API + `/view/${_id}`).subscribe();
   }
   unviewBook(_id: string) {
+    console.log("unview"+ _id);
     this.http.get(this.URL_API + `/unview/${_id}`).subscribe();
   }
   removeReading(_id: string){

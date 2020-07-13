@@ -139,13 +139,13 @@ bookCtrl.view = async(req, res) => {
     const book = await Book.findById(req.params.id);
     book.views = book.views + 1;
     book.save();
-    res.json({ 'status': 'book view' });
+    res.json({ 'status': 'book view', 'views:': book.views  });
 }
 bookCtrl.unview = async(req, res) => {
 
     const book = await Book.findById(req.params.id);
     book.views = book.views - 1;
     book.save();
-    res.json({ 'status': 'book unview' });
+    res.json({ 'status': 'book unview' , 'views:': book.views });
 }
 module.exports = bookCtrl;
