@@ -10,6 +10,9 @@
         </div>
         <div class="modal-body">
             <div class="container">
+                <div class="alert alert-danger" *ngIf="errorModal!=''">
+                    {{errorModal}}
+                </div>
                 <textarea type="text" [(ngModel)]="comentario.texto" name="texto" id="texto" class="form-control" rows="4"></textarea>
                 <div class="row">
                     <div class="col-6">
@@ -22,8 +25,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-warning" (click)="refresh()" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-outline-danger" (click)="calificar()" data-dismiss="modal">Guardar calificacion</button>
+            <button id="cerrarModal" type="button" class="btn btn-outline-warning" (click)="refresh()" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-outline-danger" (click)="calificar()" >Guardar calificacion</button>
         </div>
         </div>
     </div>
@@ -134,11 +137,11 @@
                             <ng-container *ngIf="comentarioTieneTexto(miComentario.texto)">
                                 <li class="list-group-item align-items-center">
                                     <div class="row">
-                                        <div class="col-10">
+                                        <div class="col-8">
                                             <p class="mt-1">{{miComentario.texto}}</p>
                                             <h6><span class="badge badge-pill badge-warning">{{miComentario.nomPerfil}}</span></h6>
                                         </div>
-                                        <div class="col-2 text-right">
+                                        <div class="col-4 text-right">
                                             <h4 class="ml-4 mt-2" *ngIf="miComentario.like"><span class="badge badge-success badge-pill"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span></h4>
                                             <h4 class="ml-4 mt-2" *ngIf="!miComentario.like"><span class="badge badge-danger badge-pill"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span></h4>
                                         </div>
@@ -174,11 +177,11 @@
                             <ng-container *ngIf="comentarioTieneTexto(com.texto)">
                                 <li class="list-group-item align-items-center">
                                     <div class="row">
-                                        <div class="col-10">
+                                        <div class="col-8">
                                             <p class="mt-1">{{com.texto}}</p>
                                             <h6><span class="badge badge-pill badge-warning">{{com.nomPerfil}}</span></h6>
                                         </div>
-                                        <div class="col-2 text-right">
+                                        <div class="col-4 text-right">
                                             <h4 class="ml-4 mt-2" *ngIf="com.like"><span class="badge badge-success badge-pill"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span></h4>
                                             <h4 class="ml-4 mt-2" *ngIf="!com.like"><span class="badge badge-danger badge-pill"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span></h4>
                                         </div>
