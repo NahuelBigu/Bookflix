@@ -106,6 +106,7 @@ export class BookSampleComponent implements OnInit {
   sacarDelHistorial() {
     this.termine = this.bookService.removeHistory(this.book._id);
     this.capLeidos = -1;
+    this.puedeComentar = this.puedeCalificar();
   }
   sacarDeLeidos() {
     this.bookService.removeReading(this.book._id);
