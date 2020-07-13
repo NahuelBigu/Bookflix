@@ -89,7 +89,6 @@ export class UserWhitinDatesComponent implements OnInit {
     if (new Date(this.baseDate) > (new Date) || new Date(this.limitDate) > (new Date)) { return this.error = 'Las fechas a especificar deben ser anteriores a la fecha del dia de hoy' }
     if (new Date(this.baseDate) > new Date(this.limitDate)) { return this.error = 'La fecha base debe ser anterior a la fecha limite' }
     this.error = null;
-
     this.buscarUsuarios();
   }
 
