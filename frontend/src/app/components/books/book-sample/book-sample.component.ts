@@ -7,7 +7,7 @@ import { Comentario } from '../../../models/comentario';
 import { FormGroup, FormBuilder, Validators, FormControl, NgForm } from '@angular/forms';
 import { Profile } from '../../../models/profile';
 import { element } from 'protractor';
-
+declare var $:any;
 @Component({
   selector: 'app-book-sample',
   templateUrl: './book-sample.component.html',
@@ -30,6 +30,7 @@ export class BookSampleComponent implements OnInit {
   porcentajeNegativo;
   cantidadVotosPositivos;
   cantidadVotosNegativos;
+  errorModal: string="";
 
   constructor(private ruta: ActivatedRoute, private router: Router, private bookService: BookService, private authService: AuthService) {
     this.ruta.params.subscribe(params => {
@@ -140,10 +141,11 @@ export class BookSampleComponent implements OnInit {
       this.book=book as Book;
     
     if (this.comentario.like != null) {
+      $('#cerrarModal').click();
       this.comentario.perfil = this.perfil._id;
       this.comentario.nomPerfil = this.perfil.name;
       this.comentario.active = true;
-      this.error = '';
+      this.errorModal = '';
       this.comentarioStringify = JSON.stringify(this.comentario);
       if (this.existeMiComentario()) {
         let aux = JSON.stringify(this.miComentario)
@@ -185,7 +187,7 @@ export class BookSampleComponent implements OnInit {
         })
       }
     } else {
-      this.error = 'Se debe calificar con like o dislike obligatoriamente';
+      this.errorModal = 'Se debe calificar con like o dislike obligatoriamente';
     }
   })
   }

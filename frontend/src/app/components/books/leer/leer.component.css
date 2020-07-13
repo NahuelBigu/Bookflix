@@ -25,6 +25,10 @@
 .pdf-btn {
     height: 50px;
     background-color: rgba(37, 37, 37, 0.685);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 .page-selector {
