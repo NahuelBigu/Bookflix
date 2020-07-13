@@ -40,7 +40,7 @@ export class LeerComponent implements OnInit {
                 this.capProximo = -1
                 for (let index = capAux; index < this.book.chapters.length; index++) {
                   if (this.book.chapters[index] != null && this.book.chapters[index] != '') {
-                    this.capProximo = index;
+                    this.capProximo = index + 1;
                     break;
                   }
 
