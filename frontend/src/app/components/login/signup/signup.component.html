@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <select class="form-control" formControlName="plan">
                             <option value="0" selected disabled>Seleccione un plan</option>
-                            <option *ngFor="let plan of planes" value="plan.value" >{{plan.name}} {{plan.price}}/mes</option>
+                            <option *ngFor="let plan of planes" value="{{plan.value}}" >{{plan.name}} {{plan.price}}/mes</option>
                           </select>
                         </div>
                         <div class="form-group owner">

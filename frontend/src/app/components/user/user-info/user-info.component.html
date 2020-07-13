@@ -42,8 +42,8 @@
 
                                         </div>
                                         <div class="text-center text-sm-right">
-                                            <span class="badge badge-danger" *ngIf="user.plan==0">Administrador</span>
-                                            <span class="badge" *ngIf="user && user.plan!=0" [ngClass]="{'badge-primary': planes[user.plan - 1].value == 1,'badge-warning': planes[user.plan - 1].value == 2}">{{planes[user.plan - 1 ].name }}</span>
+                                            <!--<span class="badge badge-danger" *ngIf="user.plan==0">Administrador</span>
+                                            <span class="badge" *ngIf="user && user.plan!=0" [ngClass]="{'badge-primary': planes[user.plan - 1].value == 1,'badge-warning': planes[user.plan - 1].value == 2}">{{planes[user.plan - 1 ].name }}</span>-->
                                             <div class="text-muted ">
                                                 <small>{{user.createdAt | date: 'MMM dd, yyyy'}}</small></div>
                                         </div>
@@ -188,7 +188,7 @@
                                         </div>
                                     </ng-container>
 
-                                    <div class="m-3 col-3 card p-3 icardi" style="min-width: 180px; max-height: 400px;" *ngIf="planes[user.plan - 1].cantProfile > user.profiles.length">
+                                    <div class="m-3 col-3 card p-3 icardi" style="min-width: 180px; max-height: 400px;" *ngIf="verificarCantidad()">
                                         <a data-toggle="modal" data-target="#exampleModal" href="javascript:void(0);">
                                             <img class="card-img-top mt-4" width="200px" height="200px" src="https://assets.dryicons.com/uploads/icon/svg/12631/d3fab4d2-3a88-4439-9a83-3bea496ed86b.svg" alt="Card image cap">
                                             <div class="card-body">

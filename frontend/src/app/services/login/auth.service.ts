@@ -160,9 +160,11 @@ export class AuthService {
   actualizarPerfil() {
     var a = this.getCurrentUser2();
     var user=  JSON.parse(a) as User;
-    var p= this.getProfile()
+    var p= this.getProfile();
     var profilePos = user.profiles.map(function(e) { return e._id; }).indexOf(p._id);
-    user.profiles.splice(profilePos,1,p);
+    if (profilePos > -1) {
+      user.profiles.splice(profilePos,1,p);
+    }
     this.userService.putProfile(user).subscribe();
     this.setCurrentUser(user);
   }

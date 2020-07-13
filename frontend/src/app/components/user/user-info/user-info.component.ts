@@ -7,6 +7,7 @@ import { Router } from "@angular/router";
 import { PlanesService } from '../../../services/plan/planes.service';
 import { Plan } from 'src/app/models/Plan';
 import { UserService } from '../../../services/user.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-user-info',
@@ -71,7 +72,11 @@ export class UserInfoComponent implements OnInit {
       const index = this.user.profiles.indexOf(profile);
       if (index > -1) {
         this.user.profiles.splice(index, 1);
-        this.userService.putProfile(this.user).subscribe();
+        if (profile._id==this.loggedProfile._id) { this.loggedProfile=this.user.profiles[0]; this._authService.setProfile(this.loggedProfile); }
+        this.userService.putProfile(this.user).subscribe( data => {
+          this._authService.actualizarUser();
+        }
+        );
       }
     }
     else { console.log("Tenes solo un perfil");}
@@ -82,8 +87,9 @@ export class UserInfoComponent implements OnInit {
     if (!profile) { return this.error="Debe especificar un nombre no vacio para crear un perfil"; }
     if (this.user.plan==0) { p = 1 } else { p = this.user.plan-1 };
     if (this.user.profiles.length==this.planes[p].cantProfile) {return this.error="Ya se cuenta con el maximo de perfiles que el plan provee"};
-    this.userService.crearProfile(profile,this.user._id).subscribe();
-    this.user=this._authService.actualizarUser();
+    this.userService.crearProfile(profile,this.user._id).subscribe(data => {
+      this.user=this._authService.actualizarUser();  
+    });
     
   }
 
@@ -120,5 +126,14 @@ export class UserInfoComponent implements OnInit {
   cambiarImagenPerfil(num){
     this.profileToEdit.photo= "../../../../assets/img/perfil"+num+".png";
     this.modificar(this.profileToEdit.name);
+  }
+
+  verificarCantidad() {
+    let aux;
+    if (this.planes && this.user.plan){
+      aux=this.planes[this.user.plan - 1] as Plan;
+      return (aux.cantProfile > this.user.profiles.length);
+    }
+    return false;
   }
 }

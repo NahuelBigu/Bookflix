@@ -9,9 +9,9 @@
             <div class="col-md-auto my-5" *ngFor="let profile of profiles">
 
                 <div>
-                    <a class="perfil" (click)="seleccionar(profile)">
-                        <div class="avatar-wrapper">
-                            <img height="180px" width="180px" src="{{profile.photo}}" alt="avatar">
+                    <a class="perfil text-center justify-content-center" (click)="seleccionar(profile)">
+                        <div class="avatar-wrapper justify-content-center" style="height: 185px; width: 185px;">
+                            <img height="180px" width="180px"  src="{{profile.photo}}" alt="avatar">
                         </div>
                         <h5 class="text-center mt-2">{{profile.name}}</h5>
                     </a>

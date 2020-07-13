@@ -179,9 +179,12 @@ userCtrl.iniciarSesion = async(req, res) => {
 userCtrl.editarProfile = async(req, res) => {
     const { id } = req.params;
     user = await User.findById(id);
+    console.log(user.profiles);
     user.profiles = req.body.profiles;
-    user.save();
-    res.json({ 'status': "true" });
+    console.log(req.body.profiles);
+    console.log(user.profiles);
+    await user.save();
+    res.json({ 'status': req.body });
 }
 
 userCtrl.crearProfile = async(req, res) => {
