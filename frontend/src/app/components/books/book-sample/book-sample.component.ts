@@ -135,6 +135,9 @@ export class BookSampleComponent implements OnInit {
   }
 
   calificar() {
+    this.bookService.getBook(this.book._id).subscribe(book => {
+      this.book=book as Book;
+    
     if (this.comentario.like != null) {
       this.comentario.perfil = this.perfil._id;
       this.comentario.nomPerfil = this.perfil.name;
@@ -183,6 +186,7 @@ export class BookSampleComponent implements OnInit {
     } else {
       this.error = 'Se debe calificar con like o dislike obligatoriamente';
     }
+  })
   }
 
   refresh() {

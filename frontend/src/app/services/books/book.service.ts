@@ -60,11 +60,9 @@ export class BookService {
    return true
   }
   viewBook(_id: string) {
-    console.log("view"+ _id);
     this.http.get(this.URL_API + `/view/${_id}`).subscribe();
   }
   unviewBook(_id: string) {
-    console.log("unview"+ _id);
     this.http.get(this.URL_API + `/unview/${_id}`).subscribe();
   }
   removeReading(_id: string){

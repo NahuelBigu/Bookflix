@@ -137,15 +137,15 @@ bookCtrl.getSpecificBooks = async(req, res) => {
 bookCtrl.view = async(req, res) => {
 
     const book = await Book.findById(req.params.id);
-    book.views = book.views + 1;
-    book.save();
-    res.json({ 'status': 'book view', 'views:': book.views  });
+    book.views=book.views + 1;
+    console.log(await book.save());
+    res.json({ 'status': 'book view', 'views:': book  });
 }
 bookCtrl.unview = async(req, res) => {
 
     const book = await Book.findById(req.params.id);
     book.views = book.views - 1;
-    book.save();
+    console.log(await book.save());
     res.json({ 'status': 'book unview' , 'views:': book.views });
 }
 module.exports = bookCtrl;
