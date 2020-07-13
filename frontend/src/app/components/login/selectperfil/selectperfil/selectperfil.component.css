@@ -11,3 +11,6 @@
 .avatar-wrapper:hover {
     border-color: white;
 }
+body {
+    margin: 0;
+  }

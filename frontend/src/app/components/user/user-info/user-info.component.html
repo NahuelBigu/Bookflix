@@ -172,7 +172,7 @@
                                 <!-- Fin de Info del usuario Comienzo de Perfiles -->
                                 <div class="row justify-content-center" *ngIf="!info">
                                     <ng-container *ngFor="let profile of user.profiles ; index as i">
-                                        <div class="m-3 col-3 card icardi p-3 " [ngClass]="(profile._id==loggedProfile._id)?'logeado':''" style="min-width: 180px; max-height: 400px;" *ngIf="planes[user.plan - 1].cantProfile > i">
+                                        <div class="m-3 col-3 card icardi p-3 " [ngClass]="(profile._id==loggedProfile._id)?'logeado':''" style="min-width: 180px; max-height: 400px;" *ngIf="algo() > i">
                                             <div class="profile-pic"><img *ngIf="profile" class="card-img-top pointer" src="{{profile.photo}}" alt="Card image cap" (click)="setProfileToEdit(profile)" data-toggle="modal" data-target="#modificarFotoProfile">
                                                 <div class="edit"><i (click)="setProfileToEdit(profile)" data-toggle="modal" data-target="#modificarFotoProfile" class="fa fa-pencil fa-lg"></i></div>
                                             </div>

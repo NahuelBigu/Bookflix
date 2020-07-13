@@ -130,10 +130,18 @@ export class UserInfoComponent implements OnInit {
 
   verificarCantidad() {
     let aux;
-    if (this.planes && this.user.plan){
-      aux=this.planes[this.user.plan - 1] as Plan;
+    if (this.planes!=null && this.user.plan!=null){
+      if (this.user.plan == 0) { aux=this.planes[1] as Plan; } else { aux=this.planes[this.user.plan - 1] as Plan; }
       return (aux.cantProfile > this.user.profiles.length);
     }
     return false;
+  }
+  algo(){
+    let k=-2;
+    if (this.user.plan == 0) { k=1 } else { k = this.user.plan - 1;} 
+    if (this.planes && this.user){
+      return this.planes[k].cantProfile;
+    }
+    else { return -2 }
   }
 }

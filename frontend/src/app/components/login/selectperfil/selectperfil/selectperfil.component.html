@@ -1,17 +1,18 @@
-<div class="jumbotron vertical-center">
+<div class="jumbotron" style="background: transparent;">
     <div class="container">
-        <div class="row justify-content-center overflow-hidden">
+        <div class="row  overflow-hidden justify-content-center">
             <div class="col-12">
                 <h3 class="text-center mb-5">¿Quién está leyendo ahora?</h3>
             </div>
 
 
-            <div class="col-md-auto my-5" *ngFor="let profile of profiles">
+            <div class="col-md-auto my-5 justify-content-center" *ngFor="let profile of profiles">
 
-                <div>
-                    <a class="perfil text-center justify-content-center" (click)="seleccionar(profile)">
-                        <div class="avatar-wrapper justify-content-center" style="height: 185px; width: 185px;">
-                            <img height="180px" width="180px"  src="{{profile.photo}}" alt="avatar">
+                <div class="perfil">
+                    <a class="perfil" (click)="seleccionar(profile)">
+                        <div class="avatar-wrapper" style="height: 185px; width: 185px; display: block; margin-left: auto; margin-right: auto;">
+                            <img style="display: block; margin-left: auto; margin-right: auto; " height="180px" width="180px" src="{{profile.photo}}"
+                                alt="avatar">
                         </div>
                         <h5 class="text-center mt-2">{{profile.name}}</h5>
                     </a>
