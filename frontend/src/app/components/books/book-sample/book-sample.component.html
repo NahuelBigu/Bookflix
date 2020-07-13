@@ -13,10 +13,10 @@
                 <textarea type="text" [(ngModel)]="comentario.texto" name="texto" id="texto" class="form-control" rows="4"></textarea>
                 <div class="row">
                     <div class="col-6">
-                        <button class="btn btn-block btn-outline-success m-1 mt-2" (click)="like()"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+                        <button class="btn btn-outline-success btn-block m-1 mt-2" [ngClass]="{'btn-success':comentario.like}" (click)="like()"><i class="fa fa-thumbs-up" [ngClass]="{'white':comentario.like}" aria-hidden="true"></i></button>
                     </div>
                     <div class="col-6">
-                        <button class="btn btn-block btn-outline-danger m-1 mt-2" (click)="dislike()"><i class="fa fa-thumbs-down" aria-hidden="true"></i></button>
+                        <button class="btn btn-outline-danger btn-block m-1 mt-2" [ngClass]="{'btn-danger':comentario.like==false}" (click)="dislike()"><i class="fa fa-thumbs-down" [ngClass]="{'white':comentario.like==false}" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
@@ -38,6 +38,20 @@
                         <div class="row mb-2">
                             <div class="col-4">
                                 <img src="{{book.image}}" alt="Portada de {{book.name}}" class="imagen card-img-top">
+
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{porcentajePositivo}}%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{porcentajeNegativo}}%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6 text-left">
+                                        <p><i class="fa fa-thumbs-up" aria-hidden="true"></i>{{cantidadVotosPositivos}}</p>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <p><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{cantidadVotosNegativos}}</p>
+                                    </div>
+                                </div>
 
                                 <div class="text-center mt-2" style="min-height: 4.5rem;">
                                     <input id="toggle-heart" type="checkbox" (click)="agregarFav()" [checked]="fav" />
@@ -77,7 +91,8 @@
                         </div>
                         <div class="col-4 text-right">
                             <button class="btn btn-outline-danger mr-1" type="button" (click)="sacarDeLeidos()" *ngIf="leyendo">Dejar de leer</button>
-                            <button class="btn btn-outline-danger" type="button" (click)="terminar()" *ngIf="!termine && leyendo" data-toggle="modal" data-target="#exampleModalCenter">Terminar</button>
+                            <button class="btn btn-outline-danger" type="button" (click)="terminar()" *ngIf="!termine && leyendo && !existeMiComentario()" data-toggle="modal" data-target="#exampleModalCenter">Terminar</button>
+                            <button class="btn btn-outline-danger" type="button" (click)="terminar()" *ngIf="!termine && leyendo && existeMiComentario()">Terminar</button>
                             <button class="btn btn-outline-danger" type="button" (click)="sacarDelHistorial()" *ngIf="termine">Sacar de Historial</button>
                         </div>
                     </div>
@@ -153,6 +168,7 @@
                                     </div>
                                 </li>
                             </ng-container>
+                            <div style="height: 7px;"></div>
                         </ng-container>
                         <ng-container *ngFor="let com of comentarios; index as i">
                             <ng-container *ngIf="comentarioTieneTexto(com.texto)">
@@ -169,7 +185,7 @@
                                     </div>
                                 </li>
                             </ng-container>
-                            <ng-container *ngIf="!comentarioTieneTexto(com.texto)">
+                            <!--<ng-container *ngIf="!comentarioTieneTexto(com.texto)">
                                 <li class="list-group-item align-items-center text-center">
                                     <div>
                                         <h2 class="ml-1 mt-2" *ngIf="com.like"><span class="badge badge-success badge-pill"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span></h2>
@@ -177,7 +193,8 @@
                                         <h6><span class="badge badge-pill badge-warning">{{com.nomPerfil}}</span></h6>
                                     </div>
                                 </li>
-                            </ng-container>
+                            </ng-container>-->
+                            <div style="height: 5px;"></div>
                         </ng-container>
                     </ul>
                 </div>
